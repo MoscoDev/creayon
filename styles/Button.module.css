@@ -1,0 +1,38 @@
+.lg{
+    width:333px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.orange{
+    background-color: var(--orange);
+    color: #fff;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.45);
+}
+.orange:hover{
+    background-color: #fff;
+    color: var(--orange);
+     transition: all .4s ease-in-out;
+}
+.white{
+    background-color: #fff;
+    color: var(--orange);
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.45);
+    transition: all .4s ease-in-out;
+}
+.white:hover{
+    background-color: var(--orange);
+    color: #fff;
+     transition: all .4s ease-in-out;
+}
+.md{
+    width:  236px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.sm{
+    width: 101px;
+}
+
