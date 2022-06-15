@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+.title{
+font-family: 'poppins', sans-serif;
+font-style: normal;
+font-weight: 800 !important;
+font-size: 23px !important;
+line-height: 30px;
+color: #221C1C;
+}
+.titleContainer{
+    margin-bottom: 20px !important;
+}

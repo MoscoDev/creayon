@@ -5,58 +5,40 @@ import Imagebox from "../Components/Imagebox";
 import Title from "../Components/title";
 import Divider from "../Components/Divider";
 
-function login() {
+function Forgetpassword() {
   return (
     <div className={style.general}>
       <Title text="Creayon" />
       <Imagebox src="/img/login.png" />
-      <Title text="Login" />
+      <Title text="Forgot Password" />
+      <div className="tc">
+        <small style={{ textAlign: "justify", color: "#c4c4c4" }}>
+          Don’t worry`it happens. please enter the Email address Associated with
+          your accont
+        </small>
+      </div>
       <form className={style.form} action="submit">
         <input className={style.input} type="email" placeholder="Email" />
-        <input className={style.input} type="password" placeholder="Password" />
-        <div className={style.tcs}>
+        <input className={style.input} type="password" placeholder="New Password" />
+        <input className={style.input} type="password" placeholder="Repeat Password" />
+        <div className={style.tc}>
           <small>
             <a
               href="/signup"
-              style={{
-                color: "#c4c4c4",
-                textAlign: "left",
-              }}
-            >
-              <span
-                style={{
-                  color: "#c4c4c4",
-                  textAlign: "start",
-                }}
-              >
-                Create a new account
-              </span>
-            </a>
-          </small>
-          <small>
-            <a
-              href="/forgetpassword"
               style={{ color: "#ff4200", textAlign: "end", display: "block" }}
             >
               <span
                 style={{ color: "#ff4200", textAlign: "end", display: "block" }}
               >
-                forgot password?
+                Create a new account
               </span>
             </a>
           </small>
         </div>
 
         <Button
-          text={"Login"}
+          text={"Submit"}
           colour="orange"
-          link={"/verifymail"}
-          size="lg"
-        ></Button>
-        <Divider />
-        <Button
-          text={"Login with google"}
-          colour="white"
           link={"/verifymail"}
           size="lg"
         ></Button>
@@ -65,4 +47,4 @@ function login() {
   );
 }
 
-export default login;
+export default Forgetpassword;

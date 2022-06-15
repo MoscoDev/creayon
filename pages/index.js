@@ -21,7 +21,7 @@ export default function Home() {
         <meta name="description" content="Welcome to Creayon Food" />
         {/* for mobile viewport only */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="viewport" content="width=device-width, max-scale=1.0" />
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
         <title>Creayon Food at your door step</title>
       </Head>
       {welcome ? (
@@ -84,8 +84,8 @@ export default function Home() {
             </div>
           </Carousel>
           <div className={styles.onboardingButtons}>
-            <Button text="login" colour="orange" link={"#"} size="lg"></Button>
-            <Button text="signup" colour="white" link={"#"} size="lg"></Button>
+            <Button text="login" colour="orange" link={"/login"} size="md"></Button>
+            <Button text="signup" colour="white" link={"/signup"} size="md"></Button>
           </div>
         </div>
       )}
