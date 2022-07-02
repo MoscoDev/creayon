@@ -3,15 +3,17 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Components/Button";
 
 export default function Home() {
   const [welcome, setWelcome] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setWelcome(false);
+    }, 3000);
+  }, []);
 
-  setTimeout(() => {
-    setWelcome(false);
-  }, 3000);
   return (
     <div className={styles.container}>
       <Head>
@@ -24,13 +26,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
         <title>Creayon Food at your door step</title>
       </Head>
-      {welcome ? (
+      {welcome ? 
+      (
         <div className={styles.welcome}>
           <div className={styles.welcomeText}>
             <h1>Creayon Food</h1>
           </div>
         </div>
-      ) : (
+      ) :
+       (
         <div className={styles.onboardingPage}>
           <Carousel
             lengend={false}
@@ -75,7 +79,7 @@ export default function Home() {
                 <Image
                   width={297}
                   height={249}
-                  src="/img/onboarding3.png"
+                  src="/img/onboarding3.svg"
                   alt="image3"
                 />
                 <p className={styles.subtitle}>Have a taste and ask for more</p>
@@ -84,12 +88,21 @@ export default function Home() {
             </div>
           </Carousel>
           <div className={styles.onboardingButtons}>
-            <Button text="login" colour="orange" link={"/login"} size="md"></Button>
-            <Button text="signup" colour="white" link={"/signup"} size="md"></Button>
+            <Button
+              text="login"
+              colour="orange"
+              link={"/login"}
+              size="md"
+            ></Button>
+            <Button
+              text="signup"
+              colour="white"
+              link={"/signup"}
+              size="md"
+            ></Button>
           </div>
         </div>
       )}
-      {/* show welcome page for 2 sec */}
     </div>
   );
 }

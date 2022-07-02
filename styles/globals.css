@@ -18,7 +18,8 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  transition: all 0.6s ease;
+  /* transition: all 0.6s ease; */
+  
 }
 :root {
   --lightColor: #E5E5E5;
@@ -38,3 +39,46 @@ a {
     margin: 0 8px;
     background-color: var(--orange) !important;
  }
+ input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+button {
+  all: unset;
+  cursor: pointer;
+}
+h1{
+  display: block;
+  width: 100%;
+}
+.subtitle {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #c4c4c4;
+}
+.title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+.otp {
+  width: 58px !important;
+  height: 58px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 24px;
+  line-height: 40px;
+  margin-right: 5px;
+    text-align: center;
+  background: #f6f6f6;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.12);
+}

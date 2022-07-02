@@ -1,6 +1,6 @@
 .container {
   padding: 0px 0px;
-  background-color: #fff;
+  background-color: #f5f5f8;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -82,31 +82,39 @@
 }
 .general {
   padding: 15px 15px;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
 }
 .input {
   outline:  var(--orange) 0px solid;
   display: block;
   font-size: 16px;
   line-height: 22px;
-  padding: 10px 10px 10px 5px;
+  padding: 10px 10px 10px 10px;
   border-top: none;
   border-right: none;
   border-left: none;
   width: 100%;
   border-color: #c4c4c4;
   border-width: .5px;
+  border-radius: 8px;
 }
 .input::-moz-focus-inner,
 .input::selection,
-.input:focus-visible, .input:focus {
+.input:focus {
   /* outline: 0 0 1px 1px !important; */
   border-top: none !important;
   border-right: none !important;
   border-color: var(--orange) !important;
 }
 .input:invalid{
-  border-color: var(--orange);
+  border-color: 2px var(red);
   
+}
+.input:focus-visible{
+  /* border-color: var(--orange); */
+  outline: 1px solid var(--orange);
 }
 .input:invalid{
   border-color: var(--orange);
@@ -129,4 +137,15 @@
   /* font-size: 14px; */
   justify-content: space-between;
   width: 100%;
+}
+.button{
+  color: #fff;
+  background-color: #000000;
+  padding: 15px 20px;
+  border: none;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  cursor: pointer;
+  width: fit-content;
 }
