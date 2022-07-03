@@ -1,6 +1,5 @@
  import React, { useState, useEffect } from 'react'
-
-
+import style from '../styles/Home.module.css'
 
 function Layout({children}) {
   
@@ -19,7 +18,7 @@ function Layout({children}) {
   }, []);
   
   return mobile ? (
-    <div style={{ background: "#E5E5E5", minHeight:"100vh" }}>{children}</div>
+    <div className={style.general} style={{ background: "#E5E5E5", minHeight:"100vh" }}>{children}</div>
   ) : (
     <div className="container">
       <div className="row">

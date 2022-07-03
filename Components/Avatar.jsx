@@ -7,7 +7,10 @@ function Avatar() {
         height: '50px',
         borderRadius: '50%',
         backgroundColor: '#fff',
-        backgroundImage: 'url(/img/avatar.png)',
+        backgroundImage: 'url(/img/avatar.svg)',
+        backgroundPosition: 'center',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
     }}></div>
   )
 }

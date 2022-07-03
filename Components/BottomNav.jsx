@@ -10,27 +10,27 @@ function BottomNav() {
     <div className={style.BottomNav}>
       <Link href="/">
         <a>
-          <AiOutlineHome size="1.5rem" />
+          <AiOutlineHome size="1.5rem" color="#666666" />
         </a>
       </Link>
       <Link href="/">
         <a>
-          <IoIosHeartEmpty size="1.5rem" />
+          <IoIosHeartEmpty size="1.5rem" color="#666666" />
         </a>
       </Link>{" "}
       <Link href="/">
         <a>
-          <BsFolder2 size="1.3rem" />
+          <BsFolder2 size="1.3rem" color="#666666" />
         </a>
       </Link>{" "}
       <Link href="/">
         <a>
-          <AiOutlineShoppingCart size="1.5rem" />
+          <AiOutlineShoppingCart size="1.5rem" color="#666666" />
         </a>
       </Link>{" "}
       <Link href="/">
         <a>
-          <FaRegUser size="1.5rem" color="#E5E5E5 " />
+          <FaRegUser size="1.5rem" color="#666666" />
         </a>
       </Link>
     </div>
