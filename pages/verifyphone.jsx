@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import style from "../styles/Home.module.css";
+import style from "../styles/verifyphone.module.css";
 import Button from '../Components/Button';
 import Timer from '../Components/Timer';
 import OtpInput from 'react-otp-input';
@@ -17,7 +17,7 @@ function verifyphone() {
   const handleChange = (otp) => setOtp(otp);
   return (
     <div className={style.general}>
-      <TopNav />
+     
       <div style={{ display: "flex", columnGap: "1rem" }}>
         <div
           style={{
