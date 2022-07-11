@@ -43,8 +43,8 @@ a {
 textarea,
 button,
 select,
-a {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+a, div {
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
 }
 button {
   all: unset;
@@ -81,4 +81,98 @@ h1{
     text-align: center;
   background: #f6f6f6;
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.tabs {
+  display: flex;
+  width: 100vw;
+  margin: 0 -15px 40px !important;
+  padding: 0 !important;
+
+  /* justify-content: space-between; */
+}
+
+.tabs button {
+  background-color: white;
+  border: none;
+  color: black;
+  cursor: pointer;
+  padding: 25px;
+  width: 100%;
+  transition: all 0.5s ease-out;
+  line-height: 24;
+  text-align: center;
+
+}
+
+.tabs button:hover {
+  color: black;
+
+}
+
+.tabs button:disabled {
+ 
+  color: black; 
+  border-bottom: 2px solid var(--orange);
+}
+
+.title {
+  color: black;
+  font-size: medium;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.text-muted {
+  padding: 10px;
+  cursor: pointer;
+}
+.content {
+  padding: 50px 80px;
+  background-color: white;
+  font-weight: 300;
+  line-height: 30px;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.content,
+button {
+  font-size: 15px;
+}
+input.form-control {
+  border-radius: 0px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  font-size: 15px;
+  width: 100% !important;
+  margin-bottom: 10px;
+  font-size: 16px !important;
+  line-height: 22px !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+  width: 100%;
+  border-color: #7a7a7a !important;
+  border-width: 0.5px !important;
+  height: auto !important;
+  background-color: var(--lightColor) !important;
+}
+.react-tel-input{
+   border-radius: 0px;
+  border-bottom: 1px solid #ccc;
+  padding: 0px !important;
+  font-size: 15px;
+  width: 100% !important;
+  margin-bottom: 10px;
+  padding: 0rem;
+  background-color: var(--lightColor) !important;
+
+}
+.layout{
+  min-height: 100vh;
+    width: 100vw;
+    margin: -15px -15px;
+    padding: 15px;
+    background: #E5E5E5;
 }

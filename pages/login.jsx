@@ -14,7 +14,7 @@ const router = useRouter();
 
 
   return (
-    <div className={style.general}>
+    <div>
       <Title text="Creayon" align={"left"} />
       <Imagebox src="/img/login.svg" />
       <Title text="Login" align={"left"} />

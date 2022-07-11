@@ -7,7 +7,14 @@ function Layout({children}) {
 
   useEffect(() => {
     const updateMobile = () => {
-      setMobile(window.innerWidth < 576 ? true : false);
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 576) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+      
+      console.log(NavigatorUAData);
     };
 
     updateMobile();
@@ -18,7 +25,7 @@ function Layout({children}) {
   }, []);
   
   return mobile ? (
-    <div className={style.general} style={{ background: "#E5E5E5", minHeight:"100vh" }}>{children}</div>
+    <div className={style.general} style={{minHeight:"100vh" }}>{children}</div>
   ) : (
     <div className="container">
       <div className="row">

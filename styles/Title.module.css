@@ -4,7 +4,7 @@
 font-family: 'poppins', sans-serif;
 font-style: normal;
 font-weight: 800 !important;
-font-size: 23px !important;
+font-size: 20px !important;
 line-height: 30px;
 color: #221C1C;
 text-transform: capitalize;
@@ -15,4 +15,7 @@ text-transform: capitalize;
     top: 10px;
     transition: all 0.5s ease;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }

@@ -6,7 +6,7 @@ import Title from '../Components/title'
 
 function signup() {
   return (
-    <div className={style.general}>
+    <div>
       <Title text="Creayon" align={"left"} />
       <Imagebox src="/img/signup.svg" />
       <Title text="Signup" align={"left"} />

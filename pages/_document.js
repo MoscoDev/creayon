@@ -11,9 +11,7 @@ class MyDocument extends Document {
           <meta name="description" content="Creayon Food at your door step" />
           <meta name="description" content="Creayon Food so delicious" />
           <meta name="description" content="Welcome to Creayon Food" />
-          {/* for mobile viewport only */}
-         
-        </Head>
+         </Head>
         <body>
           <Main />
           <NextScript />

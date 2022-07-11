@@ -6,31 +6,49 @@ import { BsFolder2 } from 'react-icons/bs'
 import style from '../styles/Nav.module.css'
 
 function BottomNav() {
+  const pageTitle = window.location.pathname;
+  // remove the '/' from the page title
+  const title = pageTitle.substring(1);
   return (
     <div className={style.BottomNav}>
-      <Link href="/">
+      <Link href="/home">
         <a>
-          <AiOutlineHome size="1.5rem" color="#666666" />
+          <AiOutlineHome
+            size="1.3rem"
+            color={title === "home" ? "#FF4200" : "#666666"}
+          />
         </a>
       </Link>
-      <Link href="/">
+      <Link href="/favourite">
         <a>
-          <IoIosHeartEmpty size="1.5rem" color="#666666" />
+          <IoIosHeartEmpty
+            size="1.3rem"
+            color={title === "favourite" ? "#FF4200" : "#666666"}
+          />
         </a>
       </Link>{" "}
-      <Link href="/">
+      <Link href="/orders">
         <a>
-          <BsFolder2 size="1.3rem" color="#666666" />
+          <BsFolder2
+            size="1.3rem"
+            color={title === "orders" ? "#FF4200" : "#666666"}
+          />
         </a>
       </Link>{" "}
-      <Link href="/">
+      <Link href="/cart">
         <a>
-          <AiOutlineShoppingCart size="1.5rem" color="#666666" />
+          <AiOutlineShoppingCart
+            size="1.3rem"
+            color={title === "cart" ? "#FF4200" : "#666666"}
+          />
         </a>
       </Link>{" "}
-      <Link href="/">
-        <a>
-          <FaRegUser size="1.5rem" color="#666666" />
+      <Link href="/profile">
+        <a className={style.active}>
+          <FaRegUser
+            size="1.3rem"
+            color={title === "profile" ? "#ff4200" : "#666666"}
+          />
         </a>
       </Link>
     </div>

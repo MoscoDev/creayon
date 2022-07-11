@@ -16,6 +16,7 @@
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
     "react-otp-input": "^2.4.0",
+    "react-phone-input-2": "^2.15.1",
     "react-responsive-carousel": "^3.2.23"
   },
   "devDependencies": {

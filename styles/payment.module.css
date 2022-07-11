@@ -1,0 +1,68 @@
+.radio-btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    flex: 1 1 100%;
+}
+.radio-btn:focus-visible,
+.radio-btn:hover,
+.radio-btn:active 
+{
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 10px;    
+}
+.icon{
+    /* margin: 0 auto; */
+    width: 30px;
+    display: flex;
+    margin-right: 20px;
+}
+.radio-btn > p{
+    font-size: 1.1rem;
+    flex: 2 1 100%;
+    /* font-weight: bold; */
+}
+.radio-btn > input[type="radio"]{
+    width: 40px;
+    height: 20px;
+    accent-color: var(--orange);
+}
+.paragraph{
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+.radio-btn-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    row-gap: 1.2rem;
+}
+.payment-button{
+    width: 90%;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    
+    transform: translateX(-50%);
+}
+.button{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--orange);
+    color: white;
+    text-align: center;
+    font-size: 1.0rem;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+.article{
+    margin-bottom: 20px;
+}
