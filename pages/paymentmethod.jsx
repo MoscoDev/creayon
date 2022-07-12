@@ -171,7 +171,7 @@ function paymentmethod() {
             }}
           />
         </div>
-        {cardType}
+        
       </div>
       <div className={style["payment-button"]}>
         <button className={style.button} onClick={handleSubmit} > {`Pay with ${cardType}`}</button>

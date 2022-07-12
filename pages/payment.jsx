@@ -40,84 +40,90 @@ return (
         crossorigin="anonymous"
       />
     </head>
-    
-      <form style={{ }} class="text-center">
-        <div
-          class="text-left"
-          style={{ color: "red", fontFamily: "Verdana", fontSize: "30px" }}
-        >
-          SAMPLE CHECKOUT
-        </div>
-        <h6>
-          Note: Amount should be between $1 to $10,000 (USD), NGN100 to
-          NGN5,000,000 and KSH100 to KSH5,000,000
-        </h6>
-        <div class="row text-center">
-          <div class="col-lg-4">
-            <label for="email">Email Address</label>
-            <input
-              type="email"
-              id="email-address"
-              class="form-control"
-              required
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-            <br />
-          </div>
-          <div class="col-lg-4">
-            <label for="amount">Amount</label>
-            <input
-              type="tel"
-              id="amount"
-              class="form-control"
-              required
-              disabled
-              value={price}
-            />
-            <br />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4">
-            <label>First Name</label>
-            <input
-              type="text"
-              id="first-name"
-              class="form-control"
-              value={firstName}
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-            />
-            <br />
-          </div>
-          <div class="col-lg-4">
-            <label for="last-name">Last Name</label>
-            <input
-              type="text"
-              class="form-control"
-              value={lastName}
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-            />
-            <br />
-          </div>
+
+    <form style={{}} class="text-left">
+      <div
+        class="text-left"
+        style={{ color: "var(--orange)", fontSize: "30px" }}
+      >
+        Creayon Checkout
+      </div>
+      <h6>
+        Note: Amount should be between $1 to $10,000 (USD), NGN100 to
+        NGN5,000,000 and KSH100 to KSH5,000,000
+      </h6>
+      <div class="row text-left">
+        <div class="col-lg-4">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email-address"
+            class="form-control"
+            required
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <br />
         </div>
         <div class="col-lg-4">
-          <div class="form-submit">
-            <button type="button" onClick={SquadPay} className="btn btn-danger">
-              Check Out
-            </button>
-            <br />
-            <br />
-          </div>
+          <label for="amount">Amount</label>
+          <input
+            type="tel"
+            id="amount"
+            class="form-control"
+            required
+            disabled
+            value={price}
+          />
+          <br />
         </div>
-      </form>
-    
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <label>First Name</label>
+          <input
+            type="text"
+            id="first-name"
+            class="form-control"
+            value={firstName}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+            }}
+          />
+          <br />
+        </div>
+        <div class="col-lg-4">
+          <label for="last-name">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            value={lastName}
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+          />
+          <br />
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="form-submit">
+          <button
+            type="button"
+            onClick={SquadPay}
+            className="btn btn-lg"
+            style={{ backgroundColor: "var(--orange)", color:"white", position:"fixed", bottom:"20px", width:"80%", left:"50%",
+          transform: " translateX(-50%)"
+          }}
+          >
+            Check Out
+          </button>
+          <br />
+          <br />
+        </div>
+      </div>
+    </form>
   </div>
 );
 }

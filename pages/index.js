@@ -28,7 +28,7 @@ export default function Home() {
       </Head>
       {welcome ? 
       (
-        <div className={styles.welcome}>
+        <div className={styles.welcome} style={{position: "fixed", top:"0px"}}>
           <div className={styles.welcomeText}>
             <h1>Creayon Food</h1>
           </div>

@@ -6,7 +6,7 @@ import Title from "../Components/Title";
 
 function forgetpassword() {
   return (
-    <div className={style.general}>
+    <div>
       <Title text="Creayon" align={"left"} />
       <Imagebox src="/img/forgotpassword.svg" />
       <Title text="Forgot Password?" align={"left"} />

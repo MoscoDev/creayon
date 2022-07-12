@@ -71,7 +71,7 @@ function profile() {
           </Link>
         </div>
       </div>
-      <BottomNav active={""} />
+      <BottomNav/>
     </div>
   );
 }

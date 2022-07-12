@@ -3,17 +3,18 @@ import style from '../styles/Home.module.css'
 
 function Layout({children}) {
   
-  const [mobile, setMobile] = useState(false);
+  const [mobile, setMobile] = useState(null);
 
   useEffect(() => {
     const updateMobile = () => {
+      
       const screenWidth = window.innerWidth;
       if (screenWidth < 576) {
         setMobile(true);
       } else {
         setMobile(false);
       }
-      
+
       console.log(NavigatorUAData);
     };
 
@@ -25,7 +26,7 @@ function Layout({children}) {
   }, []);
   
   return mobile ? (
-    <div className={style.general} style={{minHeight:"100vh" }}>{children}</div>
+    <div className={style.general} style={{minHeight:"100vh", width:"100vw" }}>{children}</div>
   ) : (
     <div className="container">
       <div className="row">

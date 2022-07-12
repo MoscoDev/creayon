@@ -1,7 +1,8 @@
 .lg{
-    width:340px;
+    width:90%;
     padding: 10px;
     border-radius: 10px;
+    display: block;
 }
 .orange{
     background-color: var(--orange);
@@ -38,4 +39,8 @@
 .sm{
     width: 101px;
 }
-
+.butt{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

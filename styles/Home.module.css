@@ -87,8 +87,8 @@
   width: 100vw;
   flex-flow: column;
 }
-.input,
-.form-control {
+.input
+{
   outline: var(--orange) 0px solid;
   display: block;
   font-size: 16px;
@@ -98,8 +98,8 @@
   border-right: none;
   border-left: none;
   width: 100%;
-  border-color: #7a7a7a;
-  border-width: 0.5px;
+  border-color: #4e4e4e;
+  border-width: .2px;
   /* border-radius: 8px; */
 }
 
@@ -112,11 +112,12 @@
   border-color: var(--orange) !important;
 }
 .input:invalid {
-  border-color: 2px var(red);
+  border-color: 1px var(red);
 }
 .input:focus-visible {
-  /* border-color: var(--orange); */
-  outline: 1px solid var(--orange);
+  border-color: var(--orange);
+  outline: 0px solid transparent;
+  
 }
 .input:invalid {
   border-color: var(--orange);

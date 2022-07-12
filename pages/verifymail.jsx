@@ -3,7 +3,7 @@ import style from "../styles/Home.module.css";
 
 function verifymail() {
   return (
-    <div className={style.general}>
+    <div style={{display: "contents"}}>
       <Title text={"Verify Your Email"} align={"center"} />
       <div
         className={style.verifymail}

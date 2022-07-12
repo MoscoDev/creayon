@@ -5,6 +5,7 @@
         overflow: hidden;
         color: var(--lightColor);
         white-space: nowrap; 
+        margin: 0 auto;
     }
 
     .strike > span {
