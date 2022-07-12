@@ -2,10 +2,9 @@ import React from "react";
 import style from "../styles/Home.module.css";
 import Button from "../Components/Button";
 import Imagebox from "../Components/Imagebox";
-import Title from "../Components/title";
-import Divider from "../Components/Divider";
+import Title from "../Components/Title";
 
-function Forgetpassword() {
+function forgetpassword() {
   return (
     <div className={style.general}>
       <Title text="Creayon" align={"left"} />
@@ -74,4 +73,4 @@ function Forgetpassword() {
   );
 }
 
-export default Forgetpassword;
+export default forgetpassword;

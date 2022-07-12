@@ -2,7 +2,7 @@ import React from 'react'
 import style from "../styles/Home.module.css"
 import Button from '../Components/Button';
 import Imagebox from '../Components/Imagebox'
-import Title from '../Components/title'
+import Title from '../Components/Title'
 
 function signup() {
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BiArrowBack } from 'react-icons/bi'
 import Avatar from './Avatar'
-import Title from './title'
+import Title from './Title'
 import { useRouter } from "next/router";
 
 function TopNav() {

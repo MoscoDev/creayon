@@ -4,8 +4,6 @@ import Button from '../Components/Button';
 import Timer from '../Components/Timer';
 import OtpInput from 'react-otp-input';
 import { useState } from 'react';
-import TopNav from '../Components/TopNav';
-
 
 function verifyphone() {
   const [otp, setOtp] = useState('');

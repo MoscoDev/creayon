@@ -1,4 +1,4 @@
-import Title from '../Components/title'
+import Title from '../Components/Title'
 import style from "../styles/Home.module.css";
 
 function verifymail() {
