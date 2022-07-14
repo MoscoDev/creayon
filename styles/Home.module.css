@@ -94,13 +94,13 @@
   font-size: 16px;
   line-height: 22px;
   padding: 10px 10px 10px 10px !important;
-  border-top: none;
-  border-right: none;
-  border-left: none;
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
   width: 100%;
   border-color: #363636;
-  border-width: 1px;
-  /* border: 0.2px solid #4e4e4e !important; */
+  /* border-width: 1px; */
+  border-bottom-width: 0.20px ;
   /* border-radius: 8px; */
 }
 
