@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 function login() {
 const router = useRouter();
-
+const [emailError, setEmailError] = useState("none");
 
   return (
     <div>
@@ -27,17 +27,67 @@ const router = useRouter();
           htmlFor="email"
           name="email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          required
+          onBlur={(e) => {
+            // check if email is valid with regex pattern
+            if (
+              e.target.value.match(
+                /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+              ) == null
+            ) {
+              console.log("invalid email");
+              setEmailError("block");
+            } else {
+              setEmailError("none");
+            }
+          }}
         />
+        <small style={{ display: emailError, transition: "all ease 9.9s" }}>
+          Please enter a valid email address.
+        </small>
         <input
           className={style.input}
           type="password"
           placeholder="Password"
-          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{.8,}$"
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
           id="password"
           htmlFor="password"
-          name="password"
+          // name="password"
+          // onBlur={(e) => {
+          //   if (
+          //     e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/) ==
+          //     null
+          //   ) {
+          //     setEmailError("block");
+          //   } else {
+          //     setEmailError("none");
+          //   }
+          // }
+          // }
+          onChange={(e) => {
+            // check if email is valid with regex pattern
+            if (
+              e.target.value.match(
+                /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
+              ) == null
+            ) {
+              setEmailError("block");
+            } else {
+              setEmailError("none");
+            }
+          }}
         />
+        <small
+          style={{
+            display: emailError,
+            transition: "all ease 9.9s",
+            fontWeight: "200",
+          }}
+        >
+          Password should be atleat 8 characters with at least one letter (a to
+          z) and one number(0 to 9).
+        </small>
         <div className={style.tcs}>
           <small>
             <a

@@ -98,8 +98,9 @@
   border-right: none;
   border-left: none;
   width: 100%;
-  border-color: #4e4e4e;
-  border-width: .2px;
+  border-color: #363636;
+  border-width: 1px;
+  /* border: 0.2px solid #4e4e4e !important; */
   /* border-radius: 8px; */
 }
 
@@ -120,7 +121,7 @@
   
 }
 .input:invalid {
-  border-color: var(--orange);
+  border-color: red;
   content: "invalid input";
 }
 .input::placeholder {

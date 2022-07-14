@@ -16,7 +16,7 @@ function paymentmethod() {
   }
   return (
     <div className="layout">
-      <TopNav />
+      <TopNav/>
       <div className={style["article"]}>
         <p className={style.paragraph}>
           <strong>Select your payment method</strong>

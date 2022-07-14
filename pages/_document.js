@@ -8,6 +8,7 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icon.png"></link>
           <meta name="theme-color" content="#fff" />
+         
           <meta name="description" content="Creayon Food at your door step" />
           <meta name="description" content="Creayon Food so delicious" />
           <meta name="description" content="Welcome to Creayon Food" />
