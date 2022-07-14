@@ -113,7 +113,7 @@
   border-color: var(--orange) !important;
 }
 .input:invalid {
-  border-color: 1px var(red);
+  border-color:  red;
 }
 .input:focus-visible {
   border-color: var(--orange);
