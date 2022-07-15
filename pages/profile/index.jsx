@@ -71,6 +71,7 @@ function profile() {
           </Link>
         </div>
       </div>
+      
       <BottomNav/>
     </div>
   );

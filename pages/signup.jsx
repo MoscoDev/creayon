@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import style from "../styles/Home.module.css"
-import Button from '../Components/Button';
-import Imagebox from '../Components/Imagebox'
-import Title from '../Components/Title'
+import React, { useState } from "react";
+import style from "../styles/Home.module.css";
+import Button from "../Components/Button";
+import Imagebox from "../Components/Imagebox";
+import Title from "../Components/Title";
 
 function signup() {
-const [emailError, setEmailError] = useState("none");
+  const [emailError, setEmailError] = useState("none");
+  const [passwordError, setPasswordError] = useState("none");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("none");
 
   return (
     <div>
@@ -75,18 +77,6 @@ const [emailError, setEmailError] = useState("none");
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
           id="password"
           htmlFor="password"
-          // name="password"
-          // onBlur={(e) => {
-          //   if (
-          //     e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/) ==
-          //     null
-          //   ) {
-          //     setEmailError("block");
-          //   } else {
-          //     setEmailError("none");
-          //   }
-          // }
-          // }
           onChange={(e) => {
             // check if email is valid with regex pattern
             if (
@@ -94,15 +84,15 @@ const [emailError, setEmailError] = useState("none");
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
               ) == null
             ) {
-              setEmailError("block");
+              setPasswordError("block");
             } else {
-              setEmailError("none");
+              setPasswordError("none");
             }
           }}
         />
         <small
           style={{
-            display: emailError,
+            display: passwordError,
             transition: "all ease 9.9s",
             fontWeight: "200",
           }}
@@ -114,12 +104,33 @@ const [emailError, setEmailError] = useState("none");
           className={style.input}
           type="password"
           placeholder="Confirm Password"
-          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{.8,}$"
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
           id="password"
           htmlFor="password"
-          name="password"
+          onBlur={(e) => {
+            if (
+              e.target.value.match(
+                /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
+              ) == null
+            ) {
+              setConfirmPasswordError("block");
+            } else {
+              setConfirmPasswordError("none");
+            }
+          }}
         />
+        <small
+          style={{
+            display: confirmPasswordError,
+            transition: "all ease 9.9s",
+            fontWeight: "200",
+            color: "red",
+          }}
+        >
+          Password should be atleat 8 characters with at least one letter (a to
+          z) and one number(0 to 9).
+        </small>
         <div className="tc">
           <small>
             By Signing up, you’ve agree to our
@@ -131,15 +142,20 @@ const [emailError, setEmailError] = useState("none");
             </a>
           </small>
         </div>
-        <Button
-          text={"Continue"}
-          colour="orange"
-          link={"/verifymail"}
-          size="lg"
-        ></Button>
+        <div
+          className="button-container"
+          style={{ display: "block", width: "-webkit-fill-available" }}
+        >
+          <Button
+            text={"Register"}
+            colour="orange"
+            link={"/verifymail"}
+            size="lg"
+          ></Button>
+        </div>
       </form>
     </div>
   );
 }
 
-export default signup
+export default signup;

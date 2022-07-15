@@ -5,7 +5,9 @@ import Imagebox from "../Components/Imagebox";
 import Title from "../Components/Title";
 
 function forgetpassword() {
-  const [emailError, setEmailError] = useState("none");
+  const [emailError, setEmailError] = useState("none");  
+  const [passwordError, setPasswordError] = useState("none");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("none");
   return (
     <div>
       <Title text="Creayon" align={"left"} />
@@ -69,7 +71,7 @@ function forgetpassword() {
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
-              ) == null
+              ) == null 
             ) {
               setEmailError("block");
             } else {
@@ -88,44 +90,35 @@ function forgetpassword() {
           z) and one number(0 to 9).
         </small>
 
+       
         <input
           className={style.input}
           type="password"
           placeholder="Confirm Password"
           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{.8,}$"
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
-          id="password"
+          id="confirmPassword"
           htmlFor="password"
-          // name="password"
-          // onBlur={(e) => {
-          //   if (
-          //     e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/) ==
-          //     null
-          //   ) {
-          //     setEmailError("block");
-          //   } else {
-          //     setEmailError("none");
-          //   }
-          // }
-          // }
           onChange={(e) => {
-            // check if email is valid with regex pattern
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
-              ) == null
+              ) == null && e.target.value !== document.getElementById("password").value
             ) {
-              setEmailError("block");
+              
+              setConfirmPasswordError("block");
             } else {
-              setEmailError("none");
+              setConfirmPasswordError("none");
+              console.log("password");
             }
           }}
         />
         <small
           style={{
-            display: emailError,
+            display: confirmPasswordError,
             transition: "all ease 9.9s",
             fontWeight: "200",
+            color: "red",
           }}
         >
           Password should be atleat 8 characters with at least one letter (a to
