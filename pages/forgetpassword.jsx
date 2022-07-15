@@ -73,7 +73,7 @@ function forgetpassword() {
         />
         <small
           style={{
-            display: emailError,
+            display: passwordError,
             transition: "all ease 9.9s",
             fontWeight: "200",
             color: "red",
