@@ -65,9 +65,9 @@ function forgetpassword() {
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
               ) == null
             ) {
-              setEmailError("block");
+              setPasswordError("block");
             } else {
-              setEmailError("none");
+              setPasswordError("none");
             }
           }}
         />
