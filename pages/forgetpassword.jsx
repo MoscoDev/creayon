@@ -5,7 +5,7 @@ import Imagebox from "../Components/Imagebox";
 import Title from "../Components/Title";
 
 function forgetpassword() {
-  const [emailError, setEmailError] = useState("none");  
+  const [emailError, setEmailError] = useState("none");
   const [passwordError, setPasswordError] = useState("none");
   const [confirmPasswordError, setConfirmPasswordError] = useState("none");
   return (
@@ -30,7 +30,6 @@ function forgetpassword() {
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           required
           onBlur={(e) => {
-            // check if email is valid with regex pattern
             if (
               e.target.value.match(
                 /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
@@ -43,7 +42,13 @@ function forgetpassword() {
             }
           }}
         />
-        <small style={{ display: emailError, transition: "all ease 9.9s" }}>
+        <small
+          style={{
+            display: emailError,
+            transition: "all ease 9.9s",
+            color: "red",
+          }}
+        >
           Please enter a valid email address.
         </small>
         <input
@@ -54,24 +59,11 @@ function forgetpassword() {
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
           id="password"
           htmlFor="password"
-          // name="password"
-          // onBlur={(e) => {
-          //   if (
-          //     e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/) ==
-          //     null
-          //   ) {
-          //     setEmailError("block");
-          //   } else {
-          //     setEmailError("none");
-          //   }
-          // }
-          // }
           onChange={(e) => {
-            // check if email is valid with regex pattern
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
-              ) == null 
+              ) == null
             ) {
               setEmailError("block");
             } else {
@@ -84,13 +76,13 @@ function forgetpassword() {
             display: emailError,
             transition: "all ease 9.9s",
             fontWeight: "200",
+            color: "red",
           }}
         >
           Password should be atleat 8 characters with at least one letter (a to
           z) and one number(0 to 9).
         </small>
 
-       
         <input
           className={style.input}
           type="password"
@@ -103,13 +95,13 @@ function forgetpassword() {
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
-              ) == null && e.target.value !== document.getElementById("password").value
+              ) == null &&
+              e.target.value !== document.getElementById("password").value
             ) {
-              
               setConfirmPasswordError("block");
             } else {
               setConfirmPasswordError("none");
-              console.log("password");
+             
             }
           }}
         />
@@ -121,8 +113,7 @@ function forgetpassword() {
             color: "red",
           }}
         >
-          Password should be atleat 8 characters with at least one letter (a to
-          z) and one number(0 to 9).
+          password and confirm password do not match
         </small>
         <div className={style.tc}>
           <small>

@@ -43,7 +43,7 @@ function login() {
             }
           }}
         />
-        <small style={{ display: emailError, transition: "all ease 9.9s" }}>
+        <small style={{ display: emailError, color: "red", fontWeight: "200" }}>
           Please enter a valid email address.
         </small>
         <input
@@ -68,9 +68,10 @@ function login() {
         />
         <small
           style={{
-            display: passwordError  ,
+            display: passwordError,
             transition: "all ease 9.9s",
             fontWeight: "200",
+            color: "red",
           }}
         >
           Password should be atleat 8 characters with at least one letter (a to
@@ -156,7 +157,9 @@ function login() {
               fill="#EB4335"
             />
           </svg>
-          <p style={{width: "100%", textAlign:"center"}}>Sign in with Google</p>
+          <p style={{ width: "100%", textAlign: "center" }}>
+            Sign in with Google
+          </p>
         </div>
       </form>
     </div>

@@ -57,6 +57,7 @@ function signup() {
             display: emailError,
             transition: "all ease 9.9s",
             fontWeight: "200",
+            color: "red",
           }}
         >
           Please enter a valid email address.
@@ -95,6 +96,7 @@ function signup() {
             display: passwordError,
             transition: "all ease 9.9s",
             fontWeight: "200",
+            color: "red",
           }}
         >
           Password should be atleat 8 characters with at least one letter (a to
@@ -106,13 +108,14 @@ function signup() {
           placeholder="Confirm Password"
           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{.8,}$"
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
-          id="password"
-          htmlFor="password"
+          id="confirmpassword"
+          htmlFor="confirmpassword"
           onBlur={(e) => {
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
-              ) == null
+              ) == null &&
+              e.target.value !== document.getElementById("password").value
             ) {
               setConfirmPasswordError("block");
             } else {
@@ -128,8 +131,7 @@ function signup() {
             color: "red",
           }}
         >
-          Password should be atleat 8 characters with at least one letter (a to
-          z) and one number(0 to 9).
+          Password & confirm password does not match .
         </small>
         <div className="tc">
           <small>
