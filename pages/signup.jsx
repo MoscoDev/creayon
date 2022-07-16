@@ -110,13 +110,19 @@ function signup() {
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
           id="confirmpassword"
           htmlFor="confirmpassword"
+          onChange={(e) => {
+            // check if password and confirm password are same
+
+            if (e.target.value !== password) {
+              setConfirmPasswordError("block");
+            } else {
+              setConfirmPasswordError("none");
+            }
+          }}
           onBlur={(e) => {
-            if (
-              e.target.value.match(
-                /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
-              ) == null &&
-              e.target.value !== document.getElementById("password").value
-            ) {
+            // check if password and confirm password are same
+
+            if (e.target.value !== password) {
               setConfirmPasswordError("block");
             } else {
               setConfirmPasswordError("none");

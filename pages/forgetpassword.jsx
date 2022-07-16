@@ -5,6 +5,8 @@ import Imagebox from "../Components/Imagebox";
 import Title from "../Components/Title";
 
 function forgetpassword() {
+  // const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("none");
   const [passwordError, setPasswordError] = useState("none");
   const [confirmPasswordError, setConfirmPasswordError] = useState("none");
@@ -58,8 +60,10 @@ function forgetpassword() {
           pattern="^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{.8,}$"
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
           id="password"
+          value={password}
           htmlFor="password"
           onChange={(e) => {
+            setPassword(e.target.value);
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
@@ -82,7 +86,6 @@ function forgetpassword() {
           Password should be atleat 8 characters with at least one letter (a to
           z) and one number(0 to 9).
         </small>
-
         <input
           className={style.input}
           type="password"
@@ -92,16 +95,21 @@ function forgetpassword() {
           id="confirmPassword"
           htmlFor="password"
           onChange={(e) => {
-            if (
-              e.target.value.match(
-                /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
-              ) == null &&
-              e.target.value !== document.getElementById("password").value
-            ) {
+            // check if password and confirm password are same
+
+            if (e.target.value !== password) {
               setConfirmPasswordError("block");
             } else {
               setConfirmPasswordError("none");
-             
+            }
+          }}
+          onBlur={(e) => {
+            // check if password and confirm password are same
+
+            if (e.target.value !== password) {
+              setConfirmPasswordError("block");
+            } else {
+              setConfirmPasswordError("none");
             }
           }}
         />
@@ -129,7 +137,6 @@ function forgetpassword() {
             </a>
           </small>
         </div>
-
         <Button
           text={"Submit"}
           colour="orange"

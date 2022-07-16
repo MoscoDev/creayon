@@ -25,7 +25,7 @@ function TopNav() {
   return (
     <div style={styles}>
       <BiArrowBack size={"1.7rem"} onClick={() => router.back()} />
-      <Title text={title} size={"18px"} align={"center"} />
+      <Title text={title} size={"20px"} align={"center"} />
       <Avatar />
     </div>
   );
