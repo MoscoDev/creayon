@@ -233,16 +233,17 @@ display: flex;
     /* width: -webkit-fit-content; */
     width: -moz-fit-content;
     width: fit-content;
-    height: 35px;
+    /* height: 35px; */
     color: white;
     font-size: 12px;
+    z-index: 100;
 
 }
 .foodMenu{
   /* width: 100vw; */
   display: flex;
   flex-direction: row;
-  column-gap: 1rem;
+  column-gap: 0px;
   margin:40px -15px 0 -15px;
   padding: 0 15px;
   height: 300px;
@@ -300,6 +301,7 @@ margin: 20px 0px 10px;
 }
 .foodMenuItem{
   scroll-snap-align: start;
+  padding: 10px;
 }
 .popularItem{
   display: flex;
@@ -353,4 +355,9 @@ color: #000000;
 .popular::-webkit-scrollbar{
     display: none;
   
+}
+.foodMenuItem:hover {
+  transform: scale(1.09);
+  transition: transform 0.2s ease-in-out;
+  z-index: 10;
 }
