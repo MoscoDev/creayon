@@ -212,7 +212,7 @@ background-color: transparent;
   /* column-gap: 15px; */
 }
 .filter{
-  display: flex;
+  /* display: flex;
 flex-direction: row;
 align-items: center;
 padding: 5px 10px;
@@ -221,7 +221,21 @@ border-radius: 20px;
 width: fit-content;
 height: 35px;
 color: white;
-font-size: 12px;
+font-size: 12px; */
+
+display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 6px;
+    background: #FA602B;
+    border-radius: 20px;
+    /* width: -webkit-fit-content; */
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 35px;
+    color: white;
+    font-size: 12px;
 
 }
 .foodMenu{
@@ -240,6 +254,11 @@ font-size: 12px;
   scroll-snap-type: mandatory;
   scroll-snap-points-y: repeat(20px);
   scroll-snap-type: y mandatory;
+}
+.foodMenuBody:hover {
+  background-color: #000000d8;
+  color: #FFFFFF !important; 
+
 }
 .foodMenu::-webkit-scrollbar {
     display: none;
@@ -281,4 +300,57 @@ margin: 20px 0px 10px;
 }
 .foodMenuItem{
   scroll-snap-align: start;
+}
+.popularItem{
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+border-radius: 15px;
+/* width: fit-content; */
+padding: 10px;
+column-gap: 5px;
+margin: 20px 0px;
+}
+.popularItemPic{
+  width: 62px;
+  height: 62px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+.popularprice{
+  font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+
+color: #FF4200;
+}
+.popularItemName{
+  font-weight: 600;
+font-size: 12px;
+line-height: 13px;
+
+color: #000000;
+}
+.popular{
+   display: flex; 
+  flex-direction: row;
+  column-gap: 0.8rem;
+  margin:0px -15px 0 -15px;
+  padding: 0 15px;
+  
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+   -ms-overflow-style: none; /*IE 10+ */
+  scrollbar-width: none; /* Firefox */
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(20px);
+  scroll-snap-type: y mandatory; 
+}
+.popular::-webkit-scrollbar{
+    display: none;
+  
 }

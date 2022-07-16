@@ -58,12 +58,12 @@ export default function home() {
           <span>Burger</span>
         </div>
         <div className={style.filter}>
-          <img src="/img/burger.svg" alt="" />
-          <span>Burger</span>
+          <img src="/img/vegetable.svg" alt="" />
+          <span>Veggie</span>
         </div>
         <div className={style.filter}>
-          <img src="/img/burger.svg" alt="" />
-          <span>Burger</span>
+          <img src="/img/friedfood.svg" alt="" />
+          <span>fried food</span>
         </div>
         <div className={style.filter}>
           <img src="/img/burger.svg" alt="" />
@@ -134,6 +134,62 @@ export default function home() {
       </div>
       <div className={style.popularFoodContainer}>
         <Title text="Popular Food" size={"18px"} align="left" />
+        <div className={style.popular}>
+          <div className={style.popularItem}>
+            <div
+              className={style.popularItemPic}
+              style={{ backgroundImage: "url(/img/biscuit.svg)" }}
+            ></div>
+            <div className={style.popularItemBody}>
+              <strong>
+                <p className={style.popularItemName}>Biscuits</p>
+              </strong>
+              <small
+                className={style.light}
+                style={{ fontSize: "9px", whiteSpace: "nowrap" }}
+              >
+                Sweet Bicuits, so so yummy
+              </small>
+              <p className={style.popularprice}>$3.98</p>
+            </div>
+          </div>
+          <div className={style.popularItem}>
+            <div
+              className={style.popularItemPic}
+              style={{ backgroundImage: "url(/img/biscuit.svg)" }}
+            ></div>
+            <div className={style.popularItemBody}>
+              <strong>
+                <p className={style.popularItemName}>Biscuits</p>
+              </strong>
+              <small
+                className={style.light}
+                style={{ fontSize: "9px", whiteSpace: "nowrap" }}
+              >
+                Sweet Bicuits, so so yummy
+              </small>
+              <p className={style.popularprice}>$3.98</p>
+            </div>
+          </div>
+          <div className={style.popularItem}>
+            <div
+              className={style.popularItemPic}
+              style={{ backgroundImage: "url(/img/biscuit.svg)" }}
+            ></div>
+            <div className={style.popularItemBody}>
+              <strong>
+                <p className={style.popularItemName}>Biscuits</p>
+              </strong>
+              <small
+                className={style.light}
+                style={{ fontSize: "9px", whiteSpace: "nowrap" }}
+              >
+                Sweet Bicuits, so so yummy
+              </small>
+              <p className={style.popularprice}>$3.98</p>
+            </div>
+          </div>
+        </div>
       </div>
       <BottomNav />
     </div>
