@@ -86,49 +86,35 @@ export default function home() {
             style={{ backgroundImage: "url(/img/jollof.svg)", zIndex: "20" }}
           ></div>
         </div>
+       
         <div className={style.foodMenuItem}>
           <div className={style.foodMenuBody}>
             <strong>
-              <p>Jollof Rice</p>
+              <p>Spicy pork</p>
             </strong>
             <small className={style.light} style={{ fontSize: "11px" }}>
-              Jollof rice with chicken
+              Stir-fried hot and spicy pork
             </small>
             <p className={style.price}>$9.98</p>
           </div>
           <div
             className={style.foodMenuHeader}
-            style={{ backgroundImage: "url(/img/jollof.svg)", zIndex: "20" }}
+            style={{ backgroundImage: "url(/img/pork.svg)", zIndex: "20" }}
           ></div>
         </div>
         <div className={style.foodMenuItem}>
           <div className={style.foodMenuBody}>
             <strong>
-              <p>Jollof Rice</p>
+              <p>Fried Chicken</p>
             </strong>
             <small className={style.light} style={{ fontSize: "11px" }}>
-              Jollof rice with chicken
+              Chicken and chips
             </small>
-            <p className={style.price}>$9.98</p>
+            <p className={style.price}>$5.98</p>
           </div>
           <div
             className={style.foodMenuHeader}
-            style={{ backgroundImage: "url(/img/jollof.svg)", zIndex: "20" }}
-          ></div>
-        </div>
-        <div className={style.foodMenuItem}>
-          <div className={style.foodMenuBody}>
-            <strong>
-              <p>Jollof Rice</p>
-            </strong>
-            <small className={style.light} style={{ fontSize: "11px" }}>
-              Jollof rice with chicken
-            </small>
-            <p className={style.price}>$9.98</p>
-          </div>
-          <div
-            className={style.foodMenuHeader}
-            style={{ backgroundImage: "url(/img/jollof.svg)", zIndex: "20" }}
+            style={{ backgroundImage: "url(/img/chicken.svg)", zIndex: "20" }}
           ></div>
         </div>
       </div>
