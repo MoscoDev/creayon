@@ -5,6 +5,7 @@ import style from '../styles/Home.module.css'
 
 import {AiOutlineSearch} from 'react-icons/ai'
 import Title from '../Components/Title'
+import Counter from '../Components/counter'
 
 export default function home() {
   return (
@@ -110,7 +111,8 @@ export default function home() {
             <small className={style.light} style={{ fontSize: "11px" }}>
               Chicken and chips
             </small>
-            <p className={style.price}>$5.98</p>
+      
+            <p className={style.price}>{"$5.98    "}<Counter   /></p>
           </div>
           <div
             className={style.foodMenuHeader}

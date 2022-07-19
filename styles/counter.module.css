@@ -1,0 +1,14 @@
+.counter{
+    display: flex;
+    width: fit-content;
+    padding: 10px;
+    justify-content: space-between;
+    /* column-gap: 20px; */
+    align-items: center;
+background: #F5F5F8;
+width:  105.5px;
+height:32.78px;
+font-size: 17px;
+border-radius: 16px;
+font-weight: 600;
+}

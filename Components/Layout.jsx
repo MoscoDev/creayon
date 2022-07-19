@@ -4,7 +4,12 @@ import style from '../styles/Home.module.css'
 function Layout({children}) {
   
   const [mobile, setMobile] = useState(null);
-
+//  const [welcome, setWelcome] = useState(true);
+//  useEffect(() => {
+//    setTimeout(() => {
+//      setWelcome(false);
+//    }, 3000);
+//  }, []);
   useEffect(() => {
     const updateMobile = () => {
       let check = false;
@@ -39,8 +44,8 @@ function Layout({children}) {
   }, []);
   
   return (mobile == null )?(null):mobile ? (
-    <div className={style.general} style={{minHeight:"100vh", width:"100vw" }}>{children}</div>
-  ) : (
+    <div className={style.general} style={{minHeight:"100vh", width:"100vw" }}>{children}</div>)
+   : (
     <div className="container">
       <div className="row">
         <div className="col-md-12">mummy</div>

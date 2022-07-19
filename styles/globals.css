@@ -43,7 +43,7 @@ a {
 textarea,
 button,
 select,
-a, div,p {
+a, div,p,small {
   -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
 }
 button {

@@ -79,13 +79,14 @@ function login() {
         </small>
         <div className={style.tcs}>
           <small>
-            <a
+            <Link
               href="/signup"
               style={{
                 color: "#c4c4c4",
                 textAlign: "left",
               }}
             >
+              <a>
               <span
                 style={{
                   color: "#c4c4c4",
@@ -95,12 +96,14 @@ function login() {
                 Create a new account
               </span>
             </a>
+            </Link>
           </small>
           <small>
-            <a
+            <Link
               href="/forgetpassword"
               style={{ color: "#ff4200", textAlign: "end", display: "block" }}
             >
+              <a>
               <span
                 style={{
                   color: "#ff4200",
@@ -111,6 +114,7 @@ function login() {
                 forgot password?
               </span>
             </a>
+            </Link>
           </small>
         </div>
 

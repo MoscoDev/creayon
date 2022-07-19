@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0px -15px;
+  /* margin: 0px -15px; */
   align-items: center;
 }
 .welcomeText {
