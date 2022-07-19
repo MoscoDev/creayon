@@ -7,22 +7,7 @@ import styles from "../styles/Home.module.css";
 
 function MyApp({ Component, pageProps }) {
   
-  const [welcome, setWelcome] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setWelcome(false);
-    }, 3000);
-  }, []);
-  return (
-     welcome ? 
-      (
-        <div className={styles.welcome} style={{position: "fixed", top:"0px"}}>
-          <div className={styles.welcomeText}>
-            <h1>Creayon Food</h1>
-          </div>
-        </div>
-      ) :
-       ( 
+  return ( 
     <Layout>
       <Head>
         <title>Creayon Foods</title>
@@ -32,7 +17,7 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Component {...pageProps} />
-    </Layout>)
+    </Layout>
   );
 }
 

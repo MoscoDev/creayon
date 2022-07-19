@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Counter from "../Components/counter";
 import Title from "../Components/Title";
 import TopNav from "../Components/TopNav";
 import style from "../styles/food.module.css";

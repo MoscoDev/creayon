@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import Button from "../Components/Button";
 
 export default function Home() {
-  // const [welcome, setWelcome] = useState(true);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setWelcome(false);
-  //   }, 3000);
-  // }, []);
+  const [welcome, setWelcome] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setWelcome(false);
+    }, 3000);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -26,7 +26,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
         <title>Creayon Food at your door step</title>
       </Head>
-      {/* {welcome ? 
+      {welcome ? 
       (
         <div className={styles.welcome} style={{position: "fixed", top:"0px"}}>
           <div className={styles.welcomeText}>
@@ -34,7 +34,7 @@ export default function Home() {
           </div>
         </div>
       ) :
-       ( */}
+       (
         <div className={styles.onboardingPage}>
           <Carousel
             lengend={false}
@@ -102,7 +102,7 @@ export default function Home() {
             ></Button>
           </div>
         </div>
-      {/* )} */}
+       )}
     </div>
   );
 }

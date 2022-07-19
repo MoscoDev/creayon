@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TopNav from '../Components/TopNav'
 import BottomNav from '../Components/BottomNav'
 import style from '../styles/Home.module.css'
@@ -8,7 +8,23 @@ import Title from '../Components/Title'
 import Counter from '../Components/counter'
 
 export default function home() {
+   
+  const [welcome, setWelcome] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setWelcome(false);
+    }, 3000);
+  }, []);
   return (
+    welcome ? 
+      (
+        <div className={styles.welcome} style={{position: "fixed", top:"0px"}}>
+          <div className={styles.welcomeText}>
+            <h1>Creayon Food</h1>
+          </div>
+        </div>
+      ) :
+       (
     <div className={style.home}>
       <TopNav />
       <div className={style.intro}>
@@ -180,6 +196,6 @@ export default function home() {
         </div>
       </div>
       <BottomNav />
-    </div>
+    </div>)
   );
 }
