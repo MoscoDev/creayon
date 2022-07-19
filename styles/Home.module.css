@@ -162,7 +162,7 @@
     margin: -15px -15px;
     padding: 15px;
     background: #E5E5E5;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     /* remove scrollbar */
     
 }

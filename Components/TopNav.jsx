@@ -8,13 +8,17 @@ function TopNav() {
   const router = useRouter();
     const styles ={
         display: 'flex',
+        alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '0.3rem 0rem',
+        padding: '0.3rem 1rem',
         position: 'sticky',
-        top: 0,
+        top: '0',
         marginBottom: "20px",
+        marginRight: "-15px",
+        marginLeft: "-15px",
+        zIndex: "900",
         background: "var(--lightColor)",
     }
     const pageTitle = window.location.pathname;

@@ -19,6 +19,7 @@ function food() {
   const [rate, setRate] = useState(1);
   return (
     <div className={style.foodPage}>
+      
       <TopNav />
       <div
         className={style.foodImage}

@@ -32,7 +32,7 @@ function profile() {
           <FiEdit size={"1.3rem"} className={style.icon} />
         </div>
         <div className={style.infoContainer}>
-          <Link href={"profile/"} >
+          <Link href={"profile/"}>
             <a className={style.button}>
               <BsCheck2Circle size={"1.3rem"} className={style.icon} />
               <p>My Orders</p>
@@ -48,21 +48,70 @@ function profile() {
             </a>
           </Link>
 
-          <Link href={"/paymentmethod"} >
+          <Link href={"/paymentmethod"}>
             <a className={style.button}>
               <AiOutlineCreditCard size={"1.3rem"} className={style.icon} />
               <p>Payment</p>
               <BiChevronRight />
             </a>
           </Link>
-          <Link href={"profile/"} >
+          <Link href={"profile/"}>
             <a className={style.button}>
               <TbDiscount2 size={"1.3rem"} />
               <p>Voucher</p>
               <BiChevronRight />
             </a>
           </Link>
-          <Link href={"profile/"} >
+          <Link href={"profile/"}>
+            <a className={style.button}>
+              <MdNotificationsNone size={"1.3rem"} className={style.icon} />
+              <p>Notifications</p>
+              <BiChevronRight />
+            </a>
+          </Link>
+          <Link href={"profile/"}>
+            <a className={style.button}>
+              <MdNotificationsNone size={"1.3rem"} className={style.icon} />
+              <p>Notifications</p>
+              <BiChevronRight />
+            </a>
+          </Link>
+          <Link href={"profile/"}>
+            <a className={style.button}>
+              <MdNotificationsNone size={"1.3rem"} className={style.icon} />
+              <p>Notifications</p>
+              <BiChevronRight />
+            </a>
+          </Link>
+          <Link href={"profile/"}>
+            <a className={style.button}>
+              <MdNotificationsNone size={"1.3rem"} className={style.icon} />
+              <p>Notifications</p>
+              <BiChevronRight />
+            </a>
+          </Link>
+          <Link href={"profile/"}>
+            <a className={style.button}>
+              <MdNotificationsNone size={"1.3rem"} className={style.icon} />
+              <p>Notifications</p>
+              <BiChevronRight />
+            </a>
+          </Link>
+          <Link href={"profile/"}>
+            <a className={style.button}>
+              <MdNotificationsNone size={"1.3rem"} className={style.icon} />
+              <p>Notifications</p>
+              <BiChevronRight />
+            </a>
+          </Link>
+          <Link href={"profile/"}>
+            <a className={style.button}>
+              <MdNotificationsNone size={"1.3rem"} className={style.icon} />
+              <p>Notifications</p>
+              <BiChevronRight />
+            </a>
+          </Link>
+          <Link href={"profile/"}>
             <a className={style.button}>
               <MdNotificationsNone size={"1.3rem"} className={style.icon} />
               <p>Notifications</p>
@@ -71,8 +120,8 @@ function profile() {
           </Link>
         </div>
       </div>
-      
-      <BottomNav/>
+
+      <BottomNav />
     </div>
   );
 }
