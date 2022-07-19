@@ -19,7 +19,7 @@ function food() {
   const [rate, setRate] = useState(1);
   return (
     <div className={style.foodPage}>
-      
+
       <TopNav />
       <div
         className={style.foodImage}
@@ -31,7 +31,7 @@ function food() {
           <AiOutlinePlus onClick={handleIncrement} />
         </div>
       </div>
-      <Title text={"Fried Sauce Chicken"} size={"20px"} align="left" />
+      <Title text={"Fried Sauce Chicken"} size={"17px"} align="left" />
       <div className={style.sizeOptionContainer}>
         <div
           className={style.sizeOption}
@@ -76,7 +76,7 @@ function food() {
           <p>Description</p>
         </strong>
         <article>
-          <p className={style.light}>
+          <p className={style.light} style={{fontSize:"14px"}}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla
             risus sodales tellus neque potenti at. Pellentesque hac nulla quam
             netus curabitur ipsum. Sed vitae neque vitae facilisis sed. Arcu non
