@@ -6,13 +6,16 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="manifest" href="/manifest.json" />
-          <link rel="apple-touch-icon" href="/icon.png"></link>
-          <meta name="theme-color" content="#fff" />
-         
+          <link rel="apple-touch-icon" href="public/icon-192x192.png"></link>
+          <meta name="theme-color" content="#c4c4c4" />
+          <meta name="HandheldFriendly" content="true"/>
+          <meta
+            name="apple-mobile-web-app-status-bar-style" content="#c4c4c4"
+          />
           <meta name="description" content="Creayon Food at your door step" />
           <meta name="description" content="Creayon Food so delicious" />
           <meta name="description" content="Welcome to Creayon Food" />
-         </Head>
+        </Head>
         <body>
           <Main />
           <NextScript />

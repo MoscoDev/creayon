@@ -1,9 +1,9 @@
 {
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "background_color": "#FF4200",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "/home",
   "name": "Creayon Food",
   "short_name": "Creayon",
   "description": "Food at your door step",
