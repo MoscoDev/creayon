@@ -10,7 +10,7 @@ function Counter({minCount, maxCount}) {
   };
 
   const handleDecrement = () => {
-   ( count > minCount )? setCount(count - 1) : setCount(minCount);
+   ( count > (minCount || 1) )? setCount(count - 1) : setCount(minCount || 1);
 
   };
   return (

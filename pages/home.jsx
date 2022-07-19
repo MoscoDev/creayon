@@ -2,28 +2,13 @@ import React, { useEffect, useState } from 'react'
 import TopNav from '../Components/TopNav'
 import BottomNav from '../Components/BottomNav'
 import style from '../styles/Home.module.css'
-
+import Link from 'next/link'
 import {AiOutlineSearch} from 'react-icons/ai'
 import Title from '../Components/Title'
-
 export default function home() {
    
-  const [welcome, setWelcome] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setWelcome(false);
-    }, 3000);
-  }, []);
+ 
   return (
-    welcome ? 
-      (
-        <div className={styles.welcome} style={{position: "fixed", top:"0px"}}>
-          <div className={styles.welcomeText}>
-            <h1>Creayon Food</h1>
-          </div>
-        </div>
-      ) :
-       (
     <div className={style.home}>
       <TopNav />
       <div className={style.intro}>
@@ -87,53 +72,80 @@ export default function home() {
         </div>
       </div>
       <div className={style.foodMenu}>
-        <div className={style.foodMenuItem}>
-          <div className={style.foodMenuBody}>
-            <strong>
-              <p>Jollof Rice</p>
-            </strong>
-            <small className={style.light} style={{ fontSize: "11px" }}>
-              Jollof rice with chicken
-            </small>
-            <p className={style.price}>$9.98</p>
-          </div>
-          <div
-            className={style.foodMenuHeader}
-            style={{ backgroundImage: "url(/img/jollof.svg)", zIndex: "20" }}
-          ></div>
-        </div>
-       
-        <div className={style.foodMenuItem}>
-          <div className={style.foodMenuBody}>
-            <strong>
-              <p>Spicy pork</p>
-            </strong>
-            <small className={style.light} style={{ fontSize: "11px" }}>
-              Stir-fried hot and spicy pork
-            </small>
-            <p className={style.price}>$9.98</p>
-          </div>
-          <div
-            className={style.foodMenuHeader}
-            style={{ backgroundImage: "url(/img/pork.svg)", zIndex: "20" }}
-          ></div>
-        </div>
-        <div className={style.foodMenuItem}>
-          <div className={style.foodMenuBody}>
-            <strong>
-              <p>Fried Chicken</p>
-            </strong>
-            <small className={style.light} style={{ fontSize: "11px" }}>
-              Chicken and chips
-            </small>
-      
-            <p className={style.price}>{"$5.98    "}<Counter   /></p>
-          </div>
-          <div
-            className={style.foodMenuHeader}
-            style={{ backgroundImage: "url(/img/chicken.svg)", zIndex: "20" }}
-          ></div>
-        </div>
+        <Link href="/food" className={style.foodMenuItem}>
+          <a>
+            <div className={style.foodMenuBody}>
+              <strong>
+                <p>Jollof Rice</p>
+              </strong>
+              <small className={style.light} style={{ fontSize: "11px" }}>
+                Jollof rice with chicken
+              </small>
+              <p className={style.price}>$9.98</p>
+            </div>
+            <div
+              className={style.foodMenuHeader}
+              style={{ backgroundImage: "url(/img/jollof.svg)", zIndex: "20" }}
+            ></div>
+          </a>
+        </Link>
+
+        <Link href="/food" className={style.foodMenuItem}>
+          <a>
+            <div className={style.foodMenuBody}>
+              <strong>
+                <p>Spicy pork</p>
+              </strong>
+              <small className={style.light} style={{ fontSize: "11px" }}>
+                Stir-fried hot and spicy pork
+              </small>
+              <p className={style.price}>$9.98</p>
+            </div>
+            <div
+              className={style.foodMenuHeader}
+              style={{ backgroundImage: "url(/img/pork.svg)", zIndex: "20" }}
+            ></div>
+          </a>
+        </Link>
+        <Link href="/food" className={style.foodMenuItem}>
+          <a>
+            <div className={style.foodMenuBody}>
+              <strong>
+                <p>Fried Chicken</p>
+              </strong>
+              <small className={style.light} style={{ fontSize: "11px" }}>
+                Chicken and chips
+              </small>
+
+              <p className={style.price}>
+                {"$5.98    "}
+                
+              </p>
+            </div>
+            <div
+              className={style.foodMenuHeader}
+              style={{ backgroundImage: "url(/img/chicken.svg)", zIndex: "20" }}
+            ></div>
+          </a>
+        </Link>
+        <Link href="/food" className={style.foodMenuItem}>
+          <a>
+            <div className={style.foodMenuBody}>
+              <strong>
+                <p>Fried Chicken</p>
+              </strong>
+              <small className={style.light} style={{ fontSize: "11px" }}>
+                Chicken and chips
+              </small>
+
+              <p className={style.price}>{"$5.98    "}</p>
+            </div>
+            <div
+              className={style.foodMenuHeader}
+              style={{ backgroundImage: "url(/img/chicken.svg)", zIndex: "20" }}
+            ></div>
+          </a>
+        </Link>
       </div>
       <div className={style.popularFoodContainer}>
         <Title text="Popular Food" size={"18px"} align="left" />
@@ -195,6 +207,6 @@ export default function home() {
         </div>
       </div>
       <BottomNav />
-    </div>)
+    </div>
   );
 }

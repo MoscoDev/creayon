@@ -21,14 +21,13 @@ export default function Home() {
         <meta name="description" content="Creayon Food at your door step" />
         <meta name="description" content="Creayon Food so delicious" />
         <meta name="description" content="Welcome to Creayon Food" />
-        {/* for mobile viewport only */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
         <title>Creayon Food at your door step</title>
       </Head>
       {welcome ? 
       (
-        <div className={styles.welcome} style={{position: "fixed", top:"0px"}}>
+        <div className={styles.welcome} style={{position: "fixed", top:"0px", left:"0px"}}>
           <div className={styles.welcomeText}>
             <h1>Creayon Food</h1>
           </div>
