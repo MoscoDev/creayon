@@ -7,10 +7,11 @@ class MyDocument extends Document {
         <Head>
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="public/icon-192x192.png"></link>
-          <meta name="theme-color" content="#c4c4c4" />
-          <meta name="HandheldFriendly" content="true"/>
+          <meta name="theme-color" content="#FF4200" />
+          <meta name="HandheldFriendly" content="true" />
           <meta
-            name="apple-mobile-web-app-status-bar-style" content="#c4c4c4"
+            name="apple-mobile-web-app-status-bar-style"
+            content="#FF4200"
           />
           <meta name="description" content="Creayon Food at your door step" />
           <meta name="description" content="Creayon Food so delicious" />

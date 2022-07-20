@@ -1,7 +1,7 @@
 {
-  "theme_color": "#ffffff",
+  "theme_color": "#FF4200",
   "background_color": "#FF4200",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "/",
   "start_url": "/home",
   "name": "Creayon Food",
