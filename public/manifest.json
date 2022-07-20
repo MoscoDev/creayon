@@ -2,11 +2,11 @@
   "theme_color": "#FF4200",
   "background_color": "#FF4200",
   "display": "fullscreen",
-  "scope": "/",
-  "start_url": "/home",
+  "start_url": "../home",
   "name": "Creayon Food",
   "short_name": "Creayon",
   "description": "Food at your door step",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/icon-192x192.png",
