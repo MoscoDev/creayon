@@ -224,6 +224,7 @@ font-size: 12px; */
   align-items: center;
   padding: 7px 6px;
   background: #fa602b;
+  scroll-behavior: smooth;
   border-radius: 20px;
   /* width: -webkit-fit-content; */
   width: -moz-fit-content;
@@ -234,19 +235,19 @@ font-size: 12px; */
   z-index: 100;
 }
 .foodMenu {
-  /* width: 100vw; */
   display: flex;
   flex-direction: row;
   column-gap: 10px;
   margin: 40px -15px 0 -15px;
   padding: 0 15px;
   height: 300px;
+  scroll-behavior: smooth;
   overflow: auto !important;
   scroll-snap-type: x mandatory !important;
 }
-.foodMenuItem {
+.foodMenu a {
   scroll-snap-align: center !important;
-  padding: 10px;
+  /* padding: 10px; */
 }
 .foodMenuBody:hover {
   background-color: #000000d8;

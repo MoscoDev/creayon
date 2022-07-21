@@ -89,7 +89,7 @@ export default function home() {
             ></div>
           </a>
         </Link>
-
+       
         <Link href="/food" className={style.foodMenuItem}>
           <a>
             <div className={style.foodMenuBody}>
@@ -99,7 +99,7 @@ export default function home() {
               <small className={style.light} style={{ fontSize: "11px" }}>
                 Stir-fried hot and spicy pork
               </small>
-              <p className={style.price}>$9.98</p>
+              <p className={style.price}>$5.00</p>
             </div>
             <div
               className={style.foodMenuHeader}
@@ -117,10 +117,7 @@ export default function home() {
                 Chicken and chips
               </small>
 
-              <p className={style.price}>
-                {"$5.98    "}
-                
-              </p>
+              <p className={style.price}>{"$5.98    "}</p>
             </div>
             <div
               className={style.foodMenuHeader}
