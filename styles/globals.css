@@ -180,3 +180,15 @@ p{
   font-size: 16px;
   line-height: 20px;
 }
+
+         @keyframes fadeInRight {
+            0% {
+               opacity: 0.5;
+               transform: translateX(20px);
+            }
+            100% {
+               opacity: 1;
+               transform: translateX(0);
+            }
+         }
+         

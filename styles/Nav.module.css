@@ -1,11 +1,10 @@
 .BottomNav{
     display: flex;
-    justify-content: space-between;
-    position: fixed;
-    bottom: 0px !important;
+    justify-content: space-between; 
+    position: sticky;
+    bottom: 0px;
     margin: 0 -15px;
     padding: 20px 30px;
     background-color: #fff;
-    width: 100%;
-    
+    width: 100vw;
 }

@@ -81,11 +81,12 @@
   row-gap: 15px;
 }
 .general {
-  padding: 15px 15px;
+  padding: 15px 15px 0px;
   min-height: 100vh;
   display: flex;
   width: 100vw;
   flex-flow: column;
+  animation: fadeInRight 0.6s ease-in-out both;
 }
 .input {
   outline: var(--orange) 0px solid;
@@ -157,12 +158,27 @@
 .home {
   min-height: 100vh;
   max-width: 100vw;
-  margin: -15px -15px;
-  padding: 15px;
+  margin: -15px -15px 0px;
+    padding: 15px 15px 0px;
   background: #e5e5e5;
-  /* overflow-x: hidden; */
-  /* remove scrollbar */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation: fadeInRight 0.6s ease-in-out both;
+    background-color: system-background;
 }
+ 
+         @keyframes fadeInRight {
+            0% {
+               opacity: 0;
+               transform: translateY(3%);
+            }
+            100% {
+               opacity: 1;
+               transform: translateX(0);
+            }
+         }
+         
 .intro {
   font-size: 18px;
   font-weight: 500;
@@ -207,29 +223,18 @@
   /* column-gap: 15px; */
 }
 .filter {
-  /* display: flex;
-flex-direction: row;
-align-items: center;
-padding: 5px 10px;
-background: #FA602B;
-border-radius: 20px;
-width: fit-content;
-height: 35px;
-color: white;
-font-size: 12px; */
-
+ 
   display: flex;
-  /* flex-direction: column; */
+ 
   justify-content: space-between;
   align-items: center;
   padding: 7px 6px;
   background: #fa602b;
   scroll-behavior: smooth;
   border-radius: 20px;
-  /* width: -webkit-fit-content; */
+  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  /* height: 35px; */
   color: white;
   font-size: 12px;
   z-index: 100;
@@ -238,7 +243,7 @@ font-size: 12px; */
   display: flex;
   flex-direction: row;
   column-gap: 10px;
-  margin: 40px -15px 0 -15px;
+  margin: 30px -15px 0 -15px;
   padding: 0 15px;
   height: 300px;
   scroll-behavior: smooth;
@@ -248,6 +253,14 @@ font-size: 12px; */
 .foodMenu a {
   scroll-snap-align: center !important;
   /* padding: 10px; */
+  margin: 20px 0;
+}
+.foodMenu a p{
+      font-size: 14px;
+    /* font-weight: 500 !important; */
+    text-transform: lowercase;
+
+
 }
 .foodMenuBody:hover {
   background-color: #000000d8;
@@ -284,7 +297,7 @@ font-size: 12px; */
 }
 .price {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 18px !important;
   line-height: 18px;
   color: #fd8835;
   margin: 20px 0px 10px;
@@ -302,6 +315,7 @@ font-size: 12px; */
   margin: 20px 0px;
   scroll-snap-align: center !important;
 }
+
 .popularItemPic {
   width: 62px;
   height: 62px;
