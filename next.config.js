@@ -18,4 +18,7 @@ module.exports = withPWA({
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  env: {
+    customKey: "my-value",
+  },
 });

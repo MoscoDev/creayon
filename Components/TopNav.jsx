@@ -4,7 +4,7 @@ import Avatar from './Avatar'
 import Title from './Title'
 import { useRouter } from "next/router";
 
-function TopNav() {
+function TopNav({text}) {
   const router = useRouter();
     const styles ={
         display: 'flex',
@@ -22,7 +22,7 @@ function TopNav() {
         background: "var(--lightColor)",
     }
     const pageTitle = window.location.pathname;
-    const title = pageTitle.substring(1);
+    const title = text || pageTitle.substring(1);
    
    
     

@@ -5,7 +5,7 @@ import style from '../styles/Home.module.css'
 import Link from 'next/link'
 import {AiOutlineSearch} from 'react-icons/ai'
 import Title from '../Components/Title'
-export default function home() {
+export default function home({meals}) {
    
  
   return (
@@ -73,27 +73,37 @@ export default function home() {
           </div>
         </div>
         <div className={style.foodMenu}>
-          <Link href="/food" className={style.foodMenuItem}>
+          {
+            meals?.map((meal) => (
+          <Link href={{
+                      pathname: "/food/[id]",
+                      query: { id: meal._id },
+                    }} className={style.foodMenuItem} key = {meal._id}>
             <a>
               <div className={style.foodMenuBody}>
                 <strong>
-                  <p>Jollof Rice</p>
+                  <p>{meal.menuname}</p>
                 </strong>
                 <small className={style.light} style={{ fontSize: "11px" }}>
-                  Jollof rice with chicken
+                  {(meal.description).substring(0, 19)+"..."}
                 </small>
                 <p className={style.price}>$9.98</p>
               </div>
               <div
                 className={style.foodMenuHeader}
                 style={{
-                  backgroundImage: "url(/img/jollof.svg)",
+                  backgroundImage: `url(${meal.images[Math.floor(Math.random() * 3)]})`,
                   zIndex: "20",
+                  borderRadius: "50%",
+                  zoom: 0.9,
+                  objectFit: "contain",
                 }}
               ></div>
             </a>
           </Link>
-
+))
+        }
+{/* 
           <Link href="/food" className={style.foodMenuItem}>
             <a>
               <div className={style.foodMenuBody}>
@@ -152,7 +162,7 @@ export default function home() {
                 }}
               ></div>
             </a>
-          </Link>
+          </Link> */}
         </div>
         <div className={style.popularFoodContainer}>
           <Title text="Popular Food" size={"18px"} align="left" />
@@ -217,4 +227,20 @@ export default function home() {
       <BottomNav />
     </div>
   );
+}
+
+// direct database queries.
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch('https://foodbukka.herokuapp.com/api/v1/menu')
+  const meals = await res.json()
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      meals: meals.Result
+    },
+  }
 }

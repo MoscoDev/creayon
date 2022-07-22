@@ -1,29 +1,33 @@
 import React, { useState } from "react";
-import Title from "../Components/Title";
-import TopNav from "../Components/TopNav";
-import style from "../styles/food.module.css";
+import Title from "../../components/Title";
+import TopNav from "../../Components/TopNav";
+import style from "../../styles/food.module.css";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import styles from "../styles/counter.module.css";
+import styles from "../../styles/counter.module.css";
+import { useRouter } from "next/router";
 
-function food() {
+function food({meal}) {
+   
   const [count, setCount] = useState(1);
 
   const handleIncrement = () => {
     setCount(count + 1);
   };
+  const imgNumber = Math.floor(Math.random() * 3);
 
   const handleDecrement = () => {
-    count > minCount ? setCount(count - 1) : setCount(minCount);
+    (count > 1 ) ? setCount(count - 1) : setCount(1);
   };
   const [mealSize, setMealSize] = useState("md");
   const [rate, setRate] = useState(1);
   return (
     <div className={style.foodPage}>
-
-      <TopNav />
+      <TopNav text={meal.menuname} />
       <div
         className={style.foodImage}
-        style={{ backgroundImage: "url(/img/foodImage.svg)" }}
+        style={{
+          backgroundImage: `url(${meal.images[imgNumber]})`,
+        }}
       >
         <div className={styles.counter}>
           <AiOutlineMinus onClick={handleDecrement} />
@@ -31,7 +35,7 @@ function food() {
           <AiOutlinePlus onClick={handleIncrement} />
         </div>
       </div>
-      <Title text={"Fried Sauce Chicken"} size={"17px"} align="left" />
+      <Title text={meal.menuname} size={"17px"} align="left" />
       <div className={style.sizeOptionContainer}>
         <div
           className={style.sizeOption}
@@ -48,8 +52,10 @@ function food() {
             backgroundColor: mealSize == "md" ? "var(--orange)" : null,
             color: mealSize == "md" ? "white" : null,
           }}
-          onClick={() => {setMealSize("md");
-            setRate(1);}}
+          onClick={() => {
+            setMealSize("md");
+            setRate(1);
+          }}
         >
           <p className={style.sizeText}>M</p>
         </div>
@@ -65,10 +71,7 @@ function food() {
       </div>
       <div className={style["mealPrice"]}>
         <strong>
-          <p>{"$" +
-          
-          Math.round(count * rate *  9.99)
-          }</p>
+          <p>{"$" + Math.round(count * rate * 9.99)}</p>
         </strong>
       </div>
       <div className={style["mealDescription"]}>
@@ -76,14 +79,8 @@ function food() {
           <p>Description</p>
         </strong>
         <article>
-          <p className={style.light} style={{fontSize:"14px"}}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae nulla
-            risus sodales tellus neque potenti at. Pellentesque hac nulla quam
-            netus curabitur ipsum. Sed vitae neque vitae facilisis sed. Arcu non
-            lectus adipiscing est etiam. Faucibus ullamcorper erat ut in odio
-            sit at egestas vel. Scelerisque gravida eget pretium scelerisque id
-            tellus sed. Iaculis tempus, varius eget id. Enim feugiat elementum
-            hac nisi nisl.
+          <p className={style.light} style={{ fontSize: "14px" }}>
+            {meal.description}
           </p>
         </article>
       </div>
@@ -153,3 +150,32 @@ function food() {
 }
 
 export default food;
+
+// / direct database queries.
+export async function getStaticProps({ params }) {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  // const router = useRouter();
+  // const id = router.query.id;
+  // const id = window.location.pathname.split("/")[2];
+  const res = await fetch(`https://foodbukka.herokuapp.com/api/v1/menu/${params.id}`);
+  const meals = await res.json();
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      meal: meals.Result,
+    },
+  };
+}
+export async function getStaticPaths() {
+  const res = await fetch("https://foodbukka.herokuapp.com/api/v1/menu/");
+  const mealsJ = await res.json();
+const meals = mealsJ.Result;
+    const paths = meals.map((meal) => ({
+      params: { id: meal._id },
+    }));
+
+  return { paths, fallback: false };
+}

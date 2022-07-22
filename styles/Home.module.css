@@ -286,13 +286,14 @@
   color: rgba(196, 196, 196, 1);
 }
 .foodMenuHeader {
-  width: 148px;
-  height: 148px;
+  width: 150px;
+  height: 150px;
   z-index: 30 !important;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-top: -270px;
+  margin: -280px auto 0px;
+  
   /* margin-left: -10px; */
 }
 .price {
