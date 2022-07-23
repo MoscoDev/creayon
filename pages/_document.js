@@ -10,11 +10,7 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#FF4200" />
           <meta name="HandheldFriendly" content="true" />
           <meta name="MobileOptimized" content="true" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, viewport-fit=cover"
-          />
-
+          
           <meta viewport="initial-scale=1.0, width=device-width" />
           <meta
             name="apple-mobile-web-app-status-bar-style"

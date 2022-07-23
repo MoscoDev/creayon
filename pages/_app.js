@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
         <title>Creayon Foods</title>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=noshrink-to-fit=no"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover, user-scalable=noshrink-to-fit=no"
         />
       </Head>
       <Component {...pageProps} />
