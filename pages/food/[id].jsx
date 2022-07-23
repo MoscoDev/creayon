@@ -6,17 +6,19 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import styles from "../../styles/counter.module.css";
 import { useRouter } from "next/router";
 
-function food({meal}) {
+function food({meal, photo}) {
    
   const [count, setCount] = useState(1);
 
   const handleIncrement = () => {
     setCount(count + 1);
+   return count;
   };
-  const imgNumber = Math.floor(Math.random() * 3);
+  
 
   const handleDecrement = () => {
     (count > 1 ) ? setCount(count - 1) : setCount(1);
+    
   };
   const [mealSize, setMealSize] = useState("md");
   const [rate, setRate] = useState(1);
@@ -26,7 +28,7 @@ function food({meal}) {
       <div
         className={style.foodImage}
         style={{
-          backgroundImage: `url(${meal.images[imgNumber]})`,
+          backgroundImage: `url(${photo})`,
         }}
       >
         <div className={styles.counter}>
@@ -166,6 +168,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       meal: meals.Result,
+      photo: meals.Result.images[Math.floor(Math.random() * 3)],
     },
   };
 }
