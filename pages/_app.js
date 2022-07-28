@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Layout from '../Components/Layout'
 import '../styles/globals.css'
 import styles from "../styles/Home.module.css";
-import { store } from "./app/store";
+import { store } from "../app/store";
 import { Provider } from "react-redux";
 
 
