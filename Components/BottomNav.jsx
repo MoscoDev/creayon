@@ -1,11 +1,13 @@
-import Link from 'next/link'
-import { AiOutlineHome, AiOutlineShoppingCart } from 'react-icons/ai'
-import { FaRegUser } from 'react-icons/fa'
-import { IoIosHeartEmpty } from 'react-icons/io'
-import { BsFolder2 } from 'react-icons/bs'
-import style from '../styles/Nav.module.css'
+import Link from "next/link";
+import { AiOutlineHome, AiOutlineShoppingCart } from "react-icons/ai";
+import { FaRegUser } from "react-icons/fa";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { BsFolder2 } from "react-icons/bs";
+import style from "../styles/Nav.module.css";
+import { useSelector } from "react-redux";
 
 function BottomNav() {
+  const count = useSelector((state) => state.counter.value);
   const pageTitle = window.location.pathname;
   // remove the '/' from the page title
   const title = pageTitle.substring(1);
@@ -39,8 +41,26 @@ function BottomNav() {
         <a>
           <AiOutlineShoppingCart
             size="1.3rem"
-            color={title === "cart" ? "#FF4200" : "#666666"}
+            color={title === "cart" ? "#FF4200" : "#180808"}
           />
+          <div 
+          style={{  
+            width: "22px",
+            height: "22px",
+            color: "white" ,
+            backgroundColor: "#FF4200",
+            borderRadius: "50%",
+            fontSize: "12px",
+            textAlign: "center",
+            margin: "0px auto",
+            position: "absolute",
+            top: "8px",
+            marginLeft: "15px",
+            lineHeight: "22px",
+            }}>
+              {count}
+              
+          </div>
         </a>
       </Link>{" "}
       <Link href="/profile">
@@ -55,4 +75,4 @@ function BottomNav() {
   );
 }
 
-export default BottomNav
+export default BottomNav;

@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import style from "../styles/counter.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, increment } from "./counterSlice";
 
-function Counter({minCount, maxCount}) {
-  const [count, setCount] = useState(1);
+function Counter({minCount}) {
+   const count = useSelector((state) => state.counter.value);
+   const dispatch = useDispatch();
+  
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
+  const handleIncrement = () => dispatch(increment());
 
   const handleDecrement = () => {
-   ( count > (minCount || 1) )? setCount(count - 1) : setCount(minCount || 1);
+   ( count > ( 1) )? () => dispatch(decrement()) : setCount( 1);
 
   };
   return (

@@ -5,21 +5,18 @@ import style from "../../styles/food.module.css";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import styles from "../../styles/counter.module.css";
 import { useRouter } from "next/router";
+import BottomNav from "../../Components/BottomNav";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../../slices/counterSlice";
 
-function food({meal, photo}) {
-   
-  const [count, setCount] = useState(1);
+function food({ meal, photo }) {
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-   return count;
-  };
-  
+  const handleIncrement = () => dispatch(increment());
 
-  const handleDecrement = () => {
-    (count > 1 ) ? setCount(count - 1) : setCount(1);
-    
-  };
+  const handleDecrement = () => dispatch(decrement());
+
   const [mealSize, setMealSize] = useState("md");
   const [rate, setRate] = useState(1);
   return (
@@ -160,7 +157,9 @@ export async function getStaticProps({ params }) {
   // const router = useRouter();
   // const id = router.query.id;
   // const id = window.location.pathname.split("/")[2];
-  const res = await fetch(`https://foodbukka.herokuapp.com/api/v1/menu/${params.id}`);
+  const res = await fetch(
+    `https://foodbukka.herokuapp.com/api/v1/menu/${params.id}`
+  );
   const meals = await res.json();
 
   // By returning { props: { posts } }, the Blog component
@@ -175,10 +174,10 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   const res = await fetch("https://foodbukka.herokuapp.com/api/v1/menu/");
   const mealsJ = await res.json();
-const meals = mealsJ.Result;
-    const paths = meals.map((meal) => ({
-      params: { id: meal._id },
-    }));
+  const meals = mealsJ.Result;
+  const paths = meals.map((meal) => ({
+    params: { id: meal._id },
+  }));
 
   return { paths, fallback: false };
 }

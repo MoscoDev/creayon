@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import Layout from '../Components/Layout'
 import '../styles/globals.css'
 import styles from "../styles/Home.module.css";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
+
 
 
 function MyApp({ Component, pageProps }) {
@@ -16,7 +19,9 @@ function MyApp({ Component, pageProps }) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover, user-scalable=noshrink-to-fit=no"
         />
       </Head>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </Layout>
   );
 }
