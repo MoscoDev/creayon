@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../Components/Button';
 import TopNav from '../Components/TopNav';
 import style from  '../styles/payment.module.css'
@@ -6,7 +6,15 @@ import {useRouter} from 'next/router';
 
 function paymentmethod() {
  const router = useRouter();
+   let token = localStorage.getItem("token");
   const [cardType, setcardType] = useState("Paypal");
+useEffect(() => {
+  if (token == null) {
+    router.push("/login");
+  }
+}, []);
+  
+
   const handleSubmit=()=>{
     console.log(cardType)
     if(cardType==="Credit Card"){

@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Head} from 'next/document'
 import Link from 'next/link';
 
+import { useRouter } from 'next/router';
 
 
 function payment({price=500000}) {
 const [email, setEmail] = useState("");
 const [firstName, setFirstName] = useState("");
 const [lastName, setLastName] = useState("");
-
+  let token = localStorage.getItem("token");
+  let router = useRouter();
+useEffect(() => {
+  if (token == null) {
+    router.push("/login");
+  }
+}, []);
+  
 
 
     /*! For license information please see squad.min.js.LICENSE.txt */

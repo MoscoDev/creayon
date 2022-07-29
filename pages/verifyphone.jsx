@@ -3,15 +3,22 @@ import style from "../styles/verifyphone.module.css";
 import Button from '../Components/Button';
 import Timer from '../Components/Timer';
 import OtpInput from 'react-otp-input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 function verifyphone() {
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState('');
   const [otpErrorMessage, setOtpErrorMessage] = useState('');
-  const [otpErrorMessage2, setOtpErrorMessage2] = useState('');
+let router = useRouter();
+  let token = localStorage.getItem("token");
   
-
+useEffect(() => {
+  if (token == null) {
+    router.push("/login");
+  }
+}, []);
+  
   const handleChange = (otp) => setOtp(otp);
   return (
     <div className={style.general}>

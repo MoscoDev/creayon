@@ -1,18 +1,52 @@
-import React from 'react'
-import style from '../../styles/Profile.module.css'
-import BottomNav from '../../Components/BottomNav'
-import TopNav from '../../Components/TopNav'
-import { BsCheck2Circle } from 'react-icons/bs'
-import { BiChevronRight } from 'react-icons/bi'
-import { FiEdit } from 'react-icons/fi'
-import { AiOutlineCreditCard } from 'react-icons/ai'
-import { TbDiscount2 } from 'react-icons/tb'
-import { MdNotificationsNone, MdOutlineLocationOn } from 'react-icons/md'
-import Link from 'next/link'
-
-
+import React, { useEffect } from "react";
+import style from "../../styles/Profile.module.css";
+import BottomNav from "../../Components/BottomNav";
+import TopNav from "../../Components/TopNav";
+import { BsCheck2Circle } from "react-icons/bs";
+import { BiChevronRight } from "react-icons/bi";
+import { FiEdit } from "react-icons/fi";
+import { AiOutlineCreditCard } from "react-icons/ai";
+// import { TbDiscount2 } from 'react-icons/tb'
+import { MdNotificationsNone, MdOutlineLocationOn } from "react-icons/md";
+import { TbLogout, TbDiscount2 } from "react-icons/tb";
+import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 function profile() {
+  let token = localStorage.getItem("token");
+  let router = useRouter();
+  useEffect(() => {
+    if (token == null) {
+      router.push("/login");
+    }
+  }, []);
+  
+  function handleLogout(event) {
+    event.preventDefault();
+    var data = "";
+    let token = localStorage.getItem("token");
+    var config = {
+      method: "get",
+      url: "https://foodbukka.herokuapp.com/api/v1/auth/logout",
+      headers: {
+        Cookie: token,
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        alert("You have successfully logged out!");
+        localStorage.removeItem("token");
+        window.location.href = "/";
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <div className={style.profile}>
       <TopNav />
@@ -69,7 +103,15 @@ function profile() {
               <BiChevronRight />
             </a>
           </Link>
-         
+          <div onClick={handleLogout} className={style.button}>
+            <TbLogout
+              size={"1.3rem"}
+              style={{ strokeWidth: "2" }}
+              className={style.icon}
+            />
+            <p>Logout</p>
+            <BiChevronRight />
+          </div>
         </div>
       </div>
 
@@ -78,4 +120,4 @@ function profile() {
   );
 }
 
-export default profile
+export default profile;

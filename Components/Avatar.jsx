@@ -1,7 +1,9 @@
+import Link from 'next/link'
 import React from 'react'
 
 function Avatar() {
   return (
+    <Link href={"/profile"}>
     <div style={{
         width: '50px',
         height: '50px',
@@ -11,7 +13,7 @@ function Avatar() {
         backgroundPosition: 'center',
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
-    }}></div>
+    }}></div></Link>
   )
 }
 

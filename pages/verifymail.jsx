@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import Title from '../Components/Title'
 import style from "../styles/Home.module.css";
+import { useRouter } from 'next/router';
 
 function verifymail() {
+    let token = localStorage.getItem("token");
+    let router = useRouter();
+  useEffect(() => {
+    if (token == null) {
+      router.push("/login");
+    }
+  }, []);
+  
   return (
     <div style={{display: "contents"}}>
       <Title text={"Verify Your Email"} align={"center"} />

@@ -1,25 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../Components/Title";
 import TopNav from "../../Components/TopNav";
 import style from "../../styles/food.module.css";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import styles from "../../styles/counter.module.css";
 import { useRouter } from "next/router";
-import BottomNav from "../../Components/BottomNav";
+// import BottomNav from "../../Components/BottomNav";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../../slices/counterSlice";
+
+
 
 function food({ meal, photo }) {
   const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
-
+  let token = localStorage.getItem("token");
   const handleIncrement = () => dispatch(increment());
-
+  let router = useRouter();
   const handleDecrement = () => dispatch(decrement());
+  useEffect(() => {
+   if(token == null){
+    router.push("/login")
+   }
+  }, [])
+  
 
   const [mealSize, setMealSize] = useState("md");
   const [rate, setRate] = useState(1);
   return (
+    
     <div className={style.foodPage}>
       <TopNav text={meal.menuname} />
       <div
@@ -144,8 +153,7 @@ function food({ meal, photo }) {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
 }
 
 export default food;

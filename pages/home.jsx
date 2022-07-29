@@ -4,9 +4,18 @@ import BottomNav from '../Components/BottomNav'
 import style from '../styles/Home.module.css'
 import Link from 'next/link'
 import {AiOutlineSearch} from 'react-icons/ai'
+import { useRouter } from 'next/router'
+
 import Title from '../Components/Title'
 export default function home({meals}) {
-   
+  let router = useRouter();
+     let token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token == null) {
+      router.push("/login");
+    }
+  }, []);
+  
  
   return (
     <div className={style.home}>
