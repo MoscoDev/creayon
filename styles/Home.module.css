@@ -158,13 +158,13 @@
 .home {
   min-height: 100vh;
   max-width: 100vw;
-  margin: -15px -15px 0px;
+  margin: -15px -15px;
     padding: 15px 15px 0px;
   background: #e5e5e5;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   animation: fadeInRight 0.6s ease-in-out both;
+}
+.homebody{
+  flex: 1;
 }
  
          @keyframes fadeInRight {
@@ -242,7 +242,7 @@
   display: flex;
   flex-direction: row;
   column-gap: 10px;
-  margin: 30px -15px 0 -15px;
+  margin: 0px -15px 0 -15px;
   padding: 0 15px;
   height: 300px;
   scroll-behavior: smooth;

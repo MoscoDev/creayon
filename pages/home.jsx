@@ -18,15 +18,17 @@ export default function home({meals}) {
   }, []);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-  console.log(searchResult);
+
 // trigger api call when search is changed
   useEffect(() => {
-    if (search !== "") {
+
+    if (search.length>0) {
 var config = {
   method: "get",
   url: `https://foodbukka.herokuapp.com/api/v1/search?q=${search}`,
   headers: {},
 };
+
 
 axios(config)
   .then(function (response) {
@@ -46,7 +48,7 @@ axios(config)
   return (
     <div className={style.home}>
       <TopNav />
-      <div className="homebody">
+      <div className={style.homebody}>
         <div className={style.intro}>
           <p className={style.introText}>
             Hello, <span className={style.orange}>Maria </span>
@@ -107,31 +109,50 @@ axios(config)
             <span>Burger</span>
           </div>
         </div>
+        {search.length > 0 && (
+          <p className={style.introText} style={{ transition: "all ease 2s" }}>
+            search result for <span className={style.orange}>{search}</span>
+            {searchResult.length < 1 ? " not found" : ""}
+          </p>
+        )}
         <div className={style.popular}>
-          {searchResult?.map((search) => (
-            <div className={style.popularItem} key={search._id}>
-              <div
-                className={style.popularItemPic}
-                style={{
-                  backgroundImage: `url(${
-                    search.images[Math.floor(Math.random() * 3)]
-                  })`,
+          {search.length > 0 &&
+            searchResult?.map((search) => (
+              <Link
+                
+                key={search._id}
+                href={{
+                  pathname: "/food/[id]",
+                  query: { id: search._id },
                 }}
-              ></div>
-              <div className={style.popularItemBody}>
-                <strong>
-                  <p className={style.popularItemName}>{search.menuname}</p>
-                </strong>
-                <small
-                  className={style.light}
-                  style={{ fontSize: "9px", whiteSpace: "nowrap" }}
-                >
-                  {search.description.substring(0, 19) + "..."}
-                </small>
-                <p className={style.popularprice}>$3.98</p>
-              </div>
-            </div>
-          ))}
+              >
+                <div className={style.popularItem}>
+                  <div
+                    className={style.popularItemPic}
+                    style={{
+                      backgroundImage: `url(${
+                        search.images[Math.floor(Math.random() * 3)]
+                      })`,
+                      width: "45px",
+                      height: "45px",
+                      borderRadius: "50%",
+                    }}
+                  ></div>
+                  <div className={style.popularItemBody}>
+                    {/* <strong> */}
+                    <p className={style.popularItemName}>{search.menuname}</p>
+                    {/* </strong> */}
+                    <small
+                      className={style.light}
+                      style={{ fontSize: "9px", whiteSpace: "nowrap" }}
+                    >
+                      {search.description.substring(0, 19) + "..."}
+                    </small>
+                    <p className={style.popularprice}>$3.98</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
         </div>
         <div className={style.foodMenu}>
           {meals?.map((meal) => (
@@ -145,9 +166,9 @@ axios(config)
             >
               <a>
                 <div className={style.foodMenuBody}>
-                  <strong>
-                    <p>{meal.menuname}</p>
-                  </strong>
+                  {/* <strong> */}
+                  <p>{meal.menuname}</p>
+                  {/* </strong> */}
                   <small className={style.light} style={{ fontSize: "11px" }}>
                     {meal.description.substring(0, 19) + "..."}
                   </small>
@@ -168,69 +189,10 @@ axios(config)
               </a>
             </Link>
           ))}
-          {/* 
-          <Link href="/food" className={style.foodMenuItem}>
-            <a>
-              <div className={style.foodMenuBody}>
-                <strong>
-                  <p>Spicy pork</p>
-                </strong>
-                <small className={style.light} style={{ fontSize: "11px" }}>
-                  Stir-fried hot pork
-                </small>
-                <p className={style.price}>$5.00</p>
-              </div>
-              <div
-                className={style.foodMenuHeader}
-                style={{ backgroundImage: "url(/img/pork.svg)", zIndex: "20" }}
-              ></div>
-            </a>
-          </Link>
-          <Link href="/food" className={style.foodMenuItem}>
-            <a>
-              <div className={style.foodMenuBody}>
-                <strong>
-                  <p>Fried Chicken</p>
-                </strong>
-                <small className={style.light} style={{ fontSize: "11px" }}>
-                  Chicken and chips
-                </small>
-
-                <p className={style.price}>{"$5.98    "}</p>
-              </div>
-              <div
-                className={style.foodMenuHeader}
-                style={{
-                  backgroundImage: "url(/img/chicken.svg)",
-                  zIndex: "20",
-                }}
-              ></div>
-            </a>
-          </Link>
-          <Link href="/food" className={style.foodMenuItem}>
-            <a>
-              <div className={style.foodMenuBody}>
-                <strong>
-                  <p>Fried Chicken</p>
-                </strong>
-                <small className={style.light} style={{ fontSize: "11px" }}>
-                  Chicken and chips
-                </small>
-
-                <p className={style.price}>{"$5.98    "}</p>
-              </div>
-              <div
-                className={style.foodMenuHeader}
-                style={{
-                  backgroundImage: "url(/img/chicken.svg)",
-                  zIndex: "20",
-                }}
-              ></div>
-            </a>
-          </Link> */}
         </div>
         <div className={style.popularFoodContainer}>
-          <Title text="Popular Food" size={"18px"} align="left" />
+          <p className={style.introText}>Popular Food</p>
+          {/* <Title text="Popular Food" size={"18px"} align="left" /> */}
           <div className={style.popular}>
             <div className={style.popularItem}>
               <div
