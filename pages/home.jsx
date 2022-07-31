@@ -5,6 +5,7 @@ import style from '../styles/Home.module.css'
 import Link from 'next/link'
 import {AiOutlineSearch} from 'react-icons/ai'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 
 import Title from '../Components/Title'
 export default function home({meals}) {
@@ -15,12 +16,37 @@ export default function home({meals}) {
       router.push("/login");
     }
   }, []);
-  
+  const [search, setSearch] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  console.log(searchResult);
+// trigger api call when search is changed
+  useEffect(() => {
+    if (search !== "") {
+var config = {
+  method: "get",
+  url: `https://foodbukka.herokuapp.com/api/v1/search?q=${search}`,
+  headers: {},
+};
+
+axios(config)
+  .then(function (response) {
+    let searchResults = response.data;
+    // console.log(searchResults);
+    setSearchResult(searchResults);
+    
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+    }
+  }, [search]);
+
  
   return (
     <div className={style.home}>
       <TopNav />
-      <div className="homebody" >
+      <div className="homebody">
         <div className={style.intro}>
           <p className={style.introText}>
             Hello, <span className={style.orange}>Maria </span>
@@ -34,8 +60,8 @@ export default function home({meals}) {
               className={style.search}
               placeholder="Search"
               type="search"
-              name=""
-              id=""
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           <div
@@ -81,38 +107,68 @@ export default function home({meals}) {
             <span>Burger</span>
           </div>
         </div>
-        <div className={style.foodMenu}>
-          {
-            meals?.map((meal) => (
-          <Link href={{
-                      pathname: "/food/[id]",
-                      query: { id: meal._id },
-                    }} className={style.foodMenuItem} key = {meal._id}>
-            <a>
-              <div className={style.foodMenuBody}>
-                <strong>
-                  <p>{meal.menuname}</p>
-                </strong>
-                <small className={style.light} style={{ fontSize: "11px" }}>
-                  {(meal.description).substring(0, 19)+"..."}
-                </small>
-                <p className={style.price}>$9.98</p>
-              </div>
+        <div className={style.popular}>
+          {searchResult?.map((search) => (
+            <div className={style.popularItem} key={search._id}>
               <div
-                className={style.foodMenuHeader}
+                className={style.popularItemPic}
                 style={{
-                  backgroundImage: `url(${meal.images[Math.floor(Math.random() * 3)]})`,
-                  zIndex: "20",
-                  borderRadius: "50%",
-                  zoom: 0.9,
-                  objectFit: "contain",
+                  backgroundImage: `url(${
+                    search.images[Math.floor(Math.random() * 3)]
+                  })`,
                 }}
               ></div>
-            </a>
-          </Link>
-))
-        }
-{/* 
+              <div className={style.popularItemBody}>
+                <strong>
+                  <p className={style.popularItemName}>{search.menuname}</p>
+                </strong>
+                <small
+                  className={style.light}
+                  style={{ fontSize: "9px", whiteSpace: "nowrap" }}
+                >
+                  {search.description.substring(0, 19) + "..."}
+                </small>
+                <p className={style.popularprice}>$3.98</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className={style.foodMenu}>
+          {meals?.map((meal) => (
+            <Link
+              href={{
+                pathname: "/food/[id]",
+                query: { id: meal._id },
+              }}
+              className={style.foodMenuItem}
+              key={meal._id}
+            >
+              <a>
+                <div className={style.foodMenuBody}>
+                  <strong>
+                    <p>{meal.menuname}</p>
+                  </strong>
+                  <small className={style.light} style={{ fontSize: "11px" }}>
+                    {meal.description.substring(0, 19) + "..."}
+                  </small>
+                  <p className={style.price}>$9.98</p>
+                </div>
+                <div
+                  className={style.foodMenuHeader}
+                  style={{
+                    backgroundImage: `url(${
+                      meal.images[Math.floor(Math.random() * 3)]
+                    })`,
+                    zIndex: "20",
+                    borderRadius: "50%",
+                    zoom: 0.9,
+                    objectFit: "contain",
+                  }}
+                ></div>
+              </a>
+            </Link>
+          ))}
+          {/* 
           <Link href="/food" className={style.foodMenuItem}>
             <a>
               <div className={style.foodMenuBody}>

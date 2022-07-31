@@ -165,7 +165,6 @@
   flex-direction: column;
   justify-content: space-between;
   animation: fadeInRight 0.6s ease-in-out both;
-    background-color: system-background;
 }
  
          @keyframes fadeInRight {

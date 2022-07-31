@@ -41,9 +41,10 @@ function login() {
       axios(config)
         .then(function (response) {
          
-          alert("You have successfully logged in!");
           localStorage.setItem("token", response.data.token);
           router.push("/home");
+          
+          alert("You have successfully logged in!");
           event.preventDefault();
         })
         .catch(function (error) {
@@ -63,7 +64,7 @@ function login() {
         <input
           className={style.input}
           type="text"
-          placeholder="userName"
+          placeholder="username"
           id="username"
           htmlFor="username"
           name="userName"
@@ -81,8 +82,6 @@ function login() {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-          }}
-          onBlur={(e) => {
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
@@ -146,9 +145,14 @@ function login() {
           </small>
         </div>
       </form>
+      <br />
       <div
         className="button-container"
-        style={{ display: "block", width: "-webkit-fill-available" }}
+        style={{
+          display: "block",
+          width: "-webkit-fill-available",
+          margin: "0 auto",
+        }}
       >
         <button
           className={styles[`orange`] + " " + styles[`lg`]}
