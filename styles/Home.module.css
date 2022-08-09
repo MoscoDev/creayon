@@ -311,11 +311,14 @@
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
-  /* width: fit-content; */
+  width: 400px;
   padding: 10px;
   column-gap: 5px;
   margin: 20px 0px;
   scroll-snap-align: center !important;
+}
+.popularItemBody{
+  width: 80px;
 }
 
 .popularItemPic {

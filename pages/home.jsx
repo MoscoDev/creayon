@@ -9,8 +9,8 @@ import axios from 'axios'
 import { useSelector, useDispatch } from "react-redux";
 
 import Title from '../Components/Title'
-export default function home({meals}) {
-
+export default function home({meals, popular}) {
+console.log(popular)
  const user = useSelector((state) => state.user.value);
 
 
@@ -56,7 +56,7 @@ axios(config)
       <div className={style.homebody}>
         <div className={style.intro}>
           <p className={style.introText}>
-            Hello, <span className={style.orange}>Maria {user.username}</span>
+            Hello, <span className={style.orange}>{user.username}</span>
           </p>
           <p className={style.light}>What do you want to eat today</p>
         </div>
@@ -97,21 +97,21 @@ axios(config)
           </div>
         </div>
         <div className={style.filterBox}>
-          <div className={style.filter}>
+          <div className={style.filter} onClick={() => setSearch("burger")}>
             <img src="/img/burger.svg" alt="" />
             <span>Burger</span>
           </div>
-          <div className={style.filter}>
+          <div className={style.filter} onClick={() => setSearch("veg")}>
             <img src="/img/vegetable.svg" alt="" />
             <span>Veggie</span>
           </div>
-          <div className={style.filter}>
+          <div className={style.filter} onClick={() => setSearch("fried")}>
             <img src="/img/friedfood.svg" alt="" />
             <span>fried food</span>
           </div>
-          <div className={style.filter}>
+          <div className={style.filter} onClick={() => setSearch("rice")}>
             <img src="/img/burger.svg" alt="" />
-            <span>Burger</span>
+            <span>Rice</span>
           </div>
         </div>
         {search.length > 0 && (
@@ -124,7 +124,6 @@ axios(config)
           {search.length > 0 &&
             searchResult?.map((search) => (
               <Link
-                
                 key={search._id}
                 href={{
                   pathname: "/food/[id]",
@@ -199,7 +198,38 @@ axios(config)
           <p className={style.introText}>Popular Food</p>
           {/* <Title text="Popular Food" size={"18px"} align="left" /> */}
           <div className={style.popular}>
-            <div className={style.popularItem}>
+            {popular?.map((popular) => (
+              <Link
+                key={popular._id}
+                href={{
+                  pathname: "/food/[id]",
+                  query: { id: popular._id },
+                }}
+                style={{width: "400px"}}
+              >
+                <div className={style.popularItem}>
+                  <div
+                    className={style.popularItemPic}
+                    style={{ backgroundImage: "url(/img/biscuit.svg)" }}
+                  ></div>
+                  <div className={style.popularItemBody}>
+                    
+                      <p className={style.popularItemName}>
+                        {popular.menuname}
+                      </p>
+                    
+                    <small
+                      className={style.light}
+                      style={{ fontSize: "9px", whiteSpace: "nowrap" }}
+                    >
+                      {popular.description.substring(0, 10) + "..."}
+                    </small>
+                    <p className={style.popularprice}>$3.98</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+            {/* <div>
               <div
                 className={style.popularItemPic}
                 style={{ backgroundImage: "url(/img/biscuit.svg)" }}
@@ -252,7 +282,7 @@ axios(config)
                 </small>
                 <p className={style.popularprice}>$3.98</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -267,12 +297,16 @@ export async function getStaticProps() {
   // You can use any data fetching library
   const res = await fetch('https://foodbukka.herokuapp.com/api/v1/menu')
   const meals = await res.json()
+  const popular = meals.Result.filter((meal) => meal.menuname.includes("rice"));
+
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
     props: {
-      meals: meals.Result
+      meals: meals.Result,
+      popular: meals.Result.filter((meal) => meal.menuname.includes("Rice"))
+,
     },
   }
 }

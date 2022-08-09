@@ -9,7 +9,7 @@ function cart() {
     <div className={style.cartPage}>
       <TopNav />
       <div className={style.popularFoodContainer}>
-        <Title text="Popular Food" size={"18px"} align="left" />
+        <Title text="my cart" size={"15px"} align="left" />
         <div className={style.popular}>
           <div className={style.popularItem}>
             <div

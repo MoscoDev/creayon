@@ -5,6 +5,9 @@
     padding: 0 15px;
     background: #E5E5E5;
     animation: fadeInRight 0.5s ease both;
+    display: flex;
+    flex-direction: column;
+
 }
 .dpContainer {
   width: 100%;
@@ -41,6 +44,7 @@
 .profile_page_content {
   width: 100%;
   display: flex;
+  flex: 1 1 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

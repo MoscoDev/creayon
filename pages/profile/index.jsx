@@ -114,7 +114,6 @@ function profile() {
           </div>
         </div>
       </div>
-
       <BottomNav />
     </div>
   );
