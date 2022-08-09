@@ -19,21 +19,24 @@ function signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [username, setUsername] = useState("");
 
 
 function handleSignup(event) {
   event.preventDefault();
   if (emailError === "none" && passwordError === "none" && confirmPasswordError === "none") {
 var data = JSON.stringify({
-  username: firstName,
+  firstName: firstName,
+  lastName: lastName,
+  username: username,
   password: password,
-  phoneNumber: phone,
+  phone: phone,
   email: email,
 });
 
 var config = {
   method: "post",
-  url: "https://foodbukka.herokuapp.com/api/v1/auth/register",
+  url: "http://localhost:4000/api/v1/register",
   headers: {
     "Content-Type": "application/json",
   },
@@ -42,14 +45,14 @@ var config = {
 
 axios(config)
   .then(function (response) {
-    console.log(JSON.stringify(response.data));
-     alert("You have successfully signed up!");
+    // console.log(JSON.stringify(response.data));
+     alert(response.data.message);
       router.push("/login");
 
   })
   .catch(function (error) {
     console.log(error);
-    alert("user already exists");
+    alert(error.message);
     event.preventDefault()
   });
    
@@ -83,6 +86,16 @@ axios(config)
           name="lastname"
           value={lastName}
           onChange={(event) => setLastName(event.target.value)}
+        />
+        <input
+          className={style.input}
+          type="text"
+          placeholder="username"
+          id="username"
+          htmlFor="username"
+          name="username"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
         />
         <input
           className={style.input}

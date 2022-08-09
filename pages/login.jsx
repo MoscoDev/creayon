@@ -14,7 +14,6 @@ function login() {
   const [emailError, setEmailError] = useState("none");
   const [passwordError, setPasswordError] = useState("none");
   const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   function handleLogin(event) {
@@ -22,16 +21,16 @@ function login() {
     // if not empty, send a request to the server
     // if request is successful, redirect to the home page
 
-    if (userName !== "" && password !== "") {
+    if (email !== "" && password !== "") {
       event.preventDefault();
       var data = JSON.stringify({
-        username: userName,
+        email: email,
         password: password,
       });
 
       var config = {
         method: "post",
-        url: "https://foodbukka.herokuapp.com/api/v1/auth/login",
+        url: "http://localhost:4000/api/v1/login",
         headers: {
           "Content-Type": "application/json",
         },
@@ -41,14 +40,14 @@ function login() {
       axios(config)
         .then(function (response) {
          
-          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("token", (response.data.token).split(" ")[1]);
           router.push("/home");
           
-          alert("You have successfully logged in!");
+          alert(response.data.message);
           event.preventDefault();
         })
         .catch(function (error) {
-          console.log(error);
+          console.log(error.message);
           alert(error);
           event.preventDefault();
         });
@@ -63,14 +62,38 @@ function login() {
       <form className={style.form} action="submit">
         <input
           className={style.input}
-          type="text"
-          placeholder="username"
-          id="username"
-          htmlFor="username"
-          name="userName"
-          value={userName}
-          onChange={(event) => setUserName(event.target.value)}
+          type="email"
+          placeholder="Email"
+          id="email"
+          htmlFor="email"
+          name="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          onBlur={(e) => {
+            // check if email is valid with regex pattern
+            if (
+              e.target.value.match(
+                /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
+              ) == null
+            ) {
+              setEmailError("block");
+            } else {
+              setEmailError("none");
+            }
+          }}
         />
+        <small
+          style={{
+            display: emailError,
+            transition: "all ease 9.9s",
+            fontWeight: "200",
+            color: "red",
+          }}
+        >
+          Please enter a valid email address.
+        </small>
+
         <input
           className={style.input}
           type="password"

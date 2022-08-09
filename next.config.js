@@ -19,7 +19,6 @@ module.exports = withPWA({
     ignoreDuringBuilds: true,
   },
   env: {
-
     customKey: "my-value",
   },
 });
