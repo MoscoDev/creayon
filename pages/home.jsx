@@ -222,7 +222,7 @@ axios(config)
                       className={style.light}
                       style={{ fontSize: "9px", whiteSpace: "nowrap" }}
                     >
-                      {popular.description.substring(0, 10) + "..."}
+                      {popular.description.substring(0, 27) + "..."}
                     </small>
                     <p className={style.popularprice}>$3.98</p>
                   </div>
