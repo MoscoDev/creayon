@@ -6,9 +6,14 @@ import Link from 'next/link'
 import {AiOutlineSearch} from 'react-icons/ai'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import { useSelector, useDispatch } from "react-redux";
 
 import Title from '../Components/Title'
 export default function home({meals}) {
+
+ const user = useSelector((state) => state.user.value);
+
+
   let router = useRouter();
      let token = localStorage.getItem("token");
   useEffect(() => {
@@ -51,7 +56,7 @@ axios(config)
       <div className={style.homebody}>
         <div className={style.intro}>
           <p className={style.introText}>
-            Hello, <span className={style.orange}>Maria </span>
+            Hello, <span className={style.orange}>Maria {user.username}</span>
           </p>
           <p className={style.light}>What do you want to eat today</p>
         </div>
