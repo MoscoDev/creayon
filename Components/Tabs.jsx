@@ -5,18 +5,63 @@ import style from "../styles/Home.module.css";
 import Button from "./Button";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
+import { getUserData } from "../slices/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const Tabs = () => {
+
+const user = useSelector((state) => state.user.value);
+const dispatch = useDispatch();
+console.log(user);
   const [currentTab, setCurrentTab] = useState("1");
-  const [phone, setPhone] = useState();
-  const [name, setName] = useState();
+  const [phone, setPhone] = useState(user.phone);
+
+  const [lastName, setLastName] = useState(user.lastName);
+  const [firstName, setFirstName] = useState(user.firstName);
   const [city, setCity] = useState();
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState(user.address);
    const [officePhone, setOfficePhone] = useState();
    const [officeName, setOfficeName] = useState();
    const [officeCity, setOfficeCity] = useState();
    const [officeAddress, setOfficeAddress] = useState();
+
+   const handleSaveProfileEdits = (event) => {
+    event.preventDefault();
+    var data = JSON.stringify({
+      name: name,
+      city: city,
+      address: address,
+      officePhone: officePhone,
+      officeName: officeName,
+      officeCity: officeCity,
+      officeAddress: officeAddress,
+    });
+
+    var config = {
+      method: "put",
+      url: "https://creayonbackend.herokuapp.com/api/v1/profile" || "http://localhost:4000/api/v1/profile",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token"),
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        dispatch(getUserData(response.data.token));
+        localStorage.setItem("token", (response.data.token).split(" ")[1]);
+      
+        event.preventDefault();
+      }).catch(function (error) {
+        console.log(error.message);
+        alert(error);
+        event.preventDefault();
+
+      }
+      );
+  }
+  
 
   const tabs = [
     {
@@ -32,13 +77,24 @@ const Tabs = () => {
           <input
             className={style.input}
             type="text"
-            placeholder="Name"
+            placeholder="First name"
             id="firstname"
             htmlFor="firstname"
             name="firstname"
             style={{ backgroundColor: "var(--light-grey)" }}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+           <input
+            className={style.input}
+            type="text"
+            placeholder="Last name"
+            id="firstname"
+            htmlFor="firstname"
+            name="firstname"
+            style={{ backgroundColor: "var(--light-grey)" }}
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
           <label>Phone</label>
           <PhoneInput

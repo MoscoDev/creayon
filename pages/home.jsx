@@ -6,16 +6,17 @@ import Link from 'next/link'
 import {AiOutlineSearch} from 'react-icons/ai'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
+import { getUserData } from "../slices/userSlice"; 
 
 import Title from '../Components/Title'
 export default function home({meals, popular}) {
-console.log(popular)
  const user = useSelector((state) => state.user.value);
-
+const dispatch = useDispatch();
 
   let router = useRouter();
      let token = localStorage.getItem("token");
+     dispatch(getUserData(token));  
   useEffect(() => {
     if (token == null) {
       router.push("/login");

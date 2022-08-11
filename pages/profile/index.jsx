@@ -6,7 +6,8 @@ import { BsCheck2Circle } from "react-icons/bs";
 import { BiChevronRight } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineCreditCard } from "react-icons/ai";
-// import { TbDiscount2 } from 'react-icons/tb'
+import {useDispatch, useSelector } from "react-redux";
+import {getUserData} from "../../slices/userSlice";
 import { MdNotificationsNone, MdOutlineLocationOn } from "react-icons/md";
 import { TbLogout, TbDiscount2 } from "react-icons/tb";
 import Link from "next/link";
@@ -14,6 +15,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 function profile() {
+const user = useSelector((state) => state.user.value);
+const dispatch = useDispatch();
   let token = localStorage.getItem("token");
   let router = useRouter();
   useEffect(() => {
@@ -25,12 +28,11 @@ function profile() {
   function handleLogout(event) {
     event.preventDefault();
     var data = "";
-    let token = localStorage.getItem("token");
     var config = {
       method: "get",
       url: "https://foodbukka.herokuapp.com/api/v1/auth/logout",
       headers: {
-        Cookie: token,
+        // Cookie: token,
       },
       data: data,
     };
@@ -38,9 +40,10 @@ function profile() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        alert("You have successfully logged out!");
         localStorage.removeItem("token");
+        dispatch(getUserData(null));
         window.location.href = "/";
+        alert("You have successfully logged out!");
       })
       .catch(function (error) {
         console.log(error);

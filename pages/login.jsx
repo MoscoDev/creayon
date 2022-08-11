@@ -8,6 +8,8 @@ import Link from "next/link";
 import styles from "../styles/Button.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserData } from "../slices/userSlice";
 
 function login() {
   const router = useRouter();
@@ -15,7 +17,8 @@ function login() {
   const [passwordError, setPasswordError] = useState("none");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+const user = useSelector((state) => state.user.value);
+const dispatch = useDispatch();
   function handleLogin(event) {
     // check if username and password are not empty
     // if not empty, send a request to the server
@@ -39,7 +42,7 @@ function login() {
 
       axios(config)
         .then(function (response) {
-         
+          dispatch(getUserData(response.data.token));
           localStorage.setItem("token", (response.data.token).split(" ")[1]);
           router.push("/home");
           
