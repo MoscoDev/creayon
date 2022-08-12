@@ -10,9 +10,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserData } from "../slices/userSlice";
-import { LocalStorage } from "node-localstorage";
-
-global.localStorage = new LocalStorage("./scratch");
 function login() {
   const router = useRouter();
   const [emailError, setEmailError] = useState("none");
@@ -21,8 +18,6 @@ function login() {
   const [password, setPassword] = useState("");
 const user = useSelector((state) => state.user.value);
 const dispatch = useDispatch();
-localStorage.setItem("myFirstKey", "myFirstValue");
-console.log(localStorage.getItem("myFirstKey"));
   function handleLogin(event) {
     // check if username and password are not empty
     // if not empty, send a request to the server
@@ -48,11 +43,7 @@ console.log(localStorage.getItem("myFirstKey"));
         .then(function (response) {
           dispatch(getUserData(response.data.token));
           localStorage.setItem("token", (response.data.token).split(" ")[1]);
-          // save the token in the session storage
-          sessionStorage.setItem("token", (response.data.token).split(" ")[1]);
-
           router.push("/home");
-          
           alert(response.data.message);
           event.preventDefault();
         })

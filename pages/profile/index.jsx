@@ -39,7 +39,6 @@ const dispatch = useDispatch();
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         localStorage.removeItem("token");
         // dispatch(getUserData(null));
         router.push("/login");
