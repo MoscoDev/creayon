@@ -8,22 +8,25 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { useSelector, useDispatch} from "react-redux";
 import { getUserData } from "../slices/userSlice"; 
-
 import Title from '../Components/Title'
-export default function home({meals, popular}) {
- const user = useSelector((state) => state.user.value);
-const dispatch = useDispatch();
 
+
+
+
+
+export default function home({meals, popular}) {
+ 
+  
   let router = useRouter();
      let token = localStorage.getItem("token");
-    //  useEffect(() => {
-    //  dispatch(getUserData(token));  
-    //   }, []);
+    
   useEffect(() => {
     if (token == null) {
       router.push("/login");
-    }
+    } 
   }, []);
+
+  
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
@@ -52,6 +55,9 @@ axios(config)
     }
   }, [search]);
 
+  const user = useSelector((state) => state.user.value);
+const dispatch = useDispatch();
+ 
  
   return (
     <div className={style.home}>
@@ -313,3 +319,5 @@ export async function getStaticProps() {
     },
   }
 }
+
+

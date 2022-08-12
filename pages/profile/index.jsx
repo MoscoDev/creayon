@@ -41,8 +41,8 @@ const dispatch = useDispatch();
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         localStorage.removeItem("token");
-        dispatch(getUserData(null));
-        window.location.href = "/";
+        // dispatch(getUserData(null));
+        router.push("/login");
         alert("You have successfully logged out!");
       })
       .catch(function (error) {

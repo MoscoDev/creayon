@@ -7,7 +7,6 @@ import { store } from "../app/store";
 import { Provider } from "react-redux";
 
 
-
 function MyApp({ Component, pageProps }) {
   
   return (
@@ -16,7 +15,7 @@ function MyApp({ Component, pageProps }) {
         <title>Creayon Foods</title>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover, user-scalable=noshrink-to-fit=no"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  viewport-fit=cover, user-scalable=no, shrink-to-fit=no"
         />
       </Head>
       <Provider store={store}>
