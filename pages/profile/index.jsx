@@ -30,9 +30,9 @@ const dispatch = useDispatch();
     var data = "";
     var config = {
       method: "post",
-      url: `http://localhost:4000/api/v1/logout/${user.id}` || `https://creayonbackend.herokuapp.com/api/v1/logout/${user._id}`,
+      url: `https://creayonbackend.herokuapp.com/api/v1/logout/${user._id}`,
       headers: {
-        // Cookie: token,
+        
       },
       data: data,
     };

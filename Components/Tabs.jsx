@@ -33,9 +33,11 @@ const dispatch = useDispatch();
     event.preventDefault();
     var axios = require("axios");
     var data = JSON.stringify({
-      address: "Orita fogo Ibafo",
-      firstName: "Blessing ",
-      lastName: "Odukoya",
+      address: address+ "" +city,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      city: city,
     });
 
     var config = {
