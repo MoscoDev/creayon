@@ -60,9 +60,9 @@ const dispatch = useDispatch();
         <div className={style.button} style={{ marginBottom: "1rem" }}>
           <BsCheck2Circle style={{ opacity: "0" }} className={style.icon} />
           <div>
-            <h3 className={style.userName}>Maria Salow</h3>
+            <h3 className={style.userName}>{user.lastName+" "+user.firstName}</h3>
 
-            <small>+23481634575</small>
+            <small>{user.phone}</small>
           </div>
 
           <FiEdit size={"1.3rem"} className={style.icon} />
