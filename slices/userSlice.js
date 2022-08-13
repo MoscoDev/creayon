@@ -10,11 +10,15 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     getUserData: (state, action) => {
-      const userdata = jwtDecode(action.payload);
-      state.value = userdata;
+      const userdatafromtoken = jwtDecode(action.payload);
+      state.value = userdatafromtoken;
     },
+    updateUserData: (state, action)=>{
+      state.value = action.payload;
+    }
+
   },
 });
-export const { getUserData } = userSlice.actions;
+export const { getUserData, updateUserData } = userSlice.actions;
 
 export default userSlice.reducer;

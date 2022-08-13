@@ -5,14 +5,17 @@ import style from "../styles/Home.module.css";
 import Button from "./Button";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { getUserData } from "../slices/userSlice";
+import styles from "../styles/Button.module.css";
+import { getUserData, updateUserData } from "../slices/userSlice";
 import { useSelector, useDispatch } from "react-redux";
+import jwtDecode from "jwt-decode";
+import axios from "axios";
 
 const Tabs = () => {
 
 const user = useSelector((state) => state.user.value);
 const dispatch = useDispatch();
-console.log(user);
+// console.log(user);
   const [currentTab, setCurrentTab] = useState("1");
   const [phone, setPhone] = useState(user.phone);
 
@@ -24,42 +27,39 @@ console.log(user);
    const [officeName, setOfficeName] = useState();
    const [officeCity, setOfficeCity] = useState();
    const [officeAddress, setOfficeAddress] = useState();
-
+  const token = localStorage.getItem("token");
    const handleSaveProfileEdits = (event) => {
+    const id = jwtDecode(token)._id;
     event.preventDefault();
+    var axios = require("axios");
     var data = JSON.stringify({
-      name: name,
-      city: city,
-      address: address,
-      officePhone: officePhone,
-      officeName: officeName,
-      officeCity: officeCity,
-      officeAddress: officeAddress,
+      address: "Orita fogo Ibafo",
+      firstName: "Blessing ",
+      lastName: "Odukoya",
     });
 
     var config = {
       method: "put",
-      url: "https://creayonbackend.herokuapp.com/api/v1/profile" || "http://localhost:4000/api/v1/profile",
+      url: `https://creayonbackend.herokuapp.com/api/v1/user/${id}`,
       headers: {
+        Authorization:
+          "Bearer " + token,
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token"),
       },
       data: data,
     };
 
     axios(config)
       .then(function (response) {
-        dispatch(getUserData(response.data.token));
-        localStorage.setItem("token", (response.data.token).split(" ")[1]);
-      
-        event.preventDefault();
-      }).catch(function (error) {
-        console.log(error.message);
-        alert(error);
-        event.preventDefault();
+        console.log(JSON.stringify(response.data));
+        localStorage.setItem("token", response.data.token.split(" ")[1]);
+        dispatch(updateUserData(response.data.user));
+        alert("profile updated");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-      }
-      );
   }
   
 
@@ -73,7 +73,7 @@ console.log(user);
           action="submit"
           style={{ marginBottom: "150px" }}
         >
-          <label>Your Name</label>
+          <label>Your Names</label>
           <input
             className={style.input}
             type="text"
@@ -85,7 +85,7 @@ console.log(user);
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-           <input
+          <input
             className={style.input}
             type="text"
             placeholder="Last name"
@@ -105,15 +105,7 @@ console.log(user);
             onChange={setPhone}
             style={{ backgroundColor: "var(--light-grey)" }}
           />
-          {/* <input
-            className={style.input}
-            type="tel"
-            name="tel"
-            id="tel"
-            htmlFor="tel"
-            placeholder="Phone Number"
-            style={{ backgroundColor: "var(--light-grey)" }}
-          /> */}
+
           <label htmlFor="city">city</label>
           <input
             className={style.input}
@@ -161,6 +153,17 @@ console.log(user);
             style={{ backgroundColor: "var(--light-grey)" }}
             value={officeName}
             onChange={(e) => setOfficeName(e.target.value)}
+          />
+          <input
+            className={style.input}
+            type="text"
+            placeholder="Last name"
+            id="firstname"
+            htmlFor="firstname"
+            name="firstname"
+            style={{ backgroundColor: "var(--light-grey)" }}
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
           <label>Phone</label>
           <PhoneInput
@@ -240,26 +243,31 @@ console.log(user);
           </div>
         ))}
       </div>
-      <div style={{margin:"0 auto", textAlign:"center", 
-            position: "absolute",
-            bottom: "20px",
-            left:"50%",
-            transform: "translateX(-50%)",
-            }}>
-        <Button
-          text={"Save"}
-          colour="orange"
-          link={"/verifymail"}
-          size="lg"
+      <div
+        style={{
+          margin: "0 auto",
+          textAlign: "center",
+          position: "absolute",
+          bottom: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+      >
+        <div
+          className="button-container"
           style={{
-            margin: "0 auto",
-            padding: "10px 0px",
-            width: "100% !important",
             display: "block",
-            textAlign: "center",
-           
+            width: "80vw",
+            margin: "0 auto",
           }}
-        ></Button>
+        >
+          <button
+            className={styles[`orange`] + " " + styles[`lg`]}
+            onClick={handleSaveProfileEdits}
+          >
+            Save
+          </button>
+        </div>
       </div>
     </div>
   );

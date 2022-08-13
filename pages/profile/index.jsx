@@ -7,7 +7,7 @@ import { BiChevronRight } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineCreditCard } from "react-icons/ai";
 import {useDispatch, useSelector } from "react-redux";
-import {getUserData} from "../../slices/userSlice";
+import {updateUserData} from "../../slices/userSlice";
 import { MdNotificationsNone, MdOutlineLocationOn } from "react-icons/md";
 import { TbLogout, TbDiscount2 } from "react-icons/tb";
 import Link from "next/link";
@@ -29,8 +29,8 @@ const dispatch = useDispatch();
     event.preventDefault();
     var data = "";
     var config = {
-      method: "get",
-      url: "https://foodbukka.herokuapp.com/api/v1/auth/logout",
+      method: "post",
+      url: `http://localhost:4000/api/v1/logout/${user.id}` || `https://creayonbackend.herokuapp.com/api/v1/logout/${user._id}`,
       headers: {
         // Cookie: token,
       },
@@ -40,7 +40,7 @@ const dispatch = useDispatch();
     axios(config)
       .then(function (response) {
         localStorage.removeItem("token");
-        // dispatch(getUserData(null));
+        dispatch(updateUserData({}));
         router.push("/login");
         alert("You have successfully logged out!");
       })

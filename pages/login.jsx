@@ -16,8 +16,9 @@ function login() {
   const [passwordError, setPasswordError] = useState("none");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-const user = useSelector((state) => state.user.value);
-const dispatch = useDispatch();
+  const [disabled, setDisabled] = useState(false);
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
   function handleLogin(event) {
     // check if username and password are not empty
     // if not empty, send a request to the server
@@ -25,6 +26,7 @@ const dispatch = useDispatch();
 
     if (email !== "" && password !== "") {
       event.preventDefault();
+      setDisabled(true);
       var data = JSON.stringify({
         email: email,
         password: password,
@@ -32,7 +34,9 @@ const dispatch = useDispatch();
 
       var config = {
         method: "post",
-        url: "https://creayonbackend.herokuapp.com/api/v1/login" || "http://localhost:4000/api/v1/login",
+        url:
+          "https://creayonbackend.herokuapp.com/api/v1/login" ||
+          "http://localhost:4000/api/v1/login",
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,14 +46,15 @@ const dispatch = useDispatch();
       axios(config)
         .then(function (response) {
           dispatch(getUserData(response.data.token));
-          localStorage.setItem("token", (response.data.token).split(" ")[1]);
+          localStorage.setItem("token", response.data.token.split(" ")[1]);
           router.push("/home");
           alert(response.data.message);
-          event.preventDefault();
+          // event.preventDefault();
         })
         .catch(function (error) {
           console.log(error.message);
-          alert(error);
+          setDisabled(false);
+          alert(error.message);
           event.preventDefault();
         });
     }
@@ -181,6 +186,7 @@ const dispatch = useDispatch();
         <button
           className={styles[`orange`] + " " + styles[`lg`]}
           onClick={handleLogin}
+          disabled={disabled}
         >
           Login
         </button>
@@ -231,5 +237,3 @@ const dispatch = useDispatch();
 }
 
 export default login;
-
-
