@@ -52,7 +52,7 @@ const handleUpload = (e) => {
 
   var config = {
     method: "post",
-    url: "https://creayonbackend.herokuapp.com/api/v1/user/upload/62eed45f6c919989ad95fd4c",
+    url: "https://creayonbackend.herokuapp.com/api/v1/user/upload/"+user._id,
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
