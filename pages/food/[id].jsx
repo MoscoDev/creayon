@@ -8,11 +8,18 @@ import { useRouter } from "next/router";
 // import BottomNav from "../../Components/BottomNav";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../../slices/counterSlice";
+import { updateUserData } from "../../slices/userSlice";
+import axios from "axios";
+import { getCartData } from "../../slices/cartSlice";
 
 
 
 function food({ meal, photo }) {
-  const count = useSelector((state) => state.counter.value);
+  const count = 1 
+  // || useSelector((state) => state.counter.value);
+  const user = useSelector((state) => state.user.value);
+  const cart = useSelector((state) => state.cart.value);
+
   const dispatch = useDispatch();
   let token = localStorage.getItem("token");
   const handleIncrement = () => dispatch(increment());
@@ -23,12 +30,46 @@ function food({ meal, photo }) {
     router.push("/login")
    }
   }, [])
+
+  const handleAddToCart = () =>{
+    
+    var data = {
+      productId: meal._id,
+      quantity: count,
+      name: meal.menuname,
+      price: 10,
+    };
+
+
+    var config = {
+      method: "post",
+      url: "https://creayonbackend.herokuapp.com/api/v1/cart/" + user._id,
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data);
+        console.log(config.url);
+        dispatch(getCartData(response.data.cart));
+        
+        alert("Added to cart");
+      })
+      .catch(function (error) {
+        console.log(error);
+        // alert(error.message);
+      });
+
+  }
   
 
   const [mealSize, setMealSize] = useState("md");
   const [rate, setRate] = useState(1);
   return (
-    
     <div className={style.foodPage}>
       <TopNav text={meal.menuname} />
       <div
@@ -116,9 +157,9 @@ function food({ meal, photo }) {
               width="59"
               height="59"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feColorMatrix
                 in="SourceAlpha"
                 type="matrix"
@@ -148,12 +189,13 @@ function food({ meal, photo }) {
         </svg>
 
         <div className={style["border"]}>
-          <div className={style["addCart"]}>
+          <div className={style["addCart"]} onClick={handleAddToCart}>
             <p>Add to cart</p>
           </div>
         </div>
       </div>
-    </div>);
+    </div>
+  );
 }
 
 export default food;

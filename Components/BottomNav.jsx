@@ -5,9 +5,12 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { BsFolder2 } from "react-icons/bs";
 import style from "../styles/Nav.module.css";
 import { useSelector } from "react-redux";
+// import cartSlice from "../slices/cartSlice";
+// import userSlice from "../slices/userSlice";
 
 function BottomNav() {
-  const count = useSelector((state) => state.counter.value);
+  const cart = useSelector((state) => state.cart.value);
+  console.log(cart.cartItems.length);
   const pageTitle = window.location.pathname;
   // remove the '/' from the page title
   const title = pageTitle.substring(1);
@@ -43,23 +46,23 @@ function BottomNav() {
             size="1.3rem"
             color={title === "cart" ? "#FF4200" : "#180808"}
           />
-          <div 
-          style={{  
-            width: "22px",
-            height: "22px",
-            color: "white" ,
-            backgroundColor: "#FF4200",
-            borderRadius: "50%",
-            fontSize: "12px",
-            textAlign: "center",
-            margin: "0px auto",
-            position: "absolute",
-            top: "8px",
-            marginLeft: "15px",
-            lineHeight: "22px",
-            }}>
-              {count}
-              
+          <div
+            style={{
+              width: "22px",
+              height: "22px",
+              color: "white",
+              backgroundColor: "#FF4200",
+              borderRadius: "50%",
+              fontSize: "12px",
+              textAlign: "center",
+              margin: "0px auto",
+              position: "absolute",
+              top: "8px",
+              marginLeft: "15px",
+              lineHeight: "22px",
+            }}
+          >
+            {cart.cartItems.length}
           </div>
         </a>
       </Link>{" "}

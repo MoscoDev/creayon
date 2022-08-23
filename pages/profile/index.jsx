@@ -9,6 +9,7 @@ import { FiEdit } from "react-icons/fi";
 import { AiOutlineCreditCard } from "react-icons/ai";
 import {useDispatch, useSelector } from "react-redux";
 import {updateUserData} from "../../slices/userSlice";
+import { getCartData } from "../../slices/cartSlice";
 import { MdNotificationsNone, MdOutlineLocationOn } from "react-icons/md";
 import { TbLogout, TbDiscount2 } from "react-icons/tb";
 import Link from "next/link";
@@ -87,9 +88,23 @@ const handleUpload = (e) => {
 
     axios(config)
       .then(function (response) {
-        localStorage.removeItem("token");
-        dispatch(updateUserData({}));
+       
         router.push("/login");
+         localStorage.removeItem("token");
+         dispatch(updateUserData({}));
+         dispatch(
+           getCartData({
+             value: {
+               _id: "",
+               cartItems: [],
+               active: false,
+               createdAt: "",
+               updatedAt: "",
+               __v: 0,
+             },
+           })
+         );
+
         console.log(response.data.message);
         alert("You have successfully logged out!");
       })
