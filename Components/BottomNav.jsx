@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 function BottomNav() {
   const cart = useSelector((state) => state.cart.value);
-  console.log(cart.cartItems.length);
+  // console.log(cart.cartItems.length);
   const pageTitle = window.location.pathname;
   // remove the '/' from the page title
   const title = pageTitle.substring(1);
