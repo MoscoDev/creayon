@@ -19,9 +19,15 @@
     margin: -15px -15px;
     padding: 0 15px;
     background: #E5E5E5;
-    
+    display: flex;
+    flex-direction: column;
 
 
+}
+.foodContainer{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .sizeOption {
@@ -70,12 +76,9 @@
     justify-content: space-between;
     align-items: center;
     width: calc(100vw - 40px);
-    margin-bottom: 20px;
-    margin-top: 20px;
     font-size: 20px;
     font-weight: bolder;
-    position: fixed;
-    bottom: 10px;
+   
 }
 .cirleBorder{
     /* padding: 6px; */
@@ -109,5 +112,5 @@ padding: 3px;
     margin-bottom: 20px;
 }
 p.light{
-    margin-bottom: 80px;
+    margin-bottom: 60px;
 }

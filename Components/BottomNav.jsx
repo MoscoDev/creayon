@@ -62,7 +62,7 @@ function BottomNav() {
               lineHeight: "22px",
             }}
           >
-            {cart.cartItems.length}
+            {cart ? cart.cartItems?.length: 0}
           </div>
         </a>
       </Link>{" "}

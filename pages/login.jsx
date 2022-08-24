@@ -10,7 +10,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserData } from "../slices/userSlice";
-import { getCartData } from "../slices/cartSlice";
+import { getCartData, initialState } from "../slices/cartSlice";
 
 
 function login() {
@@ -47,7 +47,10 @@ function login() {
       axios(config)
         .then(function (response) {
           dispatch(getUserData(response.data.token));
-          dispatch(getCartData(response.data.cart))
+
+          response.data.cart === null
+            ? dispatch(getCartData(initialState.value))
+            : dispatch(getCartData(response.data.cart));
           localStorage.setItem("token", response.data.token.split(" ")[1]);
           router.push("/home");
           alert(response.data.message);

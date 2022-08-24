@@ -64,6 +64,7 @@ const handleUpload = (e) => {
   axios(config)
     .then(function (response) {
       console.log(JSON.stringify(response.data));
+      if (!response.data.user){alert( response)}
        dispatch(updateUserData(response.data.user));
        alert("Profile picture updated successfully");
     })
@@ -94,14 +95,14 @@ const handleUpload = (e) => {
          dispatch(updateUserData({}));
          dispatch(
            getCartData({
-             value: {
+             
                _id: "",
                cartItems: [],
                active: false,
                createdAt: "",
                updatedAt: "",
                __v: 0,
-             },
+             
            })
          );
 
