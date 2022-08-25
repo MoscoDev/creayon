@@ -191,7 +191,7 @@ function login() {
         <button
           className={styles[`orange`] + " " + styles[`lg`]}
           onClick={handleLogin}
-          disabled={disabled}
+          style={{textAlign:"center", margin: "0 auto"}}
         >
           Login
         </button>

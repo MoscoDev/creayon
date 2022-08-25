@@ -17,6 +17,11 @@
     color: var(--orange);
      transition: all .4s ease-in-out;
 }
+.orange:disabled {
+     background-color: #ff450188;
+    color: white;
+     transition: all .4s ease-in-out;
+}
 
 .white{
     background-color: #fff;

@@ -20,9 +20,25 @@ export const cartSlice = createSlice({
     getCartData: (state, action) => {
       state.value = action.payload;
     },
-    
+
+    increaseProductQuantity: (state, action) => {
+      let products = state.value.cartItems;
+      let product = products.find((item) => item._id == action.payload);
+      product.quantity += 1;
+      console.log(products);
+
+      state.value.cartItems = products;
+    },
+    decreaseProductQuantity: (state, action) => {
+      let products = state.value.cartItems;
+      let product = products.find((item) => item._id == action.payload);
+      product.quantity == 1? product.quantity= 1 : product.quantity-= 1;
+      console.log(products);
+
+      state.value.cartItems = products;
+    },
   },
 });
-export const { getCartData } = cartSlice.actions;
+export const { getCartData, increaseProductQuantity, decreaseProductQuantity } = cartSlice.actions;
 
 export default cartSlice.reducer;
