@@ -9,7 +9,7 @@ import { FiEdit } from "react-icons/fi";
 import { AiOutlineCreditCard } from "react-icons/ai";
 import {useDispatch, useSelector } from "react-redux";
 import {updateUserData} from "../../slices/userSlice";
-import { getCartData } from "../../slices/cartSlice";
+import { getCartData, initialState } from "../../slices/cartSlice";
 import { MdNotificationsNone, MdOutlineLocationOn } from "react-icons/md";
 import { TbLogout, TbDiscount2 } from "react-icons/tb";
 import Link from "next/link";
@@ -94,16 +94,7 @@ const handleUpload = (e) => {
          localStorage.removeItem("token");
          dispatch(updateUserData({}));
          dispatch(
-           getCartData({
-             
-               _id: "",
-               cartItems: [],
-               active: false,
-               createdAt: "",
-               updatedAt: "",
-               __v: 0,
-             
-           })
+           getCartData(initialState.value)
          );
 
         console.log(response.data.message);

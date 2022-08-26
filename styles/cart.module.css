@@ -11,7 +11,7 @@
   /* justify-content: space-between; */
   animation: fadeInRight 0.6s ease-in-out both;
 }
-.popularFoodContainer{
+.popularFoodContainer {
   flex: 1;
 }
 .popularItem {
@@ -20,14 +20,12 @@
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
-justify-content: space-between;
+  justify-content: space-between;
   padding: 10px;
   column-gap: 5px;
   margin: 10px 0px;
   scroll-snap-align: center !important;
 }
-
-
 
 .popularItemPic {
   width: 62px;
@@ -63,7 +61,7 @@ justify-content: space-between;
 .popular::-webkit-scrollbar {
   display: none;
 }
-.top{
+.top {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,4 +72,70 @@ justify-content: space-between;
   margin: 0 -15px;
   padding: 10px 15px;
   border-bottom: #00000011 1px solid;
+}
+.introText {
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+}
+.summary {
+  height: 296px;
+  background: #ffffff;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.31);
+  border-radius: 30px 30px 5px 5px;
+  width: 100vw;
+  margin: 0 -15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: sticky;
+  bottom: 0px;
+  animation: slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) 500ms backwards;
+}
+.summary_rows {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slide-up-now {
+  -webkit-animation: slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) 500ms;
+  -moz-animation: slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) 500ms;
+  animation: slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) 500ms;
+}
+
+.slide_down {
+  animation: slide_down 0.6s cubic-bezier(0.4, 0, 0.2, 1) 500ms;
+  flex-direction: column;
+}
+
+@keyframes slide-up {
+  0% {
+    -webkit-transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+@keyframes slide_up {
+  0% {
+    -webkit-transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+  }
+}
+/* 
+[transform: translateY(100%),
+    transform: translateY(0)]
+*/
+@keyframes slide_down {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 0px;
+  }
 }

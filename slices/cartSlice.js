@@ -39,6 +39,7 @@ export const cartSlice = createSlice({
 
       state.value.cartItems = products;
     },
+    
   },
 });
 export const { getCartData, increaseProductQuantity, decreaseProductQuantity } = cartSlice.actions;
