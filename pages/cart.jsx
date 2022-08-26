@@ -17,7 +17,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { useRouter } from "next/router";
 
 function cart() {
-  const router =useRouter()
+  // const router =useRouter()
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.value);
   const user = useSelector((state) => state.user.value);
