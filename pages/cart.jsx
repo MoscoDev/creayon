@@ -17,7 +17,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { useRouter } from "next/router";
 
 function cart() {
-  // const router =useRouter()
+  const router =useRouter()
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.value);
   const user = useSelector((state) => state.user.value);
@@ -219,7 +219,7 @@ function cart() {
         </div>
         <button
           className={buttonstyles[`orange`] + " " + buttonstyles[`lg`]}
-          // onClick={router.push("/paymentmethod")}
+          onClick={()=>router.push("/paymentmethod")}
           style={{
             textAlign: "center",
             margin: "15px auto",
