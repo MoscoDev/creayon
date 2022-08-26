@@ -219,7 +219,7 @@ function cart() {
         </div>
         <button
           className={buttonstyles[`orange`] + " " + buttonstyles[`lg`]}
-          onClick={router.push("/paymentmethod")}
+          // onClick={router.push("/paymentmethod")}
           style={{
             textAlign: "center",
             margin: "15px auto",
