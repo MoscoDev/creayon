@@ -14,8 +14,10 @@ import styles from "../styles/counter.module.css";
 import buttonstyles from "../styles/Button.module.css";
 import axios from "axios";
 import { BiChevronDown } from "react-icons/bi";
+import { useRouter } from "next/router";
 
 function cart() {
+  const router =useRouter()
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.value);
   const user = useSelector((state) => state.user.value);
@@ -217,7 +219,7 @@ function cart() {
         </div>
         <button
           className={buttonstyles[`orange`] + " " + buttonstyles[`lg`]}
-          // onClick={handleUpdateCart}
+          onClick={router.push("/paymentmethod")}
           style={{
             textAlign: "center",
             margin: "15px auto",

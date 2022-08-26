@@ -1,64 +1,52 @@
-import React, { useEffect, useState } from 'react'
-import TopNav from '../Components/TopNav'
-import BottomNav from '../Components/BottomNav'
-import style from '../styles/Home.module.css'
-import Link from 'next/link'
-import {AiOutlineSearch} from 'react-icons/ai'
-import { useRouter } from 'next/router'
-import axios from 'axios'
-import { useSelector, useDispatch} from "react-redux";
-import { getUserData } from "../slices/userSlice"; 
-import Title from '../Components/Title'
+import React, { useEffect, useState } from "react";
+import TopNav from "../Components/TopNav";
+import BottomNav from "../Components/BottomNav";
+import style from "../styles/Home.module.css";
+import Link from "next/link";
+import { AiOutlineSearch } from "react-icons/ai";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserData } from "../slices/userSlice";
+import Title from "../Components/Title";
 
-
-
-
-
-export default function home({meals, popular}) {
- 
-  
+export default function home({ meals, popular }) {
   let router = useRouter();
-     let token = localStorage.getItem("token");
-    
+  let token = localStorage.getItem("token");
+
   useEffect(() => {
     if (token == null) {
       router.push("/login");
-    } 
+    }
   }, []);
 
-  
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
-// trigger api call when search is changed
+  // trigger api call when search is changed
   useEffect(() => {
+    if (search.length > 0) {
+      var config = {
+        method: "get",
+        url: `https://foodbukka.herokuapp.com/api/v1/search?q=${search}`,
+        headers: {},
+      };
 
-    if (search.length>0) {
-var config = {
-  method: "get",
-  url: `https://foodbukka.herokuapp.com/api/v1/search?q=${search}`,
-  headers: {},
-};
-
-
-axios(config)
-  .then(function (response) {
-    let searchResults = response.data;
-    // console.log(searchResults);
-    setSearchResult(searchResults);
-    
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-
+      axios(config)
+        .then(function (response) {
+          let searchResults = response.data;
+          // console.log(searchResults);
+          setSearchResult(searchResults);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }, [search]);
 
   const user = useSelector((state) => state.user.value);
-const dispatch = useDispatch();
- 
- 
+  const dispatch = useDispatch();
+
   return (
     <div className={style.home}>
       <TopNav />
@@ -214,7 +202,7 @@ const dispatch = useDispatch();
                   pathname: "/food/[id]",
                   query: { id: popular._id },
                 }}
-                style={{width: "400px"}}
+                style={{ width: "400px" }}
               >
                 <div className={style.popularItem}>
                   <div
@@ -222,11 +210,8 @@ const dispatch = useDispatch();
                     style={{ backgroundImage: "url(/img/biscuit.svg)" }}
                   ></div>
                   <div className={style.popularItemBody}>
-                    
-                      <p className={style.popularItemName}>
-                        {popular.menuname}
-                      </p>
-                    
+                    <p className={style.popularItemName}>{popular.menuname}</p>
+
                     <small
                       className={style.light}
                       style={{ fontSize: "9px", whiteSpace: "nowrap" }}
@@ -304,20 +289,16 @@ const dispatch = useDispatch();
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch('https://foodbukka.herokuapp.com/api/v1/menu')
-  const meals = await res.json()
+  const res = await fetch("https://foodbukka.herokuapp.com/api/v1/menu");
+  const meals = await res.json();
   const popular = meals.Result.filter((meal) => meal.menuname.includes("rice"));
-
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
     props: {
       meals: meals.Result,
-      popular: meals.Result.filter((meal) => meal.menuname.includes("Rice"))
-,
+      popular: meals.Result.filter((meal) => meal.menuname.includes("Rice")),
     },
-  }
+  };
 }
-
-

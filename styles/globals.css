@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family:'poppins', sans-serif;
-    min-height: 100vh;
+  font-family: "poppins", sans-serif;
+  min-height: 100vh;
 }
 
 a {
@@ -19,38 +19,40 @@ a {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   /* transition: all 0.6s ease; */
-  
 }
 :root {
-  --lightColor: #E5E5E5;
-  --orange: #FF4200;
+  --lightColor: #e5e5e5;
+  --orange: #ff4200;
 }
 .carousel .control-dots .dot {
- transition: opacity .25s ease-in;
- opacity: .3;
- filter: alpha(opacity=30);
- box-shadow: 1px 1px 2px rgba(0, 0, 0, 0) !important;
- background: rgba(255, 255, 255, 0);
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
-    cursor: pointer;
-    display: inline-block;
-    margin: 0 8px;
-    background-color: var(--orange) !important;
- }
- input,
+  transition: opacity 0.25s ease-in;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0) !important;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 8px;
+  background-color: var(--orange) !important;
+}
+input,
 textarea,
 button,
 select,
-a, div,p,small {
-  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+a,
+div,
+p,
+small {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
 }
 button {
   all: unset;
   cursor: pointer;
 }
-h1{
+h1 {
   display: block;
   width: 100%;
 }
@@ -78,7 +80,7 @@ h1{
   font-size: 24px;
   line-height: 40px;
   margin-right: 5px;
-    text-align: center;
+  text-align: center;
   background: #f6f6f6;
   box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.12);
 }
@@ -102,17 +104,14 @@ h1{
   transition: all 0.5s ease-out;
   line-height: 24;
   text-align: center;
-
 }
 
 .tabs button:hover {
   color: black;
-
 }
 
 .tabs button:disabled {
- 
-  color: black; 
+  color: black;
   border-bottom: 2px solid var(--orange);
 }
 
@@ -158,8 +157,8 @@ input.form-control {
   height: auto !important;
   background-color: var(--lightColor) !important;
 }
-.react-tel-input{
-   border-radius: 0px;
+.react-tel-input {
+  border-radius: 0px;
   /* border-bottom: 1px solid #ccc; */
   padding: 0px !important;
   font-size: 15px;
@@ -167,33 +166,30 @@ input.form-control {
   margin-bottom: 10px;
   padding: 0rem;
   background-color: var(--lightColor) !important;
-
 }
-.layout{
+.layout {
   min-height: 100vh;
-    width: 100vw;
-    margin: -15px -15px;
-    padding: 15px;
-    background: #E5E5E5;
+  width: 100vw;
+  margin: -15px -15px;
+  padding: 15px;
+  background: #e5e5e5;
 }
-p{
+p {
   font-size: 16px;
   line-height: 20px;
 }
 
-         @keyframes fadeInRight {
-            0% {
-               opacity: 0.5;
-               transform: translateX(20px);
-            }
-            100% {
-               opacity: 1;
-               transform: translateX(0);
-            }
-         }
-         
+@keyframes fadeInRight {
+  0% {
+    opacity: 0.5;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
-         
 @keyframes slide_down {
   0% {
     height: 100%;
