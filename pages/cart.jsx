@@ -78,7 +78,18 @@ function cart() {
   }, [cartItems]);
 
   const [display, setDisplay] = useState("none");
+   const [loaded, setLoaded] = useState(false);
+
+   useEffect(() => {
+     if (token == null && !loaded) {
+       router.push("/login");
+     } else {
+       setLoaded(true);
+     }
+   }, []);
+  
   return (
+    loaded?(
     <div className={style.cartPage}>
       <TopNav />
       <div className={style.popularFoodContainer}>
@@ -250,7 +261,7 @@ function cart() {
         place order
       </button>
       <BottomNav />
-    </div>
+    </div>): null
   );
 }
 

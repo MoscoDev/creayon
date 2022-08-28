@@ -13,11 +13,17 @@ import Title from "../Components/Title";
 export default function home({ meals, popular }) {
   let router = useRouter();
   let token = localStorage.getItem("token");
+   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (token == null) {
+    if (token == null && !loaded) {
       router.push("/login");
+
     }
+    else{
+      setLoaded(true)
+    }
+
   }, []);
 
   const [search, setSearch] = useState("");
@@ -48,6 +54,7 @@ export default function home({ meals, popular }) {
   const dispatch = useDispatch();
 
   return (
+    loaded?
     <div className={style.home}>
       <TopNav />
       <div className={style.homebody}>
@@ -281,7 +288,7 @@ export default function home({ meals, popular }) {
         </div>
       </div>
       <BottomNav />
-    </div>
+    </div>:null
   );
 }
 

@@ -91,11 +91,12 @@ const handleUpload = (e) => {
       .then(function (response) {
        
         router.push("/login");
-         localStorage.removeItem("token");
-         dispatch(updateUserData({}));
-         dispatch(
-           getCartData(initialState.value)
-         );
+        
+         localStorage.clear()
+        //  dispatch(updateUserData({}));
+        //  dispatch(
+        //    getCartData(initialState.value)
+        //  );
 
         console.log(response.data.message);
         alert("You have successfully logged out!");
