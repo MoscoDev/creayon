@@ -66,8 +66,9 @@ function cart() {
       const subtotal = cartItems[index].subtotal;
       sum = sum + subtotal;
 
-      console.log(sum);
+     
     }
+     console.log(sum);
     setSubtotal(sum);
     return sum;
   };
@@ -106,9 +107,10 @@ function cart() {
           {cartItems.length >= 1 ? (
             cartItems?.map((cartItem) => (
               <div className={style.popularItem} key={cartItem._id}>
+                <div className={style.left}>
                 <div
                   className={style.popularItemPic}
-                  style={{ backgroundImage: `url(${cartItem.pic})` }}
+                  style={{ backgroundImage: `url(${cartItem.pic})`, borderRadius:"50%" }}
                 ></div>
 
                 <div className={style.popularItemBody}>
@@ -123,16 +125,17 @@ function cart() {
                   </small>
                   <p className={style.popularprice}>${cartItem.subtotal}</p>
                 </div>
-                <div className={styles.counter}>
-                  <AiOutlineMinus
-                    onClick={() =>
-                      dispatch(decreaseProductQuantity(cartItem._id))
-                    }
-                  />
-                  {cartItem.quantity}
+                </div>
+                <div className={style.counter}>
                   <AiOutlinePlus
                     onClick={() =>
                       dispatch(increaseProductQuantity(cartItem._id))
+                    }
+                  />
+                  <p>{cartItem.quantity}</p>
+                  <AiOutlineMinus
+                    onClick={() =>
+                      dispatch(decreaseProductQuantity(cartItem._id))
                     }
                   />
                 </div>
@@ -178,7 +181,6 @@ function cart() {
                 setTimeout(() => {
                   setDisplay("none");
                 }, 50);
-                
               }}
             />
           </button>
@@ -219,7 +221,7 @@ function cart() {
         </div>
         <button
           className={buttonstyles[`orange`] + " " + buttonstyles[`lg`]}
-          onClick={()=>router.push("/paymentmethod")}
+          onClick={() => router.push("/paymentmethod")}
           style={{
             textAlign: "center",
             margin: "15px auto",
@@ -240,6 +242,7 @@ function cart() {
           textAlign: "center",
           margin: "15px auto",
           position: "sticky",
+          
           bottom: "70px",
           display: display == "flex" ? "none" : "block",
         }}
