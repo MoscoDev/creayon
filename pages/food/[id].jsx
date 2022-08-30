@@ -12,6 +12,29 @@ import { updateUserData } from "../../slices/userSlice";
 import axios from "axios";
 import { getCartData } from "../../slices/cartSlice";
 import BottomNav from "../../Components/BottomNav";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const notify = (message) =>
+  toast.success(message, {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+const info = (message) =>
+  toast.warning(message, {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
 
 function food({ meal, photo }) {
   
@@ -62,15 +85,13 @@ function food({ meal, photo }) {
 
     axios(config)
       .then(function (response) {
-        console.log(response.data);
-        console.log(config.url);
+        
         dispatch(getCartData(response.data.cart));
-
-        alert("Added to cart");
+notify("cart updated");
       })
       .catch(function (error) {
         console.log(error);
-        // alert(error.message);
+        info(error.message)
       });
   };
 
@@ -78,6 +99,7 @@ function food({ meal, photo }) {
   const [rate, setRate] = useState(1);
   return (
     <div className={style.foodPage}>
+      <ToastContainer />
       <TopNav text={meal.menuname} />
       <div className={style.foodContainer}>
         <div
