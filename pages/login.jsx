@@ -67,12 +67,12 @@ function login() {
               ? dispatch(getCartData(initialState.value))
               : dispatch(getCartData(response.data.cart));
             localStorage.setItem("token", response.data.token.split(" ")[1]);
-            // router.push("/home");
+            router.push("/home");
 
             // alert(response.data.message);
             // event.preventDefault();
           }
-        ).then(router.push("/home"))
+        )
         .catch(function (error) {
           console.log(error.message);
           setDisabled(false);
