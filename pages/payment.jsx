@@ -88,7 +88,7 @@ const price = (subtotal + 3) * 100;
           () => router.push("./login");
         }
        
-        dispatch(getCartData(initialState));
+        dispatch(getCartData(response.cart));
         notify("payment done");
         
         // alert("cart updated successfully");

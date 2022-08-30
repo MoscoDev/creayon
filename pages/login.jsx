@@ -72,7 +72,7 @@ function login() {
             // alert(response.data.message);
             // event.preventDefault();
           }
-        ).finally(router.push("/home"))
+        ).then(router.push("/home"))
         .catch(function (error) {
           console.log(error.message);
           setDisabled(false);
