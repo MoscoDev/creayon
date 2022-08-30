@@ -26,7 +26,6 @@ export const cartSlice = createSlice({
       let product = products.find((item) => item._id == action.payload);
       product.quantity += 1;
        product.subtotal = product.quantity * product.price;
-      console.log(products);
 
       state.value.cartItems = products;
     },
@@ -35,8 +34,6 @@ export const cartSlice = createSlice({
       let product = products.find((item) => item._id == action.payload);
       product.quantity == 1? product.quantity= 1 : product.quantity-= 1;
       product.subtotal = product.quantity * product.price
-      console.log(products);
-
       state.value.cartItems = products;
     },
     

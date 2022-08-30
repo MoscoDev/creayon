@@ -65,7 +65,7 @@ function cart() {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+       
         if (response.data.success !== true) {
           info("error while updating cart");
           return response.data.message;

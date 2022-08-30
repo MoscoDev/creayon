@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Head from "next/head";
 import Link from 'next/link';
+import Script from 'next/script'
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import {getCartData, initialState} from '../slices/cartSlice'
+import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function payment() {
@@ -17,6 +21,28 @@ useEffect(() => {
     router.push("/login");
   }
 }, []);
+const notify = (message) =>
+  toast.success(message, {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+const info = (message) =>
+  toast.warning(message, {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
+
  const cart = useSelector((state) => state.cart.value);
  const user = useSelector((state) => state.user.value);
  const dispatch = useDispatch();
@@ -40,13 +66,46 @@ useEffect(() => {
 
 const price = (subtotal + 3) * 100;
 
+  const handleUpdateCart = () => {
+    var data = cart;
+    
+    var config = {
+      method: "delete",
+      url:
+        "https://creayonbackend.herokuapp.com/api/v1/cart/" + user._id,
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        if (response.data.success !== true) {
+          info("error while updating cart");
+          return response.data.message;
+        } else if (response.data.message == "Token is not valid") {
+          () => router.push("./login");
+        }
+       
+        dispatch(getCartData(initialState));
+        notify("payment done");
+        
+        // alert("cart updated successfully");
+      })
+      .catch(function (error) {
+        setDisabled(false);
+        info(error.message);
+      });
+  };
+
 
   
 function SquadPay() {
   const squadInstance = new squad({
     onClose: () => console.log("Widget closed"),
     onLoad: () => console.log("Widget loaded successfully"),
-    onSuccess: () => {dispatch(getCartData(initialState.value), ()=>{console.log(done)})
+    onSuccess: async () => { handleUpdateCart()
     console.log(`Linked successfully`);
     ;
   },
@@ -63,6 +122,7 @@ function SquadPay() {
 }
 return (
   <div className="layout">
+    <ToastContainer />
     <Head>
       <title>SQUAD</title>
       <link
@@ -108,7 +168,7 @@ return (
             className="form-control"
             required
             disabled
-            value={price}
+            value={"$" + price / 100}
           />
           <br />
         </div>

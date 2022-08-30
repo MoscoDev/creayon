@@ -50,27 +50,29 @@ function login() {
       };
 
       axios(config)
-        .then(function (response) {
-          toast.success(response.data.message, {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-          
-          dispatch(getUserData(response.data.token));
-          response.data.cart === null
-            ? dispatch(getCartData(initialState.value))
-            : dispatch(getCartData(response.data.cart));
-          localStorage.setItem("token", response.data.token.split(" ")[1]);
-          router.push("/home");
+        .then(
+          function (response) {
+            toast.success(response.data.message, {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
 
-          // alert(response.data.message);
-          // event.preventDefault();
-        })
+            dispatch(getUserData(response.data.token));
+            response.data.cart === null
+              ? dispatch(getCartData(initialState.value))
+              : dispatch(getCartData(response.data.cart));
+            localStorage.setItem("token", response.data.token.split(" ")[1]);
+            // router.push("/home");
+
+            // alert(response.data.message);
+            // event.preventDefault();
+          }
+        ).finally(router.push("/home"))
         .catch(function (error) {
           console.log(error.message);
           setDisabled(false);
@@ -82,7 +84,7 @@ function login() {
 
   return (
     <div>
-       <ToastContainer />
+      <ToastContainer />
       <Title text="Creayon" align={"left"} />
       <Imagebox src="/img/login.svg" />
       <Title text="Login" align={"left"} />
@@ -131,7 +133,7 @@ function login() {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            
+
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
@@ -150,7 +152,6 @@ function login() {
             fontWeight: "200",
             color: "red",
           }}
-          
         >
           Password should be atleat 8 characters with at least one letter (a to
           z) and one number(0 to 9).
