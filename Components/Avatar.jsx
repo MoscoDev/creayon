@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function Avatar() {
 const user = useSelector((state) => state.user.value);
-console.log(user.user)
+
   return (
     <Link href={"/profile"}>
     <div style={{

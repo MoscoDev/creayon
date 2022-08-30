@@ -43,12 +43,39 @@ function Layout({children}) {
     };
   }, []);
   
-  return (mobile == null )?(null):mobile ? (
-    <div className={style.general} style={{minHeight:"100vh", width:"100vw" }}>{children}</div>)
-   : (
+  return mobile == null ? null : mobile ? (
+    <div
+      className={style.general}
+      style={{ minHeight: "100vh", width: "100vw" }}
+    >
+      {children}
+    </div>
+  ) : (
     <div className="container">
       <div className="row">
-        <div className="col-md-12">mummy</div>
+        <div
+          className="col-md-12"
+          style={{
+            background: "url(./img/bg.png)",
+            width: "100vw",
+            height: "100vh",
+            backgroundImage: "url(/img/bg.png)",
+            backgroundPosition: "center",
+            backgroundSize: "50%",
+            backgroundColor: "var(--lightColor)",
+            backgroundRepeat: "no-repeat",
+            fontFamily: "'Recoleta', sans-serif",
+            color: " #FF5D68",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            padding: "7%",
+          }}
+        >
+          <h2 style={{ width: "max-content" }}>
+            oops Creayon Foods is available for mobile devices only
+          </h2>
+        </div>
       </div>
     </div>
   );

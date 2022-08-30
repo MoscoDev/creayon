@@ -15,23 +15,43 @@ import buttonstyles from "../styles/Button.module.css";
 import axios from "axios";
 import { BiChevronDown } from "react-icons/bi";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function cart() {
-  const router =useRouter()
+  const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.value);
   const user = useSelector((state) => state.user.value);
   const [count, setCount] = useState("");
   const { cartItems } = cart;
   let token = localStorage.getItem("token");
-  console.log(cart);
-  // const handleIncrement = () => setCount(cartItem.quantity + 1);
-  // let router = useRouter();
-  // const handleDecrement = () => (cartItem.quantity > 1 ? setCount(count - 1) : count);
+  
+  
+  const notify = (message) =>
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  const info = (message) =>
+    toast.warning(message, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const handleUpdateCart = () => {
     var data = cart;
-
+    setDisabled(true)
     var config = {
       method: "put",
       url:
@@ -47,28 +67,33 @@ function cart() {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         if (response.data.success !== true) {
+          info("error while updating cart");
           return response.data.message;
+        }
+        else if (response.data.message == "Token is not valid") {
+          ()=>router.push('./login')
         }
         const updatedCart = response.data.cart;
         dispatch(getCartData(updatedCart));
-        alert("cart updated successfully");
+        notify("cart updated");
+        setDisabled(false)
+        // alert("cart updated successfully");
       })
       .catch(function (error) {
-        console.log(error);
+        setDisabled(false);
+        info(error.message);
       });
   };
 
   const [subtotal, setSubtotal] = useState(0);
-
+  const [disabled, setDisabled] = useState(false);
   const getSubTotal = (cartItems) => {
     let sum = 0;
     for (let index = 0; index < cartItems.length; index++) {
       const subtotal = cartItems[index].subtotal;
       sum = sum + subtotal;
-
-     
     }
-     console.log(sum);
+    
     setSubtotal(sum);
     return sum;
   };
@@ -78,20 +103,21 @@ function cart() {
   }, [cartItems]);
 
   const [display, setDisplay] = useState("none");
-   const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
-   useEffect(() => {
-     if (token == null && !loaded) {
-       router.push("/login");
-     } else {
-       setLoaded(true);
-     }
-   }, []);
-  
-  return (
-    loaded?(
+  useEffect(() => {
+    if (token == null && !loaded) {
+      router.push("/login");
+    } else {
+      setLoaded(true);
+    }
+  }, []);
+
+  return loaded ? (
     <div className={style.cartPage}>
+      <ToastContainer />
       <TopNav />
+
       <div className={style.popularFoodContainer}>
         <div className={style.top}>
           <div className={style.intro}>
@@ -105,6 +131,7 @@ function cart() {
           <button
             className={buttonstyles[`orange`] + " " + buttonstyles[`sm`]}
             onClick={handleUpdateCart}
+            disabled={disabled}
             style={{
               borderRadius: "5px",
               padding: "5px",
@@ -119,23 +146,26 @@ function cart() {
             cartItems?.map((cartItem) => (
               <div className={style.popularItem} key={cartItem._id}>
                 <div className={style.left}>
-                <div
-                  className={style.popularItemPic}
-                  style={{ backgroundImage: `url(${cartItem.pic})`, borderRadius:"50%" }}
-                ></div>
+                  <div
+                    className={style.popularItemPic}
+                    style={{
+                      backgroundImage: `url(${cartItem.pic})`,
+                      borderRadius: "50%",
+                    }}
+                  ></div>
 
-                <div className={style.popularItemBody}>
-                  <strong>
-                    <p className={style.popularItemName}>{cartItem.name}</p>
-                  </strong>
-                  <small
-                    className={style.light}
-                    style={{ fontSize: "9px", whiteSpace: "nowrap" }}
-                  >
-                    Sweet meals, so so yummy
-                  </small>
-                  <p className={style.popularprice}>${cartItem.subtotal}</p>
-                </div>
+                  <div className={style.popularItemBody}>
+                    <strong>
+                      <p className={style.popularItemName}>{cartItem.name}</p>
+                    </strong>
+                    <small
+                      className={style.light}
+                      style={{ fontSize: "9px", whiteSpace: "nowrap" }}
+                    >
+                      Sweet meals, so so yummy
+                    </small>
+                    <p className={style.popularprice}>${cartItem.subtotal}</p>
+                  </div>
                 </div>
                 <div className={style.counter}>
                   <AiOutlinePlus
@@ -253,7 +283,7 @@ function cart() {
           textAlign: "center",
           margin: "15px auto",
           position: "sticky",
-          
+
           bottom: "70px",
           display: display == "flex" ? "none" : "block",
         }}
@@ -261,8 +291,8 @@ function cart() {
         place order
       </button>
       <BottomNav />
-    </div>): null
-  );
+    </div>
+  ) : null;
 }
 
 export default cart;

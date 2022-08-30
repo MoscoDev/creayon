@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Head from "next/head";
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import {getCartData, initialState} from '../slices/cartSlice'
 
 
 function payment() {
@@ -18,6 +19,7 @@ useEffect(() => {
 }, []);
  const cart = useSelector((state) => state.cart.value);
  const user = useSelector((state) => state.user.value);
+ const dispatch = useDispatch();
  const {cartItems} = cart
    const [subtotal, setSubtotal] = useState(0);
 const getSubTotal = (cartItems) => {
@@ -44,13 +46,17 @@ function SquadPay() {
   const squadInstance = new squad({
     onClose: () => console.log("Widget closed"),
     onLoad: () => console.log("Widget loaded successfully"),
-    onSuccess: () => console.log(`Linked successfully`),
+    onSuccess: () => {dispatch(getCartData(initialState.value), ()=>{console.log(done)})
+    console.log(`Linked successfully`);
+    ;
+  },
     key: "sandbox_pk_e1e0548296b50d11aa1034556f6a04dfd2094f0e77ba",
     //Change key (test_pk_sample-public-key-1) to the key on your Squad Dashboard
     email: user.email,
     amount:price,
     //Enter amount in Naira or Dollar (Base value Kobo/cent already multiplied by 100)
     currency_code: "USD",
+    meta: cart
   });
   squadInstance.setup();
   squadInstance.open();
@@ -59,26 +65,26 @@ return (
   <div className="layout">
     <Head>
       <title>SQUAD</title>
-       <link
+      <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossOrigin="anonymous"
       />
-  <script src="https://checkout.squadco.com/widget/squad.min.js"></script>
-
+      <script src="https://checkout.squadco.com/widget/squad.min.js"></script>
     </Head>
     <form style={{}} className="text-left">
       <div
         className="text-left"
-        style={{ color: "var(--orange)", fontSize: "30px" }}
+        style={{
+          color: "var(--orange)",
+          fontSize: "25px",
+          fontFamily: "'Recoleta', sans-serif",
+        }}
       >
         Creayon Checkout
       </div>
-      <h6>
-        Note: Amount should be between $1 to $10,000 (USD), NGN100 to
-        NGN5,000,000 and KSH100 to KSH5,000,000
-      </h6>
+
       <div className="row text-left">
         <div className="col-lg-4">
           <label htmlFor="email">Email Address</label>
@@ -140,9 +146,15 @@ return (
             type="button"
             onClick={SquadPay}
             className="btn btn-lg"
-            style={{ backgroundColor: "var(--orange)", color:"white", position:"fixed", bottom:"20px", width:"80%", left:"50%",
-          transform: " translateX(-50%)"
-          }}
+            style={{
+              backgroundColor: "var(--orange)",
+              color: "white",
+              position: "fixed",
+              bottom: "20px",
+              width: "80%",
+              left: "50%",
+              transform: " translateX(-50%)",
+            }}
           >
             Check Out
           </button>

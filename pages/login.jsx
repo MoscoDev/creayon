@@ -11,7 +11,8 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserData } from "../slices/userSlice";
 import { getCartData, initialState } from "../slices/cartSlice";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function login() {
   const router = useRouter();
@@ -22,6 +23,9 @@ function login() {
   const [disabled, setDisabled] = useState(false);
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
+
+  const notify = () => toast("Wow so easy!");
+
   function handleLogin(event) {
     // check if username and password are not empty
     // if not empty, send a request to the server
@@ -30,6 +34,7 @@ function login() {
     if (email !== "" && password !== "") {
       event.preventDefault();
       setDisabled(true);
+
       var data = JSON.stringify({
         email: email,
         password: password,
@@ -46,14 +51,24 @@ function login() {
 
       axios(config)
         .then(function (response) {
+          toast.success(response.data.message, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          
           dispatch(getUserData(response.data.token));
-
           response.data.cart === null
             ? dispatch(getCartData(initialState.value))
             : dispatch(getCartData(response.data.cart));
           localStorage.setItem("token", response.data.token.split(" ")[1]);
           router.push("/home");
-          alert(response.data.message);
+
+          // alert(response.data.message);
           // event.preventDefault();
         })
         .catch(function (error) {
@@ -67,6 +82,7 @@ function login() {
 
   return (
     <div>
+       <ToastContainer />
       <Title text="Creayon" align={"left"} />
       <Imagebox src="/img/login.svg" />
       <Title text="Login" align={"left"} />
@@ -79,14 +95,13 @@ function login() {
           htmlFor="email"
           name="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          onBlur={(e) => {
+          onChange={(e) => {
+            setEmail(e.target.value);
             // check if email is valid with regex pattern
             if (
-              e.target.value.match(
-                /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/
-              ) == null
+              e.target.value.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}/) ==
+              null
             ) {
               setEmailError("block");
             } else {
@@ -109,13 +124,14 @@ function login() {
           className={style.input}
           type="password"
           placeholder="Password"
-          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{.8,}$"
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$"
           title="Password should be atleat 8 characters with at least one letter (a to z) and one number(0 to 9)."
           id="password"
           htmlFor="password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
+            
             if (
               e.target.value.match(
                 /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/
@@ -134,6 +150,7 @@ function login() {
             fontWeight: "200",
             color: "red",
           }}
+          
         >
           Password should be atleat 8 characters with at least one letter (a to
           z) and one number(0 to 9).
@@ -190,8 +207,9 @@ function login() {
       >
         <button
           className={styles[`orange`] + " " + styles[`lg`]}
+          disabled={disabled}
           onClick={handleLogin}
-          style={{textAlign:"center", margin: "0 auto"}}
+          style={{ textAlign: "center", margin: "0 auto" }}
         >
           Login
         </button>

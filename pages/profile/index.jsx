@@ -7,8 +7,8 @@ import { BiChevronRight } from "react-icons/bi";
 import { IoIosClose } from "react-icons/io";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineCreditCard } from "react-icons/ai";
-import {useDispatch, useSelector } from "react-redux";
-import {updateUserData} from "../../slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserData } from "../../slices/userSlice";
 import { getCartData, initialState } from "../../slices/cartSlice";
 import { MdNotificationsNone, MdOutlineLocationOn } from "react-icons/md";
 import { TbLogout, TbDiscount2 } from "react-icons/tb";
@@ -17,8 +17,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 function profile() {
-const user = useSelector((state) => state.user.value);
-const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
   let token = localStorage.getItem("token");
   let router = useRouter();
   useEffect(() => {
@@ -28,52 +28,50 @@ const dispatch = useDispatch();
   }, []);
   const [preview, setPreview] = useState({ file: "", imagePreviewUrl: "" });
   console.log(preview.imagePreviewUrl, preview.file);
-const handleImageChange = (e) => {
-  e.preventDefault();
-  let reader = new FileReader();
-  let file = e.target.files[0];
-  reader.onloadend = () => {
-    setPreview({
-      file: file,
-      imagePreviewUrl: reader.result,
-    });
-  }
-  reader.readAsDataURL(file);
-}
-
-const handleUpload = (e) => {
-  e.preventDefault();
-  var FormData = require("form-data");
-  
-  var data = new FormData();
-  data.append(
-    "image",
-   preview.file,
-  );
-
-  var config = {
-    method: "post",
-    url: "https://creayonbackend.herokuapp.com/api/v1/user/upload/"+user._id,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
-    },
-    data: data,
+  const handleImageChange = (e) => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      setPreview({
+        file: file,
+        imagePreviewUrl: reader.result,
+      });
+    };
+    reader.readAsDataURL(file);
   };
 
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      if (!response.data.user){alert( response)}
-       dispatch(updateUserData(response.data.user));
-       alert("Profile picture updated successfully");
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  const handleUpload = (e) => {
+    e.preventDefault();
+    var FormData = require("form-data");
 
-}
+    var data = new FormData();
+    data.append("image", preview.file);
 
+    var config = {
+      method: "post",
+      url:
+        "https://creayonbackend.herokuapp.com/api/v1/user/upload/" + user._id,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        if (!response.data.user) {
+          alert(response);
+        }
+        dispatch(updateUserData(response.data.user));
+        alert("Profile picture updated successfully");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   function handleLogout(event) {
     event.preventDefault();
@@ -81,18 +79,15 @@ const handleUpload = (e) => {
     var config = {
       method: "post",
       url: `https://creayonbackend.herokuapp.com/api/v1/logout/${user._id}`,
-      headers: {
-        
-      },
+      headers: {},
       data: data,
     };
 
     axios(config)
       .then(function (response) {
-       
         router.push("/login");
-        
-         localStorage.clear()
+
+        localStorage.clear();
         //  dispatch(updateUserData({}));
         //  dispatch(
         //    getCartData(initialState.value)
@@ -125,8 +120,7 @@ const handleUpload = (e) => {
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
             }}
-          >
-          </div>
+          ></div>
 
           {updateAvatar ? (
             <div
