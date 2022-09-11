@@ -80,36 +80,36 @@ export default function home({ meals, popular }) {
         console.log(error);
       });
   };
-const removeFromFavourite = (mealID) => {
-  var axios = require("axios");
-  var data = JSON.stringify({
-    favourites: mealID,
-  });
-
-  var config = {
-    method: "post",
-    url:
-      "https://creayonbackend.herokuapp.com/api/v1/user/" +
-      user._id +
-      "/favourite/?option=remove",
-    headers: {
-      Authorization: "Bearer " + token,
-      "Content-Type": "application/json",
-    },
-    data: data,
-  };
-
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      if (response.data.success == true) {
-        dispatch(updateUserFavourites(response?.data.favourites));
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
+  const removeFromFavourite = (mealID) => {
+    var axios = require("axios");
+    var data = JSON.stringify({
+      favourites: mealID,
     });
-};
+
+    var config = {
+      method: "post",
+      url:
+        "https://creayonbackend.herokuapp.com/api/v1/user/" +
+        user._id +
+        "/favourite/?option=remove",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        if (response.data.success == true) {
+          dispatch(updateUserFavourites(response?.data.favourites));
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return loaded ? (
     <div className={style.home}>
       <TopNav />
@@ -242,7 +242,7 @@ const removeFromFavourite = (mealID) => {
                       justifyContent: "space-between",
                       alignItems: "center",
                       margin: "15px 0px 10px",
-                      zIndex: "100"
+                      zIndex: "100",
                     }}
                   >
                     <p className={style.price}>$9.98</p>
@@ -250,14 +250,14 @@ const removeFromFavourite = (mealID) => {
                       <svg
                         onClick={(event) => {
                           event.preventDefault();
-                          if (favourites.includes(meal._id)){
+                          if (favourites.includes(meal._id)) {
                             removeFromFavourite(meal._id);
-                              (document.getElementById(meal._id).style.fill =
-                                "var(--lightColor)");
-                          }else{
+                            document.getElementById(meal._id).style.fill =
+                              "var(--lightColor)";
+                          } else {
                             addToFavourite(meal._id);
                             document.getElementById(meal._id).style.fill =
-                              "var(--orange)";
+                              "#FA602B";
                           }
                         }}
                         className={style.favourite}
@@ -269,7 +269,7 @@ const removeFromFavourite = (mealID) => {
                         xmlns="http://www.w3.org/2000/svg"
                         style={{
                           fill: favourites.includes(meal._id)
-                            ? "var(--orange)"
+                            ? "#FA602B"
                             : "var(--lightColor)",
                           boxShadow: "0px 4px 11px rgba(255, 255, 255, 0.9)",
                           borderRadius: "50%",
