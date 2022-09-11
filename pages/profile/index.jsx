@@ -232,7 +232,7 @@ function profile() {
             </a>
           </Link>
 
-          <Link href={"/paymentmethod"}>
+          <Link href={"/addpayment"}>
             <a className={style.button}>
               <AiOutlineCreditCard size={"1.3rem"} className={style.icon} />
               <p>Payment</p>

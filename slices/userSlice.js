@@ -13,12 +13,14 @@ export const userSlice = createSlice({
       const userdatafromtoken = jwtDecode(action.payload);
       state.value = userdatafromtoken;
     },
-    updateUserData: (state, action)=>{
+    updateUserData: (state, action) => {
       state.value = action.payload;
-    }
-
+    },
+    updateUserFavourites: (state, action) => {
+      state.value.favourites = action.payload;
+    },
   },
 });
-export const { getUserData, updateUserData } = userSlice.actions;
+export const { getUserData, updateUserData, updateUserFavourites } = userSlice.actions;
 
 export default userSlice.reducer;

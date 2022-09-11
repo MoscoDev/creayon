@@ -101,12 +101,12 @@ function cart() {
   useEffect(() => {
     getSubTotal(cartItems);
   }, [cartItems]);
-
+  const [buttonDisplay, setButtonDisplay] = useState('none')
   const [display, setDisplay] = useState("none");
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (token == null && !loaded) {
+    if ((user.username == "" || null) && !loaded) {
       router.push("/login");
     } else {
       setLoaded(true);
@@ -207,7 +207,7 @@ function cart() {
         </div>
       </div>
 
-      <div className={style.summary} id="summary" style={{ display: display }}>
+      <div className={style.summary} id="summary" style={{display: "none"}} >
         <div className={style.summary_rows}>
           <Title text={`Summary`} size={"15px"} align="left" />
           <button>
@@ -220,8 +220,12 @@ function cart() {
               }}
               onClick={() => {
                 setTimeout(() => {
-                  setDisplay("none");
-                }, 50);
+                  document.getElementById("summary").style.transform =
+                    "translateY(296px)";
+                }, 500);
+          document.getElementById("summary").style.display = "none";
+          document.getElementById("placeOrder").style.display = "block";
+          
               }}
             />
           </button>
@@ -274,10 +278,16 @@ function cart() {
         </button>
       </div>
 
-      <button
+      <div
+      id="placeOrder"
         className={buttonstyles[`orange`] + " " + buttonstyles[`lg`]}
         onClick={() => {
           setDisplay("flex");
+          document.getElementById("placeOrder").style.display = "none"
+           
+          document.getElementById("summary").style.display = "flex";
+          setTimeout(()=>{document.getElementById("summary").style.transform = "translateY(0px)"}, 500)
+          
         }}
         style={{
           textAlign: "center",
@@ -285,11 +295,11 @@ function cart() {
           position: "sticky",
 
           bottom: "70px",
-          display: display == "flex" ? "none" : "block",
+          
         }}
       >
         place order
-      </button>
+      </div>
       <BottomNav />
     </div>
   ) : null;

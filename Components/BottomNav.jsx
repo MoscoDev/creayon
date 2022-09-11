@@ -24,14 +24,14 @@ function BottomNav() {
           />
         </a>
       </Link>
-      <Link href="/favourite">
+      {/* <Link href="/favourite">
         <a>
           <IoIosHeartEmpty
             size="1.3rem"
             color={title === "favourite" ? "#FF4200" : "#666666"}
           />
         </a>
-      </Link>{" "}
+      </Link> */}
       <Link href="/orders">
         <a>
           <BsFolder2

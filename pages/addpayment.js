@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import Button from '../Components/Button';
-import TopNav from '../Components/TopNav';
-import style from  '../styles/payment.module.css'
-import {useRouter} from 'next/router';
+import React, { useEffect, useState } from "react";
+import Button from "../Components/Button";
+import TopNav from "../Components/TopNav";
+import style from "../styles/payment.module.css";
+import { useRouter } from "next/router";
 
 function paymentmethod() {
- const router = useRouter();
-   let token = localStorage.getItem("token");
+  const router = useRouter();
+  let token = localStorage.getItem("token");
   const [cardType, setcardType] = useState("Paypal");
-useEffect(() => {
-  if (token == null) {
-    router.push("/login");
-  }
-}, []);
-  
-
-  const handleSubmit=()=>{
-    console.log(cardType)
-    if(cardType==="Credit Card"){
-    //  router.push('/payment')
+  useEffect(() => {
+    if (token == null) {
+      router.push("/login");
     }
+  }, []);
 
-  }
+  const handleSubmit = () => {
+    console.log(cardType);
+    if (cardType === "Credit Card") {
+      router.push("/payment");
+    }
+  };
   return (
     <div className="layout">
-      <TopNav/>
+      <TopNav />
       <div className={style["article"]}>
         <p className={style.paragraph}>
           <strong>Select your payment method</strong>
@@ -48,7 +46,6 @@ useEffect(() => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              
               <path
                 d="M21.9975 9.46732C21.035 8.4403 19.2953 8 17.0696 8H10.6102C10.39 8.00001 10.177 8.07356 10.0095 8.20743C9.84206 8.3413 9.73109 8.52671 9.69658 8.73033L7.00698 24.7005C6.95352 25.0154 7.21398 25.3006 7.55491 25.3006H11.5428L12.5443 19.3533L12.5132 19.5395C12.5846 19.1191 12.9686 18.809 13.4233 18.809H15.3184C19.0411 18.809 21.9561 17.3934 22.8076 13.2982C22.8329 13.1771 22.8548 13.0592 22.8737 12.944C22.7662 12.8908 22.7662 12.8908 22.8737 12.944C23.1272 11.4304 22.872 10.4001 21.9975 9.46732Z"
                 fill="#27346A"
@@ -179,10 +176,12 @@ useEffect(() => {
             }}
           />
         </div>
-        
       </div>
       <div className={style["payment-button"]}>
-        <button className={style.button} onClick={handleSubmit} > {`Pay with ${cardType}`}</button>
+        <button className={style.button} onClick={handleSubmit}>
+          {" "}
+          {`add ${cardType} details`}
+        </button>
       </div>
     </div>
   );

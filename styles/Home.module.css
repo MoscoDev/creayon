@@ -302,7 +302,6 @@
   font-size: 18px !important;
   line-height: 18px;
   color: #fd8835;
-  margin: 20px 0px 10px;
 }
 
 .popularItem {
@@ -356,4 +355,7 @@
   transform: scale(1.09);
   transition: transform 0.2s ease-in-out;
   z-index: 10;
+}
+.favourite{
+  cursor: pointer;
 }

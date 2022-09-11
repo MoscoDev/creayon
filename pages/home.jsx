@@ -7,28 +7,23 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserData } from "../slices/userSlice";
+import { getUserData, updateUserFavourites } from "../slices/userSlice";
 import Title from "../Components/Title";
 
 export default function home({ meals, popular }) {
   let router = useRouter();
   let token = localStorage.getItem("token");
-   const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (token == null && !loaded) {
       router.push("/login");
-
+    } else {
+      setLoaded(true);
     }
-    else{
-      setLoaded(true)
-    }
-
   }, []);
-
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-
   // trigger api call when search is changed
   useEffect(() => {
     if (search.length > 0) {
@@ -53,8 +48,69 @@ export default function home({ meals, popular }) {
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
 
-  return (
-    loaded?
+  const [favourites, setFavourites] = useState(user?.favourites);
+  console.log(favourites);
+  const addToFavourite = (mealID) => {
+    var axios = require("axios");
+    var data = JSON.stringify({
+      favourites: mealID,
+    });
+
+    var config = {
+      method: "post",
+      url:
+        "https://creayonbackend.herokuapp.com/api/v1/user/" +
+        user._id +
+        "/favourite/?option=add",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        if (response.data.success == true) {
+          dispatch(updateUserFavourites(response?.data.favourites));
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+const removeFromFavourite = (mealID) => {
+  var axios = require("axios");
+  var data = JSON.stringify({
+    favourites: mealID,
+  });
+
+  var config = {
+    method: "post",
+    url:
+      "https://creayonbackend.herokuapp.com/api/v1/user/" +
+      user._id +
+      "/favourite/?option=remove",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      if (response.data.success == true) {
+        dispatch(updateUserFavourites(response?.data.favourites));
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+  return loaded ? (
     <div className={style.home}>
       <TopNav />
       <div className={style.homebody}>
@@ -180,7 +236,53 @@ export default function home({ meals, popular }) {
                   <small className={style.light} style={{ fontSize: "11px" }}>
                     {meal.description.substring(0, 19) + "..."}
                   </small>
-                  <p className={style.price}>$9.98</p>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      margin: "15px 0px 10px",
+                      zIndex: "100"
+                    }}
+                  >
+                    <p className={style.price}>$9.98</p>
+                    <button>
+                      <svg
+                        onClick={(event) => {
+                          event.preventDefault();
+                          if (favourites.includes(meal._id)){
+                            removeFromFavourite(meal._id);
+                              (document.getElementById(meal._id).style.fill =
+                                "var(--lightColor)");
+                          }else{
+                            addToFavourite(meal._id);
+                            document.getElementById(meal._id).style.fill =
+                              "var(--orange)";
+                          }
+                        }}
+                        className={style.favourite}
+                        id={meal._id}
+                        width="27"
+                        height="27"
+                        viewBox="0 0 27 27"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style={{
+                          fill: favourites.includes(meal._id)
+                            ? "var(--orange)"
+                            : "var(--lightColor)",
+                          boxShadow: "0px 4px 11px rgba(255, 255, 255, 0.9)",
+                          borderRadius: "50%",
+                        }}
+                      >
+                        <circle cx="13.5" cy="13.5" r="13.5" />
+                        <path
+                          d="M19.2017 8.96661C18.8882 8.65305 18.5161 8.40431 18.1065 8.2346C17.697 8.06489 17.258 7.97754 16.8146 7.97754C16.3713 7.97754 15.9323 8.06489 15.5227 8.2346C15.1131 8.40431 14.741 8.65305 14.4276 8.96661L13.7771 9.61707L13.1267 8.96661C12.4936 8.33353 11.6349 7.97787 10.7396 7.97787C9.84431 7.97787 8.98566 8.33353 8.35258 8.96661C7.71949 9.5997 7.36383 10.4583 7.36383 11.3537C7.36383 12.249 7.71949 13.1076 8.35258 13.7407L9.00303 14.3912L13.7771 19.1652L18.5512 14.3912L19.2017 13.7407C19.5152 13.4273 19.764 13.0552 19.9337 12.6456C20.1034 12.236 20.1907 11.797 20.1907 11.3537C20.1907 10.9103 20.1034 10.4713 19.9337 10.0617C19.764 9.65216 19.5152 9.28003 19.2017 8.96661Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
                 <div
                   className={style.foodMenuHeader}
@@ -288,8 +390,8 @@ export default function home({ meals, popular }) {
         </div>
       </div>
       <BottomNav />
-    </div>:null
-  );
+    </div>
+  ) : null;
 }
 
 // direct database queries.
