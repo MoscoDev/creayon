@@ -17,7 +17,7 @@ function paymentmethod() {
   const handleSubmit = () => {
     console.log(cardType);
     if (cardType === "Credit Card") {
-      router.push("/payment");
+      // router.push("/payment");
     }
   };
   return (

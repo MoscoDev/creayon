@@ -6,9 +6,8 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import styles from "../../styles/counter.module.css";
 import { useRouter } from "next/router";
 // import BottomNav from "../../Components/BottomNav";
-import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../../slices/counterSlice";
-import { updateUserData } from "../../slices/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserData, updateUserFavourites } from "../../slices/userSlice";
 import axios from "axios";
 import { getCartData } from "../../slices/cartSlice";
 import BottomNav from "../../Components/BottomNav";
@@ -53,6 +52,21 @@ function food({ meal, photo }) {
       router.push("/login");
     }
   }, []);
+   const [mealSize, setMealSize] = useState("md");
+   const [rate, setRate] = useState(1);
+  const [favourites, setFavourites] = useState(user?.favourites);
+  const [favColour, setfavColour] = useState(
+    favourites.includes(meal._id) ? "#FA602B" : "var(--lightColor)"
+  );
+  
+  // useEffect(() => {
+  //   first
+  
+  //   return () => {
+  //     second
+  //   }
+  // }, [favourites])
+  
   //  let productInCart = cart.cartItems.find((o) => o.productId === meal._id);
   //  console.log(productInCart)
   //  useEffect(() => {
@@ -69,7 +83,7 @@ function food({ meal, photo }) {
       productId: meal._id,
       quantity: count,
       name: meal.menuname,
-      price: 10,
+      price: 10* rate,
       pic: photo
     };
 
@@ -95,8 +109,77 @@ notify("cart updated");
       });
   };
 
-  const [mealSize, setMealSize] = useState("md");
-  const [rate, setRate] = useState(1);
+  
+  // console.log(favourites);
+  const addToFavourite = (mealID) => {
+    var axios = require("axios");
+    var data = JSON.stringify({
+      favourites: mealID,
+    });
+
+    var config = {
+      method: "post",
+      url:
+        "https://creayonbackend.herokuapp.com/api/v1/user/" +
+        user._id +
+        "/favourite/?option=add",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        if (response.data.success == true) {
+          console.log(user.favourites);
+          dispatch(updateUserFavourites(response?.data.favourites));
+
+          document.getElementById(mealID).style.fill = "#FA602B";
+          setfavColour("#FA602B"
+          );
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  const removeFromFavourite = (mealID) => {
+    var axios = require("axios");
+    var data = JSON.stringify({
+      favourites: mealID,
+    });
+
+    var config = {
+      method: "post",
+      url:
+        "https://creayonbackend.herokuapp.com/api/v1/user/" +
+        user._id +
+        "/favourite/?option=remove",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        
+        if (response.data.success == true) {
+          dispatch(updateUserFavourites(response?.data.favourites));
+          console.log(user.favourites);
+          setfavColour("var(--lightColor)");
+          document.getElementById(meal._id).style.fill = "var(--lightColor)";
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+ 
   return (
     <div className={style.foodPage}>
       <ToastContainer />
@@ -164,7 +247,18 @@ notify("cart updated");
           </article>
         </div>
         <div className={style["action"]}>
+          <button onClick={(event) => {
+                        event.preventDefault();
+                        if (user.favourites.includes(meal._id)) {
+                         removeFromFavourite(meal._id);
+                          
+                        } else {
+                          addToFavourite(meal._id);
+                        
+                        }
+                      }}>
           <svg
+          id= {meal._id}
             width="59"
             height="59"
             viewBox="0 0 59 59"
@@ -173,7 +267,7 @@ notify("cart updated");
           >
             <g filter="url(#filter0_d_121_307)">
               <circle cx="29.5" cy="25.5" r="25.5" fill="white" />
-              <circle cx="29.5" cy="25.5" r="22.5" fill="#FF4200" />
+              <circle cx="29.5" cy="25.5" r="22.5" fill={favColour} />
               <path
                 d="M38.2913 17.6118C37.7805 17.1008 37.1741 16.6955 36.5066 16.4189C35.8392 16.1423 35.1238 16 34.4013 16C33.6788 16 32.9634 16.1423 32.2959 16.4189C31.6285 16.6955 31.022 17.1008 30.5113 17.6118L29.4513 18.6718L28.3913 17.6118C27.3596 16.5801 25.9603 16.0005 24.5013 16.0005C23.0423 16.0005 21.643 16.5801 20.6113 17.6118C19.5796 18.6435 19 20.0428 19 21.5018C19 22.9609 19.5796 24.3601 20.6113 25.3918L21.6713 26.4518L29.4513 34.2318L37.2313 26.4518L38.2913 25.3918C38.8023 24.8811 39.2076 24.2746 39.4842 23.6072C39.7608 22.9397 39.9031 22.2243 39.9031 21.5018C39.9031 20.7793 39.7608 20.0639 39.4842 19.3965C39.2076 18.729 38.8023 18.1226 38.2913 17.6118V17.6118Z"
                 fill="white"
@@ -217,7 +311,7 @@ notify("cart updated");
               </filter>
             </defs>
           </svg>
-
+</button>
           <div className={style["border"]}>
             <div className={style["addCart"]} onClick={handleAddToCart}>
               <p>Add to cart</p>

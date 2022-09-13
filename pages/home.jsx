@@ -49,7 +49,7 @@ export default function home({ meals, popular }) {
   const dispatch = useDispatch();
 
   const [favourites, setFavourites] = useState(user?.favourites);
-  console.log(favourites);
+  // console.log(favourites);
   const addToFavourite = (mealID) => {
     var axios = require("axios");
     var data = JSON.stringify({
@@ -71,9 +71,12 @@ export default function home({ meals, popular }) {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         if (response.data.success == true) {
+          console.log(user.favourites)
           dispatch(updateUserFavourites(response?.data.favourites));
+         
+            document.getElementById(mealID).style.fill = "#FA602B";
         }
       })
       .catch(function (error) {
@@ -101,9 +104,12 @@ export default function home({ meals, popular }) {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
+          // console.log(user.favourites);
         if (response.data.success == true) {
           dispatch(updateUserFavourites(response?.data.favourites));
+          console.log(user.favourites)
+          document.getElementById(mealID).style.fill = "var(--lightColor)";
         }
       })
       .catch(function (error) {
@@ -246,20 +252,19 @@ export default function home({ meals, popular }) {
                     }}
                   >
                     <p className={style.price}>$9.98</p>
-                    <button>
+                    <button
+                      onClick={(event) => {
+                        event.preventDefault();
+                        if (user.favourites.includes(meal._id)) {
+                         removeFromFavourite(meal._id);
+                          
+                        } else {
+                          addToFavourite(meal._id);
+                        
+                        }
+                      }}
+                    >
                       <svg
-                        onClick={(event) => {
-                          event.preventDefault();
-                          if (favourites.includes(meal._id)) {
-                            removeFromFavourite(meal._id);
-                            document.getElementById(meal._id).style.fill =
-                              "var(--lightColor)";
-                          } else {
-                            addToFavourite(meal._id);
-                            document.getElementById(meal._id).style.fill =
-                              "#FA602B";
-                          }
-                        }}
                         className={style.favourite}
                         id={meal._id}
                         width="27"

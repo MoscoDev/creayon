@@ -74,9 +74,17 @@ function login() {
           }
         )
         .catch(function (error) {
-          console.log(error.message);
+          console.log({ message: error.message, code: error.code });
           setDisabled(false);
-          alert(error.message);
+          toast.error((error.message), {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
           event.preventDefault();
         });
     }

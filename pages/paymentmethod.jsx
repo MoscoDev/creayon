@@ -7,7 +7,7 @@ import {useRouter} from 'next/router';
 function paymentmethod() {
  const router = useRouter();
    let token = localStorage.getItem("token");
-  const [cardType, setcardType] = useState("Paypal");
+  const [cardType, setcardType] = useState("Credit Card");
 useEffect(() => {
   if (token == null) {
     router.push("/login");
@@ -18,7 +18,7 @@ useEffect(() => {
   const handleSubmit=()=>{
     console.log(cardType)
     if(cardType==="Credit Card"){
-    //  router.push('/payment')
+     router.push('/payment')
     }
 
   }
