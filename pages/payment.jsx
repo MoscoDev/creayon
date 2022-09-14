@@ -104,13 +104,11 @@ function payment() {
       onSuccess: async () => {
         handleUpdateCart();
         console.log(`Linked successfully`);
-        
+         
       },
       key: "sandbox_pk_e1e0548296b50d11aa1034556f6a04dfd2094f0e77ba",
-      //Change key (test_pk_sample-public-key-1) to the key on your Squad Dashboard
       email: user.email,
       amount: price,
-      //Enter amount in Naira or Dollar (Base value Kobo/cent already multiplied by 100)
       currency_code: "USD",
       metadata: cart,
     });
@@ -221,7 +219,7 @@ function payment() {
         </div>
       </form>
     </div>
-  );
+  );  
 }
 
 export default payment;
