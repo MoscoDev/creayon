@@ -47,11 +47,17 @@ function food({ meal, photo }) {
   const handleIncrement = () => setCount(count+1);
   let router = useRouter();
   const handleDecrement = () => count>1 ? setCount(count-1): count;
+  
   useEffect(() => {
-    if (token == null) {
+    if (token == null && !loaded) {
       router.push("/login");
     }
-  }, []);
+    if (user.verified == false) {
+      router.push("/verifyphone");
+    } else {
+      setLoaded(true);
+    }
+  }, [user, token]);
    const [mealSize, setMealSize] = useState("md");
    const [rate, setRate] = useState(1);
   const [favourites, setFavourites] = useState(user?.favourites);

@@ -6,6 +6,8 @@ import Title from "../Components/Title";
 import styles from "../styles/Button.module.css";
 import axios from "axios";
 import {useRouter} from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -36,7 +38,7 @@ var data = JSON.stringify({
 
 var config = {
   method: "post",
-  url: "https://creayonbackend.herokuapp.com/api/v1/register" || "http://localhost:4000/api/v1/register",
+  url: "http://localhost:4000/api/v1/register" || "https://creayonbackend.herokuapp.com/api/v1/register" || "http://localhost:4000/api/v1/register",
   headers: {
     "Content-Type": "application/json",
   },
@@ -45,14 +47,30 @@ var config = {
 
 axios(config)
   .then(function (response) {
-    // console.log(JSON.stringify(response.data));
-     alert(response.data.message);
+    console.log(JSON.stringify(response.data));
+      toast.success(response.data.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       router.push("/login");
 
   })
   .catch(function (error) {
     console.log(error);
-    alert(error.message);
+    toast.error(error.message, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     event.preventDefault()
   });
    
@@ -63,6 +81,7 @@ axios(config)
 
   return (
     <div>
+      <ToastContainer />
       <Title text="Creayon" align={"left"} />
       <Imagebox src="/img/signup.svg" />
       <Title text="Signup" align={"left"} />

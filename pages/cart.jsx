@@ -106,12 +106,15 @@ function cart() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if ((user.username == "" || null) && !loaded) {
+    if (token == null && !loaded) {
       router.push("/login");
+    }
+    if (user.verified == false) {
+      router.push("/verifyphone");
     } else {
       setLoaded(true);
     }
-  }, []);
+  }, [user, token]);
 
   return loaded ? (
     <div className={style.cartPage}>

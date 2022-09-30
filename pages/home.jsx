@@ -7,21 +7,26 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserData, updateUserFavourites } from "../slices/userSlice";
-import Title from "../Components/Title";
+import { updateUserFavourites } from "../slices/userSlice";
 
 export default function home({ meals, popular }) {
   let router = useRouter();
   let token = localStorage.getItem("token");
   const [loaded, setLoaded] = useState(false);
+ const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (token == null && !loaded) {
-      router.push("/login");
-    } else {
+       router.push("/login");
+    }
+    if(user.verified == false){
+      router.push("/verifyphone")
+    }
+     else {
       setLoaded(true);
     }
-  }, []);
+  }, [user, token]);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   // trigger api call when search is changed
@@ -45,9 +50,7 @@ export default function home({ meals, popular }) {
     }
   }, [search]);
 
-  const user = useSelector((state) => state.user.value);
-  const dispatch = useDispatch();
-
+ 
   const [favourites, setFavourites] = useState(user?.favourites);
   // console.log(favourites);
   const addToFavourite = (mealID) => {

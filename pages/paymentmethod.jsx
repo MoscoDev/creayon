@@ -2,19 +2,38 @@ import React, { useEffect, useState } from 'react'
 import Button from '../Components/Button';
 import TopNav from '../Components/TopNav';
 import style from  '../styles/payment.module.css'
+import { useSelector, useDispatch } from "react-redux";
 import {useRouter} from 'next/router';
 
 function paymentmethod() {
  const router = useRouter();
    let token = localStorage.getItem("token");
   const [cardType, setcardType] = useState("Credit Card");
-useEffect(() => {
-  if (token == null) {
-    router.push("/login");
-  }
-}, []);
-  
+const user = useSelector((state) => state.user.value);
+const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (token == null && !loaded) {
+      router.push("/login");
+    }
+    if (user.verified == false) {
+      router.push("/verifyphone");
+    } else {
+      setLoaded(true);
+    }
+  }, [user, token]);
+ 
+  useEffect(() => {
+    if (token == null && !loaded) {
+       router.push("/login");
+    }
+    if(user.verified == false){
+      router.push("/verifyphone")
+    }
+     else {
+      setLoaded(true);
+    }
+  }, [user, token]);
   const handleSubmit=()=>{
     console.log(cardType)
     if(cardType==="Credit Card"){

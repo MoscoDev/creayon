@@ -1,35 +1,39 @@
-import Link from 'next/link';
+import Link from "next/link";
 import style from "../styles/verifyphone.module.css";
-import Button from '../Components/Button';
-import Timer from '../Components/Timer';
-import OtpInput from 'react-otp-input';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import Button from "../Components/Button";
+import Timer from "../Components/Timer";
+import OtpInput from "react-otp-input";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUserFavourites } from "../slices/userSlice";
 
 function verifyphone() {
-  const [otp, setOtp] = useState('');
-  const [otpError, setOtpError] = useState('');
-  const [otpErrorMessage, setOtpErrorMessage] = useState('');
-let router = useRouter();
+  const [otp, setOtp] = useState("");
+  const [otpError, setOtpError] = useState("");
+  const [otpErrorMessage, setOtpErrorMessage] = useState("");
+  let router = useRouter();
   let token = localStorage.getItem("token");
-  
-useEffect(() => {
-  if (token == null) {
-    router.push("/login");
-  }
-}, []);
-  
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (token == null) {
+      router.push("/login");
+    }
+  }, []);
+
   const handleChange = (otp) => setOtp(otp);
   return (
     <div className={style.general}>
-     
-      <div style={{ display: "flex", columnGap: "1rem" }}>
+      <div style={{ display: "flex", columnGap: "1rem", borderBottom: "1px solid var(--lightColor)" }}>
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "30px",
+            height: "50px",
           }}
         >
           <Link href={"/"}>
@@ -38,8 +42,24 @@ useEffect(() => {
             </a>
           </Link>
         </div>
-        <p style={{ fontSize: "20px", textAlign: "center", flex: "1 1 auto" }}>
-          <strong>Verify Your Phone Number</strong>
+        <p
+          style={{
+            fontSize: "20px",
+            textAlign: "center",
+            flex: "1 1 auto",
+            margin: "0 auto",
+          }}
+        >
+          <strong
+            style={{
+              fontSize: "20px",
+              textAlign: "center",
+              flex: "1 1 auto",
+             lineHeight: "50px"
+            }}
+          >
+            Verify Your Phone Number
+          </strong>
         </p>
       </div>
       <div
@@ -60,7 +80,7 @@ useEffect(() => {
           <p
             style={{ fontSize: "14px", textAlign: "center", flex: "1 1 auto" }}
           >
-            Enter the OTP sent to &gt;<strong> +234816345751</strong>
+            Enter the OTP sent to &gt;<strong>{user.email}</strong>
           </p>
           <br />
           <form
@@ -73,54 +93,23 @@ useEffect(() => {
               justifyContent: "center",
             }}
           >
-            {/* <input
-              class={styles["otp"]}
-              type="number"
-              oninput="digitValidate(this)"
-              onkeyup="tabChange(1)"
-              maxlength={1}
-              pattern={"/\b\d{5}\b/g"}
-            />
-            <input
-              class={styles["otp"]}
-              type="number"
-              oninput="digitValidate(this)"
-              onkeyup="tabChange(2)"
-              maxlength={1}
-            />
-            <input
-              class={styles["otp"]}
-              type="number"
-              oninput="digitValidate(this)"
-              onkeyup="tabChange(3)"
-              maxlength={1}
-              min={1}
-            />
-            <input
-              class={styles["otp"]}
-              type="number"
-              oninput="digitValidate(this)"
-              onkeyup="tabChange(4)"
-              maxlength={1}
-            /> */}
             <OtpInput
               value={otp}
               onChange={handleChange}
               numInputs={4}
               inputStyle={"otp"}
+              isInputSecure
               focusStyle={"otp-focus"}
               separator={<span></span>}
             />
-            
           </form>
           <br />
           <Timer />
-         
         </div>
         <Button
-          text={"Submit"}
+          text={"Verify"}
           colour="orange"
-          link={"/verifymail"}
+          link={"#"}
           size="lg"
           handleClick={() => {
             if (otp.length < 4) {
@@ -130,12 +119,11 @@ useEffect(() => {
               setOtpError(false);
               setOtpErrorMessage("");
             }
-          }
-          }
+          }}
         ></Button>
       </div>
     </div>
   );
 }
 
-export default verifyphone
+export default verifyphone;

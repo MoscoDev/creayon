@@ -15,11 +15,7 @@ function payment() {
   const [lastName, setLastName] = useState("");
   let token = localStorage.getItem("token");
   let router = useRouter();
-  useEffect(() => {
-    if (token == null) {
-      router.push("/login");
-    }
-  }, []);
+ 
   const notify = (message) =>
     toast.success(message, {
       position: "top-right",
@@ -43,6 +39,18 @@ function payment() {
 
   const cart = useSelector((state) => state.cart.value);
   const user = useSelector((state) => state.user.value);
+
+  useEffect(() => {
+    if (token == null && !loaded) {
+      router.push("/login");
+    }
+    if (user.verified == false) {
+      router.push("/verifyphone");
+    } else {
+      setLoaded(true);
+    }
+  }, [user, token]);
+
   const dispatch = useDispatch();
   let { cartItems } = cart;
   const [subtotal, setSubtotal] = useState(0);
