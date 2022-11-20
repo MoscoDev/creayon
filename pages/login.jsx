@@ -43,7 +43,7 @@ function login() {
       var config = {
         method: "post",
         url:
-          "http://localhost:4000/api/v1/login" ||
+          
           "https://creayonbackend.herokuapp.com/api/v1/login",
         headers: {
           "Content-Type": "application/json",
