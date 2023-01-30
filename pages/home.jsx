@@ -403,7 +403,7 @@ export default function home({ meals, popular }) {
 }
 
 // direct database queries.
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const res = await fetch("https://foodbukka.herokuapp.com/api/v1/menu");
