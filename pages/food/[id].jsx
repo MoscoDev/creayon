@@ -1,41 +1,41 @@
-// import React, { useEffect, useState } from "react";
-// import Title from "../../Components/Title";
-// import TopNav from "../../Components/TopNav";
-// import style from "../../styles/food.module.css";
-// import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-// import styles from "../../styles/counter.module.css";
-// import { useRouter } from "next/router";
-// // import BottomNav from "../../Components/BottomNav";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getUserData, updateUserFavourites } from "../../slices/userSlice";
-// import axios from "axios";
-// import { getCartData } from "../../slices/cartSlice";
+import React, { useEffect, useState } from "react";
+import Title from "../../Components/Title";
+import TopNav from "../../Components/TopNav";
+import style from "../../styles/food.module.css";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import styles from "../../styles/counter.module.css";
+import { useRouter } from "next/router";
 // import BottomNav from "../../Components/BottomNav";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// const notify = (message) =>
-//   toast.success(message, {
-//     position: "top-right",
-//     autoClose: 2000,
-//     hideProgressBar: false,
-//     closeOnClick: true,
-//     pauseOnHover: true,
-//     draggable: true,
-//     progress: undefined,
-//   });
-// const info = (message) =>
-//   toast.warning(message, {
-//     position: "top-right",
-//     autoClose: 2000,
-//     hideProgressBar: false,
-//     closeOnClick: true,
-//     pauseOnHover: true,
-//     draggable: true,
-//     progress: undefined,
-//   });
+import { useSelector, useDispatch } from "react-redux";
+import { getUserData, updateUserFavourites } from "../../slices/userSlice";
+import axios from "axios";
+import { getCartData } from "../../slices/cartSlice";
+import BottomNav from "../../Components/BottomNav";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const notify = (message) =>
+  toast.success(message, {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+const info = (message) =>
+  toast.warning(message, {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 
 
-// function food({ meal, photo }) {
+function Food({ meal, photo }) {
   
 //   const [count, setCount ] =useState(1)
 //   // || useSelector((state) => state.counter.value);
@@ -330,9 +330,9 @@
 //   );
 // }
 
-// export default food;
+export default Food;
 
-// // / direct database queries.
+// / direct database queries.
 // export async function getStaticProps({ params }) {
 //   // Call an external API endpoint to get posts.
 //   // You can use any data fetching library
