@@ -9,7 +9,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserFavourites } from "../slices/userSlice";
 
-function verifyphone() {
+function Verifyphone() {
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState("");
   const [otpErrorMessage, setOtpErrorMessage] = useState("");
@@ -126,4 +126,4 @@ function verifyphone() {
   );
 }
 
-export default verifyphone;
+export default Verifyphone;
