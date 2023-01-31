@@ -16,7 +16,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-function profile() {
+function Profile() {
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
   let token = localStorage.getItem("token");
@@ -269,4 +269,4 @@ function profile() {
   );
 }
 
-export default profile;
+export default Profile;
