@@ -5,7 +5,7 @@ import TopNav from "../Components/TopNav";
 import style from "../styles/payment.module.css";
 import { useRouter } from "next/router";
 
-function paymentmethod() {
+function Paymentmethod() {
   const router = useRouter();
   let token = localStorage.getItem("token");
   const [cardType, setcardType] = useState("Paypal");
@@ -197,4 +197,4 @@ function paymentmethod() {
   );
 }
 
-export default paymentmethod;
+export default Paymentmethod;
