@@ -3,7 +3,7 @@ import Title from '../Components/Title'
 import style from "../styles/Home.module.css";
 import { useRouter } from 'next/router';
 
-function verifymail() {
+function Verifymail() {
     let token = localStorage.getItem("token");
     let router = useRouter();
   useEffect(() => {
@@ -44,4 +44,4 @@ function verifymail() {
   );
 }
 
-export default verifymail
+export default Verifymail

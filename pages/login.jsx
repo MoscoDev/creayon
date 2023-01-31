@@ -14,7 +14,7 @@ import { getCartData, initialState } from "../slices/cartSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function login() {
+function Login() {
   const router = useRouter();
   const [emailError, setEmailError] = useState("none");
   const [passwordError, setPasswordError] = useState("none");
@@ -270,4 +270,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

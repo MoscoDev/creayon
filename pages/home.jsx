@@ -9,7 +9,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserFavourites } from "../slices/userSlice";
 
-export default function home({ meals, popular }) {
+export default function Home({ meals, popular }) {
   let router = useRouter();
   let token = localStorage.getItem("token");
   const [loaded, setLoaded] = useState(false);

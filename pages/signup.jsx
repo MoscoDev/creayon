@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 
-function signup() {
+function Signup() {
   const router = useRouter();
   const [emailError, setEmailError] = useState("none");
   const [passwordError, setPasswordError] = useState("none");
@@ -255,4 +255,4 @@ axios(config)
   );
 }
 
-export default signup;
+export default Signup;

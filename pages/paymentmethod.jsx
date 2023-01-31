@@ -5,7 +5,7 @@ import style from  '../styles/payment.module.css'
 import { useSelector, useDispatch } from "react-redux";
 import {useRouter} from 'next/router';
 
-function paymentmethod() {
+function Paymentmethod() {
  const router = useRouter();
    let token = localStorage.getItem("token");
   const [cardType, setcardType] = useState("Credit Card");
@@ -207,4 +207,4 @@ const dispatch = useDispatch();
   );
 }
 
-export default paymentmethod;
+export default Paymentmethod;

@@ -4,7 +4,7 @@ import Button from "../Components/Button";
 import Imagebox from "../Components/Imagebox";
 import Title from "../Components/Title";
 
-function forgetpassword() {
+function Forgetpassword() {
   // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("none");
@@ -148,4 +148,4 @@ function forgetpassword() {
   );
 }
 
-export default forgetpassword;
+export default Forgetpassword;
