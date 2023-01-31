@@ -18,7 +18,7 @@ import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function cart() {
+function Cart() {
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.value);
@@ -308,4 +308,4 @@ function cart() {
   ) : null;
 }
 
-export default cart;
+export default Cart;
