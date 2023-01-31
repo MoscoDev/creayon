@@ -328,7 +328,7 @@ function Food({ meal, photo }) {
 //       <BottomNav />
 //     </div>
 //   );
-// }
+}
 
 export default Food;
 
